@@ -1,0 +1,59 @@
+<nav class="nav" id="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/mcp-logo-transparent.png" alt="Monachil Capital Partners" class="nav-logo-img">
+  </a>
+  <div class="nav-links">
+    {{ range .Site.Menus.main }}
+    <a href="{{ .URL }}" class="nav-link">{{ .Name }}</a>
+    {{ end }}
+    <a href="https://monachilfunds.com" target="_blank" rel="noopener" class="nav-investor-btn">Public Funds</a>
+  </div>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+    <span class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </span>
+  </button>
+</nav>
+
+<div class="menu-overlay" id="menuOverlay">
+  <div class="menu-overlay-inner">
+    <button class="menu-close" id="menuClose" aria-label="Close navigation">
+      <span></span>
+      <span></span>
+    </button>
+    <nav class="menu-nav">
+      <span class="menu-group-label">Firm</span>
+      {{ range .Site.Menus.main }}
+        {{ if or (eq .Name "About") (eq .Name "Approach") }}
+      <a href="{{ .URL }}" class="menu-link">{{ .Name }}</a>
+        {{ end }}
+      {{ end }}
+
+      <span class="menu-group-label">Insights</span>
+      {{ range .Site.Menus.main }}
+        {{ if or (eq .Name "Research") (eq .Name "Media") (eq .Name "Research & Insights") (eq .Name "In the Media") }}
+      <a href="{{ .URL }}" class="menu-link">{{ .Name }}</a>
+        {{ end }}
+      {{ end }}
+
+      <span class="menu-group-label">Connect</span>
+      {{ range .Site.Menus.main }}
+        {{ if eq .Name "Contact" }}
+      <a href="{{ .URL }}" class="menu-link">{{ .Name }}</a>
+        {{ end }}
+      {{ end }}
+      <a href="{{ .Site.Params.fundURL }}" class="menu-link menu-link--external" target="_blank" rel="noopener">
+        Public Funds <span class="external-icon">&nearr;</span>
+      </a>
+      <a href="https://monachiltech.com" class="menu-link menu-link--external" target="_blank" rel="noopener">
+        Monachil Technologies <span class="external-icon">&nearr;</span>
+      </a>
+    </nav>
+    <div class="menu-footer">
+      <p class="menu-footer-addr">{{ .Site.Params.address }}<br>{{ .Site.Params.city }}</p>
+      <p class="menu-footer-phone">{{ .Site.Params.phone }}</p>
+    </div>
+  </div>
+</div>

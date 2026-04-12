@@ -1,0 +1,60 @@
+baseURL = "https://monachill.com/"
+languageCode = "en-us"
+title = "Monachil Capital Partners"
+
+[params]
+  description = "Greenwich, CT based investment manager focused on asset-backed lending and specialty finance"
+  address = "1 Sound Shore Drive, Suite 303"
+  city = "Greenwich, CT 06830"
+  phone = "(212) 393-4120"
+  email = "info@monachilpartners.com"
+  fundURL = "https://monachilfunds.com"
+  copyright = "Monachil Capital Partners LP"
+
+[menu]
+  [[menu.main]]
+    name = "About"
+    url = "/about/"
+    weight = 1
+  [[menu.main]]
+    name = "Approach"
+    url = "/approach/"
+    weight = 2
+  [[menu.main]]
+    name = "Research & Insights"
+    url = "/research/"
+    weight = 3
+  [[menu.main]]
+    name = "In the Media"
+    url = "/media/"
+    weight = 4
+  [[menu.main]]
+    name = "Contact"
+    url = "/contact/"
+    weight = 5
+
+[taxonomies]
+  year = "years"
+  category = "categories"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+[outputs]
+  home = ["HTML", "RSS"]
+  section = ["HTML"]
+  page = ["HTML"]
+
+[sitemap]
+  changefreq = "monthly"
+  priority = 0.5
+
+[minify]
+  minifyOutput = true
+  [minify.tdewolff]
+    [minify.tdewolff.html]
+      keepWhitespace = false
+    [minify.tdewolff.css]
+      version = 4

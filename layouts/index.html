@@ -1,0 +1,254 @@
+{{ define "main" }}
+
+<section class="hero" data-hero-effect="mountains">
+  <div class="hero-bg"></div>
+  <canvas id="heroParticles" class="hero-canvas" aria-hidden="true"></canvas>
+  <div class="hero-mountains" aria-hidden="true">
+    <svg class="mountain-layer mountain-layer--far" viewBox="0 0 1440 320" preserveAspectRatio="none">
+      <path d="M0,320 L0,200 L80,170 L140,190 L200,120 L260,155 L320,100 L380,140 L460,80 L520,130 L580,110 L660,60 L720,105 L780,85 L840,130 L920,70 L980,115 L1040,90 L1100,140 L1160,100 L1220,125 L1300,75 L1360,110 L1440,150 L1440,320 Z" fill="#0d1f3c"/>
+    </svg>
+    <svg class="mountain-layer mountain-layer--mid" viewBox="0 0 1440 320" preserveAspectRatio="none">
+      <path d="M0,320 L0,250 L80,235 L160,220 L240,200 L320,210 L400,185 L480,195 L540,180 L600,170 L650,155 L700,90 L740,155 L770,175 L800,130 L830,175 L860,155 L910,80 L950,150 L990,170 L1040,185 L1100,175 L1160,190 L1220,200 L1300,210 L1380,220 L1440,230 L1440,320 Z" fill="#0b1a2e"/>
+    </svg>
+    <svg class="mountain-layer mountain-layer--near" viewBox="0 0 1440 320" preserveAspectRatio="none">
+      <path d="M0,320 L0,270 L100,255 L180,245 L260,255 L340,240 L420,250 L500,235 L560,245 L640,230 L700,240 L760,225 L820,235 L880,220 L940,230 L1020,222 L1080,235 L1160,228 L1240,238 L1320,232 L1440,245 L1440,320 Z" fill="#091422"/>
+    </svg>
+  </div>
+  <div class="hero-logo-mark" aria-hidden="true">
+    <img src="/images/mcp-logo-transparent.png" alt="" class="hero-logo-img">
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Asset-Backed Lending &middot; Specialty Finance</p>
+    <div class="hero-rule"></div>
+    <h1>Differentiated Alpha<br>through <strong>Disciplined Investing</strong></h1>
+    <p class="hero-text">Monachil Capital Partners is a Greenwich, CT based investment manager focused on asset-backed lending and specialty finance with a 7+ year track record.</p>
+    <div class="hero-actions">
+      <a href="/about/" class="btn btn--primary">About Us</a>
+      <a href="/approach/" class="btn btn--outline">Our Approach</a>
+    </div>
+  </div>
+</section>
+
+
+<section class="stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="fade-in">
+        <p class="stat-number">7+</p>
+        <p class="stat-label">Years Track Record</p>
+      </div>
+      <div class="fade-in">
+        <p class="stat-number">$5–30M</p>
+        <p class="stat-label">Typical Deal Size</p>
+      </div>
+      <div class="fade-in">
+        <p class="stat-number">$30M+</p>
+        <p class="stat-label">Senior Mgmt Capital Committed</p>
+      </div>
+      <div class="fade-in">
+        <p class="stat-number">2</p>
+        <p class="stat-label">Investment Vehicles</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section fade-in">
+  <div class="container">
+    <div class="who-grid">
+      <div>
+        <div class="section-header">
+          <p class="section-label">Who We Are</p>
+          <h2 class="section-title">A <strong>data-driven</strong> approach to investing</h2>
+        </div>
+        <div class="who-text">
+          <p>Monachil Capital Partners is a Greenwich, CT based investment manager focused on <strong>asset-backed lending and specialty finance</strong> with a 7+ year track record. We directly originate senior-secured investments and differentiate ourselves with a <strong>data-driven approach</strong> — monitoring collateral in near real time and partnering with high-growth originators seeking capital solutions.</p>
+          <a href="/about/" class="btn btn--ghost">Learn More</a>
+        </div>
+      </div>
+      <div class="pillars">
+        <div class="pillar">
+          <div class="pillar-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <div>
+            <p class="pillar-title">Downside Protection First</p>
+            <p class="pillar-desc">Zero-credit loss underwriting target with control, transparency, and structural seniority as foundation.</p>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+          <div>
+            <p class="pillar-title">Data-Driven Process</p>
+            <p class="pillar-desc">Proprietary risk platform with real-time analytics integral to deal and portfolio risk management.</p>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <div>
+            <p class="pillar-title">Experienced Leadership</p>
+            <p class="pillar-desc">Senior team with 20+ years of structured credit experience across market cycles.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--alt fade-in">
+  <div class="container">
+    <div class="section-header section-header--centered">
+      <p class="section-label">Our Approach</p>
+      <h2 class="section-title">Differentiated, <strong>Data-Driven</strong> Investment Process</h2>
+      <p class="section-subtitle mx-auto">A transparent, disciplined and repeatable investment process with proven ability to add value through various market cycles.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num-col"><span class="step-num">01</span></div>
+        <div class="step-body">
+          <p class="step-title">Origination</p>
+          <p class="step-desc">Source and review opportunities from multiple channels with dedicated teams and deep industry relationships.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num-col"><span class="step-num">02</span></div>
+        <div class="step-body">
+          <p class="step-title">Underwriting</p>
+          <p class="step-desc">Rigorous due diligence and quantitative analysis on asset performance and cash flows with focus on retaining the "V" in LTV.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num-col"><span class="step-num">03</span></div>
+        <div class="step-body">
+          <p class="step-title">Execution</p>
+          <p class="step-desc">All investments reviewed by investment committee with structural protections and outside counsel.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num-col"><span class="step-num">04</span></div>
+        <div class="step-body">
+          <p class="step-title">Monitoring</p>
+          <p class="step-desc">Real-time surveillance with dedicated data analytics team providing asset-level portfolio monitoring.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num-col"><span class="step-num">05</span></div>
+        <div class="step-body">
+          <p class="step-title">Portfolio Management</p>
+          <p class="step-desc">Tactical capital allocation, currency hedging, and complete funding account control.</p>
+        </div>
+      </div>
+    </div>
+    <div class="section-cta">
+      <a href="/approach/" class="btn btn--dark">Full Investment Process</a>
+    </div>
+  </div>
+</section>
+
+<section class="section fade-in">
+  <div class="container">
+    <div class="section-header section-header--split">
+      <div>
+        <p class="section-label">Research & Insights</p>
+        <h2 class="section-title">Latest from <strong>Monachil</strong></h2>
+      </div>
+      <a href="/research/" class="btn btn--ghost">View All</a>
+    </div>
+    <div class="cards-grid">
+      {{ $research := where .Site.RegularPages "Section" "research" }}
+      {{ range first 3 (sort $research ".Date" "desc") }}
+      <a href="{{ .RelPermalink }}" class="card">
+        <p class="card-date">{{ .Date.Format "January 2006" }}</p>
+        {{ with .Params.category }}<span class="card-category">{{ . }}</span>{{ end }}
+        <h3 class="card-title">{{ .Title }}</h3>
+        <p class="card-excerpt">{{ .Params.description }}</p>
+        <span class="card-link">Read Article &rarr;</span>
+      </a>
+      {{ else }}
+      <div class="card">
+        <p class="card-date">Coming Soon</p>
+        <h3 class="card-title">Monthly Market Commentary</h3>
+        <p class="card-excerpt">Our research and insights will be published here. Subscribe to stay informed.</p>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+<section class="section section--alt fade-in">
+  <div class="container">
+    <div class="section-header section-header--split">
+      <div>
+        <p class="section-label">In the Media</p>
+        <h2 class="section-title">Recent <strong>Appearances</strong></h2>
+      </div>
+      <a href="/media/" class="btn btn--ghost">View All</a>
+    </div>
+    <div class="media-grid media-grid--home">
+      <a href="/media/" class="media-card">
+        <div class="media-card-thumb">
+          <img src="/images/bloomberg-aug-2024.png" alt="Bloomberg Surveillance" class="media-card-thumb-img" loading="lazy" decoding="async">
+          <span class="media-card-source">Bloomberg</span>
+          <div class="media-card-play"></div>
+        </div>
+        <div class="media-card-body">
+          <p class="media-card-date">August 2025</p>
+          <h3 class="media-card-title">Bloomberg Surveillance</h3>
+        </div>
+      </a>
+      <a href="https://schwabnetwork.com/video/meli-watch-factory-orders-foresee-10-15-market-pullback-before-year-end" target="_blank" rel="noopener" class="media-card">
+        <div class="media-card-thumb">
+          <img src="/images/schwab-aug-2025.jpg" alt="Ali Meli on Schwab Network" class="media-card-thumb-img" loading="lazy" decoding="async">
+          <span class="media-card-source">Schwab Network</span>
+          <div class="media-card-play"></div>
+        </div>
+        <div class="media-card-body">
+          <p class="media-card-date">August 2025</p>
+          <h3 class="media-card-title">Market Data & Valuations</h3>
+        </div>
+      </a>
+      <a href="https://youtu.be/Wbkvj-IFrvc?si=E0D4fJmhCm0JUauT" target="_blank" rel="noopener" class="media-card">
+        <div class="media-card-thumb">
+          <img src="/images/podcast-exploring-prosperity.jpg" alt="Exploring Prosperity Podcast" class="media-card-thumb-img" loading="lazy" decoding="async">
+          <span class="media-card-source">Podcast</span>
+          <div class="media-card-play"></div>
+        </div>
+        <div class="media-card-body">
+          <p class="media-card-date">June 2025</p>
+          <h3 class="media-card-title">Exploring Prosperity Podcast</h3>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="logos-bar fade-in">
+  <div class="container">
+    <p class="logos-bar-label">As Seen In</p>
+    <div class="logos-grid">
+      <span class="logo-item">Bloomberg</span>
+      <span class="logo-item">CNBC</span>
+      <img src="/images/logo-forbes.png" alt="Forbes" class="logo-img" loading="lazy" decoding="async">
+      <img src="/images/logo-marketwatch.jpg" alt="MarketWatch" class="logo-img" loading="lazy" decoding="async">
+      <img src="/images/logo-reuters.png" alt="Reuters" class="logo-img" loading="lazy" decoding="async">
+      <img src="/images/logo-morningstar.jpg" alt="Morningstar" class="logo-img" loading="lazy" decoding="async">
+      <span class="logo-item">Schwab Network</span>
+    </div>
+  </div>
+</section>
+
+<section class="subscribe-band fade-in">
+  <div class="container">
+    <h3>Stay Informed</h3>
+    <p>Subscribe to receive our monthly market commentary and research.</p>
+    <form class="subscribe-form" action="https://formspree.io/f/xpwzgvpj" method="POST">
+      <input type="hidden" name="_subject" value="Newsletter Subscription - Monachil Capital Partners">
+      <input type="hidden" name="_replyto" value="ir@monachilpartners.com">
+      <label for="subscribe-email" class="visually-hidden">Email Address</label>
+      <input type="email" id="subscribe-email" name="email" placeholder="Your email address" required>
+      <button type="submit">Subscribe</button>
+    </form>
+    <p class="subscribe-note">You will receive our monthly market commentary and research updates.</p>
+  </div>
+</section>
+
+{{ end }}

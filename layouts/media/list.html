@@ -1,0 +1,331 @@
+{{ define "main" }}
+
+<section class="page-hero">
+  <div class="container">
+    <p class="page-hero-breadcrumb"><a href="/">Home</a> / In the Media</p>
+    <h1>In the <strong>Media</strong></h1>
+    <p class="page-hero-sub">Media appearances, video interviews, and press coverage featuring Monachil Capital Partners.</p>
+  </div>
+</section>
+
+<section class="logos-bar">
+  <div class="container">
+    <p class="logos-bar-label">As Seen In</p>
+    <div class="logos-grid">
+      <span class="logo-item">Bloomberg</span>
+      <span class="logo-item">CNBC</span>
+      <img src="/images/logo-forbes.png" alt="Forbes" class="logo-img" loading="lazy" decoding="async">
+      <img src="/images/logo-marketwatch.jpg" alt="MarketWatch" class="logo-img" loading="lazy" decoding="async">
+      <img src="/images/logo-reuters.png" alt="Reuters" class="logo-img" loading="lazy" decoding="async">
+      <img src="/images/logo-morningstar.jpg" alt="Morningstar" class="logo-img" loading="lazy" decoding="async">
+      <span class="logo-item">Schwab Network</span>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-label">Video Appearances</p>
+      <h2 class="section-title">Recent <strong>Interviews</strong></h2>
+    </div>
+
+    <div class="year-filter">
+      <button class="year-filter-btn is-active" data-year="all">All</button>
+      {{ $currentYear := int (now.Format "2006") }}
+      {{ range seq $currentYear 2023 }}
+      <button class="year-filter-btn" data-year="{{ . }}">{{ . }}</button>
+      {{ end }}
+    </div>
+
+    <div class="media-grid">
+
+      <a href="#" class="media-card" data-year="2025" data-video="/videos/bloomberg-surveillance-aug-2025.mp4">
+        <div class="media-card-thumb">
+          <img src="/images/bloomberg-aug-2024.png" alt="Bloomberg Surveillance" class="media-card-thumb-img" loading="lazy" decoding="async">
+          <span class="media-card-source">Bloomberg</span>
+          <div class="media-card-play"></div>
+        </div>
+        <div class="media-card-body">
+          <p class="media-card-date">August 2025</p>
+          <h3 class="media-card-title">Bloomberg Surveillance</h3>
+          <p class="media-card-desc">Ali Meli discusses AI-driven capex in Big Tech, noting the gap between accounting and economic GPU values.</p>
+        </div>
+      </a>
+
+      <a href="https://schwabnetwork.com/video/meli-watch-factory-orders-foresee-10-15-market-pullback-before-year-end" target="_blank" rel="noopener" class="media-card" data-year="2025">
+        <div class="media-card-thumb">
+          <img src="/images/schwab-aug-2025.jpg" alt="Ali Meli on Schwab Network" class="media-card-thumb-img" loading="lazy" decoding="async">
+          <span class="media-card-source">Schwab Network</span>
+          <div class="media-card-play"></div>
+        </div>
+        <div class="media-card-body">
+          <p class="media-card-date">August 5, 2025</p>
+          <h3 class="media-card-title">Market Data & Valuations</h3>
+          <p class="media-card-desc">Ali Meli discusses recent economic data and market valuations with Nicole Petallides.</p>
+        </div>
+      </a>
+
+      <a href="https://youtu.be/Wbkvj-IFrvc?si=E0D4fJmhCm0JUauT" target="_blank" rel="noopener" class="media-card" data-year="2025">
+        <div class="media-card-thumb">
+          <img src="/images/podcast-exploring-prosperity.jpg" alt="Exploring Prosperity Podcast" class="media-card-thumb-img" loading="lazy" decoding="async">
+          <span class="media-card-source">Podcast</span>
+          <div class="media-card-play"></div>
+        </div>
+        <div class="media-card-body">
+          <p class="media-card-date">June 2025</p>
+          <h3 class="media-card-title">Exploring Prosperity Podcast</h3>
+          <p class="media-card-desc">Risk-free era breakdown, $500B+ hidden banking losses, Treasury bonds, and AI productivity boom effects.</p>
+        </div>
+      </a>
+
+      <a href="https://schwabnetwork.com/video/why-the-u-s-s-net-energy-exporter-status-is-critical-for-oil-prices" target="_blank" rel="noopener" class="media-card" data-year="2025">
+        <div class="media-card-thumb">
+          <img src="/images/schwab-jun-2025.png" alt="Ali Meli on Schwab Network" class="media-card-thumb-img" loading="lazy" decoding="async">
+          <span class="media-card-source">Schwab Network</span>
+          <div class="media-card-play"></div>
+        </div>
+        <div class="media-card-body">
+          <p class="media-card-date">June 2025</p>
+          <h3 class="media-card-title">Energy & Geopolitics</h3>
+          <p class="media-card-desc">Iran-Israel conflict impact on energy outlook with Marley Kayden.</p>
+        </div>
+      </a>
+
+      <a href="https://www.youtube.com/watch?v=9OsDqg6bk1g" target="_blank" rel="noopener" class="media-card" data-year="2025">
+        <div class="media-card-thumb">
+          <img src="/images/podcast-asset-backed.jpg" alt="Asset Backed Podcast" class="media-card-thumb-img" loading="lazy" decoding="async">
+          <span class="media-card-source">Podcast</span>
+          <div class="media-card-play"></div>
+        </div>
+        <div class="media-card-body">
+          <p class="media-card-date">May 2025</p>
+          <h3 class="media-card-title">Asset Backed Podcast</h3>
+          <p class="media-card-desc">Specialty Finance Masterclass with Ali Meli.</p>
+        </div>
+      </a>
+
+      <a href="https://schwabnetwork.com/video/meli-fed-s-new-goldilocks-scenario-federal-spending-cuts-hurt-gdp" target="_blank" rel="noopener" class="media-card" data-year="2025">
+        <div class="media-card-thumb">
+          <img src="/images/schwab-mar-2025.jpg" alt="Ali Meli on Schwab Network" class="media-card-thumb-img" loading="lazy" decoding="async">
+          <span class="media-card-source">Schwab Network</span>
+          <div class="media-card-play"></div>
+        </div>
+        <div class="media-card-body">
+          <p class="media-card-date">March 2025</p>
+          <h3 class="media-card-title">Economic Policy Impact</h3>
+          <p class="media-card-desc">New administration initiatives' economic impact with Oliver Renick.</p>
+        </div>
+      </a>
+
+      <a href="https://schwabnetwork.com/video/using-the-cape-ratio-to-gauge-valuation" target="_blank" rel="noopener" class="media-card" data-year="2025">
+        <div class="media-card-thumb">
+          <img src="/images/schwab-jan-2025.jpg" alt="Ali Meli on Schwab Network" class="media-card-thumb-img" loading="lazy" decoding="async">
+          <span class="media-card-source">Schwab Network</span>
+          <div class="media-card-play"></div>
+        </div>
+        <div class="media-card-body">
+          <p class="media-card-date">January 2025</p>
+          <h3 class="media-card-title">Valuation & CAPE Ratio</h3>
+          <p class="media-card-desc">Valuation sustainability, earnings growth expectations, and credit market outlook.</p>
+        </div>
+      </a>
+
+      <a href="#" class="media-card" data-year="2024" data-video="/videos/bloomberg-private-credit-dec-2024.mp4">
+        <div class="media-card-thumb">
+          <img src="/images/bloomberg-oct-2024.png" alt="Ali Meli on Bloomberg" class="media-card-thumb-img" loading="lazy" decoding="async">
+          <span class="media-card-source">Bloomberg</span>
+          <div class="media-card-play"></div>
+        </div>
+        <div class="media-card-body">
+          <p class="media-card-date">December 2024</p>
+          <h3 class="media-card-title">Bloomberg Surveillance — Private Credit</h3>
+          <p class="media-card-desc">Ali Meli with Tom Keene and Paul Sweeney discussing private credit markets.</p>
+        </div>
+      </a>
+
+      <a href="#" class="media-card" data-year="2024" data-video="/videos/bloomberg-surveillance-aug-2024.mp4">
+        <div class="media-card-thumb">
+          <img src="/images/bloomberg-sep-2024.jpg" alt="Ali Meli on Bloomberg Surveillance" class="media-card-thumb-img" loading="lazy" decoding="async">
+          <span class="media-card-source">Bloomberg</span>
+          <div class="media-card-play"></div>
+        </div>
+        <div class="media-card-body">
+          <p class="media-card-date">August 2024</p>
+          <h3 class="media-card-title">Bloomberg Surveillance</h3>
+          <p class="media-card-desc">Ali Meli with Tom Keene and Paul Sweeney on Bloomberg TV.</p>
+        </div>
+      </a>
+
+      <a href="https://schwabnetwork.com/video/impact-of-money-on-the-sidelines-in-today-s-economy" target="_blank" rel="noopener" class="media-card" data-year="2024">
+        <div class="media-card-thumb">
+          <img src="/images/schwab-may-2024.jpg" alt="Ali Meli on Schwab Network" class="media-card-thumb-img" loading="lazy" decoding="async">
+          <span class="media-card-source">Schwab Network</span>
+          <div class="media-card-play"></div>
+        </div>
+        <div class="media-card-body">
+          <p class="media-card-date">May 2024</p>
+          <h3 class="media-card-title">Money on the Sidelines</h3>
+          <p class="media-card-desc">Impact of money on the sidelines in today's economy.</p>
+        </div>
+      </a>
+
+      <a href="https://www.riachannel.com/utilizing-asset-backed-private-credit-to-help-generate-income-and-uncorrelated-returns-monachil-capital-partners-2-13-24/" target="_blank" rel="noopener" class="media-card" data-year="2024">
+        <div class="media-card-thumb">
+          <img src="/images/schwab-ria-2024.png" alt="RIA Channel" class="media-card-thumb-img" loading="lazy" decoding="async">
+          <span class="media-card-source">RIA Channel</span>
+          <div class="media-card-play"></div>
+        </div>
+        <div class="media-card-body">
+          <p class="media-card-date">February 2024</p>
+          <h3 class="media-card-title">Asset-Backed Private Credit</h3>
+          <p class="media-card-desc">Utilizing asset-backed private credit for income and uncorrelated returns.</p>
+        </div>
+      </a>
+
+      <a href="https://schwabnetwork.com/video/gdp-inflation-the-path-ahead" target="_blank" rel="noopener" class="media-card" data-year="2024">
+        <div class="media-card-thumb">
+          <img src="/images/schwab-dec-2023.png" alt="Ali Meli on Schwab Network" class="media-card-thumb-img" loading="lazy" decoding="async">
+          <span class="media-card-source">Schwab Network</span>
+          <div class="media-card-play"></div>
+        </div>
+        <div class="media-card-body">
+          <p class="media-card-date">January 2024</p>
+          <h3 class="media-card-title">GDP & Inflation: The Path Ahead</h3>
+          <p class="media-card-desc">Discussion on economic growth and inflation trajectory.</p>
+        </div>
+      </a>
+
+      <a href="https://open.spotify.com/episode/5NRjdFd9QvA6e08fbLgFuH?si=m_tHH5tUQLK4f0WURt8UoA" target="_blank" rel="noopener" class="media-card" data-year="2023">
+        <div class="media-card-thumb">
+          <img src="/images/podcast-on-the-tape.jpg" alt="On the Tape Podcast" class="media-card-thumb-img" loading="lazy" decoding="async">
+          <span class="media-card-source">Podcast</span>
+          <div class="media-card-play"></div>
+        </div>
+        <div class="media-card-body">
+          <p class="media-card-date">November 2023</p>
+          <h3 class="media-card-title">On the Tape Podcast</h3>
+          <p class="media-card-desc">A Momentary Lapse of Reason with Liz Young and Ali Meli.</p>
+        </div>
+      </a>
+
+      <a href="https://schwabnetwork.com/video/a-soft-landing-is-not-feasible" target="_blank" rel="noopener" class="media-card" data-year="2023">
+        <div class="media-card-thumb">
+          <img src="/images/schwab-feb-2024.png" alt="Ali Meli on Schwab Network" class="media-card-thumb-img" loading="lazy" decoding="async">
+          <span class="media-card-source">Schwab Network</span>
+          <div class="media-card-play"></div>
+        </div>
+        <div class="media-card-body">
+          <p class="media-card-date">September 2023</p>
+          <h3 class="media-card-title">A Soft Landing Is Not Feasible</h3>
+          <p class="media-card-desc">Ali Meli on why a soft landing scenario was not feasible.</p>
+        </div>
+      </a>
+
+      <a href="https://player.cnbc.com/p/gZWlPC/cnbc_global?playertype=synd&byGuid=7000313141" target="_blank" rel="noopener" class="media-card" data-year="2023">
+        <div class="media-card-thumb">
+          <img src="/images/cnbc-aug-2023.png" alt="Ali Meli on CNBC" class="media-card-thumb-img" loading="lazy" decoding="async">
+          <span class="media-card-source">CNBC</span>
+          <div class="media-card-play"></div>
+        </div>
+        <div class="media-card-body">
+          <p class="media-card-date">August 2023</p>
+          <h3 class="media-card-title">Labor Market Assessment</h3>
+          <p class="media-card-desc">Labor market may not be as strong as it appears — Ali Meli on CNBC.</p>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<section class="section section--alt">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-label">Press Coverage</p>
+      <h2 class="section-title">In <strong>Print</strong></h2>
+    </div>
+
+    <div class="press-list">
+
+      <a href="https://www.marketwatch.com/story/why-trumps-tehran-warning-in-israel-iran-conflict-isnt-rattling-stocks-or-creating-a-crisis-in-oil-prices-1d5496a3" target="_blank" rel="noopener" class="press-item" data-year="2025">
+        <span class="press-source">MarketWatch</span>
+        <span class="press-title">Why Trump's Tehran warning isn't rattling stocks or creating a crisis in oil prices</span>
+        <span class="press-date">June 2025</span>
+      </a>
+
+      <a href="https://www.forbes.com/sites/eriksherman/2025/05/18/moodys-us-credit-downgrade-might-seem-unimportant-but-its-bad-news/" target="_blank" rel="noopener" class="press-item" data-year="2025">
+        <span class="press-source">Forbes</span>
+        <span class="press-title">Moody's U.S. Credit Downgrade Might Seem Unimportant But It's Bad News</span>
+        <span class="press-date">May 2025</span>
+      </a>
+
+      <a href="https://www.forbes.com/sites/eriksherman/2025/04/11/what-the-trump-tariff-about-face-change-means-to-the-us-and-economy/" target="_blank" rel="noopener" class="press-item" data-year="2025">
+        <span class="press-source">Forbes</span>
+        <span class="press-title">What Trump's Tariff About-Face Means To The U.S. Economy</span>
+        <span class="press-date">April 2025</span>
+      </a>
+
+      <a href="https://www.globest.com/2025/01/08/economists-revise-inflation-predictions-for-trumps-second-term/" target="_blank" rel="noopener" class="press-item" data-year="2025">
+        <span class="press-source">GlobeSt</span>
+        <span class="press-title">Higher government yields and valuation pressure analysis</span>
+        <span class="press-date">April 2025</span>
+      </a>
+
+      <a href="https://www.marketwatch.com/story/how-republicans-calling-for-smaller-government-could-use-the-feds-balance-sheet-to-wield-more-power-10677889" target="_blank" rel="noopener" class="press-item" data-year="2025">
+        <span class="press-source">MarketWatch</span>
+        <span class="press-title">Fed operating losses and balance sheet damage from elevated rates</span>
+        <span class="press-date">February 2025</span>
+      </a>
+
+      <a href="https://www.marketwatch.com/story/stocks-dont-need-another-fed-rate-cut-as-much-as-they-need-this-right-now-6975e134" target="_blank" rel="noopener" class="press-item" data-year="2025">
+        <span class="press-source">MarketWatch</span>
+        <span class="press-title">Fed rate cuts and balance sheet implications for inflation control</span>
+        <span class="press-date">January 2025</span>
+      </a>
+
+      <a href="https://www.morningstar.com/news/marketwatch/20241108285/why-wall-street-may-hold-the-ultimate-veto-power-over-trump-budget-plans" target="_blank" rel="noopener" class="press-item" data-year="2024">
+        <span class="press-source">Morningstar</span>
+        <span class="press-title">Fiscal policy and market outlook post-presidential election</span>
+        <span class="press-date">November 2024</span>
+      </a>
+
+      <a href="https://www.recapitalusa.com/treasury-volatility-valuation-uncertainty-complicate-exit-cap-rate-calculations/" target="_blank" rel="noopener" class="press-item" data-year="2024">
+        <span class="press-source">RE Capital USA</span>
+        <span class="press-title">Treasury volatility, valuation uncertainty complicate exit cap rate calculations</span>
+        <span class="press-date">February 2024</span>
+      </a>
+
+      <a href="https://www.reuters.com/markets/us/inflation-focused-fed-shoots-down-wall-streets-hopes-march-cut-2024-02-01/" target="_blank" rel="noopener" class="press-item" data-year="2024">
+        <span class="press-source">Reuters</span>
+        <span class="press-title">Inflation-focused Fed shoots down Wall Street's hopes of March cut</span>
+        <span class="press-date">February 2024</span>
+      </a>
+
+      <a href="https://www.recapitalusa.com/analysis-10-year-treasury-moves-into-focus-ahead-of-federal-reserve-meeting/" target="_blank" rel="noopener" class="press-item" data-year="2024">
+        <span class="press-source">RE Capital USA</span>
+        <span class="press-title">Analysis: 10-year Treasury moves into focus ahead of Federal Reserve Meeting</span>
+        <span class="press-date">January 2024</span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <p class="media-disclaimer">The views expressed in media appearances are the personal opinions of the individuals featured and do not necessarily represent the views of Monachil Capital Partners LP. These appearances are for informational purposes only and do not constitute investment advice. Past performance is not indicative of future results.</p>
+  </div>
+</section>
+
+<div class="video-modal" id="videoModal">
+  <div class="video-modal-inner">
+    <button class="video-modal-close" id="videoModalClose">&times;</button>
+    <video id="videoPlayer" controls preload="none">
+      <source src="" type="video/mp4">
+      Your browser does not support the video element.
+    </video>
+  </div>
+</div>
+
+{{ end }}

@@ -1,0 +1,64 @@
+{{ define "main" }}
+
+<section class="page-hero">
+  <div class="container">
+    <p class="page-hero-breadcrumb"><a href="/">Home</a> / Research & Insights</p>
+    <h1>Research & <strong>Insights</strong></h1>
+    <p class="page-hero-sub">Market commentary, research papers, and thought leadership from Monachil Capital Partners.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    {{ $articles := where .Site.RegularPages "Section" "research" }}
+    <div class="year-filter">
+      <button class="year-filter-btn is-active" data-year="all">All</button>
+      {{ $years := slice }}
+      {{ range $articles }}
+        {{ $y := .Date.Format "2006" }}
+        {{ if not (in $years $y) }}
+          {{ $years = $years | append $y }}
+        {{ end }}
+      {{ end }}
+      {{ range sort $years "value" "desc" }}
+      <button class="year-filter-btn" data-year="{{ . }}">{{ . }}</button>
+      {{ end }}
+    </div>
+
+    {{ if $articles }}
+    <div class="research-list">
+      {{ range sort $articles ".Date" "desc" }}
+      <a href="{{ .RelPermalink }}" class="research-item" data-year="{{ .Date.Format "2006" }}">
+        <time class="research-item-date">{{ .Date.Format "Jan 2, 2006" }}</time>
+        {{ with .Params.category }}<span class="research-item-category">{{ . }}</span>{{ end }}
+        <h3 class="research-item-title">{{ .Title }}</h3>
+        <span class="research-item-arrow">&rarr;</span>
+      </a>
+      {{ end }}
+    </div>
+    {{ else }}
+    <div class="empty-state">
+      <p class="section-label">Coming Soon</p>
+      <h3 class="section-title">Research content is being prepared</h3>
+      <p class="section-subtitle mx-auto">Subscribe below to be notified when new insights are published.</p>
+    </div>
+    {{ end }}
+  </div>
+</section>
+
+<section class="subscribe-band fade-in">
+  <div class="container">
+    <h3>Stay Informed</h3>
+    <p>Subscribe to receive our monthly market commentary and research.</p>
+    <form class="subscribe-form" action="https://formspree.io/f/xpwzgvpj" method="POST">
+      <input type="hidden" name="_subject" value="Newsletter Subscription - Monachil Capital Partners">
+      <input type="hidden" name="_replyto" value="ir@monachilpartners.com">
+      <label for="subscribe-email-research" class="visually-hidden">Email Address</label>
+      <input type="email" id="subscribe-email-research" name="email" placeholder="Your email address" required>
+      <button type="submit">Subscribe</button>
+    </form>
+    <p class="subscribe-note">You will receive our monthly market commentary and research updates.</p>
+  </div>
+</section>
+
+{{ end }}

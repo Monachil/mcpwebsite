@@ -1,0 +1,18 @@
+{{ define "main" }}
+
+<section class="page-hero">
+  <div class="container">
+    <p class="page-hero-breadcrumb"><a href="/">Home</a> / {{ .Title }}</p>
+    <h1>{{ .Title }}</h1>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="legal-content">
+      {{ .Content }}
+    </div>
+  </div>
+</section>
+
+{{ end }}
