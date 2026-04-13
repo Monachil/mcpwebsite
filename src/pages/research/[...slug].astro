@@ -1,0 +1,64 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const articles = await getCollection('research');
+  return articles.map(article => ({
+    params: { slug: article.id },
+    props: { article },
+  }));
+}
+
+const { article } = Astro.props;
+const { Content } = await render(article);
+const dateFormatted = article.data.date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+---
+
+<BaseLayout
+  title={article.data.title}
+  description={article.data.description}
+  section="research"
+  date={article.data.date}
+  permalink={Astro.url.href}
+>
+
+<section class="page-hero">
+  <div class="container">
+    <p class="page-hero-breadcrumb"><a href="/">Home</a> / <a href="/research/">Research & Insights</a> / Article</p>
+    <h1>{article.data.title}</h1>
+    <p class="page-hero-sub">{dateFormatted}{article.data.category && <Fragment> &middot; {article.data.category}</Fragment>}</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="article-content">
+      <div class="article-meta">
+        {article.data.category && <span class="card-category">{article.data.category}</span>}
+        <time class="article-meta-date">{dateFormatted}</time>
+      </div>
+      {article.data.pdf && (
+        <div class="pdf-download-bar">
+          <a href={article.data.pdf} target="_blank" rel="noopener" class="btn btn--primary">Download PDF &darr;</a>
+        </div>
+      )}
+      <Content />
+      <div class="article-disclaimer">
+        <h4>Disclosures</h4>
+        <p>The information contained in this document is for informational purposes only and should not be considered investment advice. This document does not constitute an offer to sell, a solicitation of an offer to buy, or a recommendation for any security or investment strategy.</p>
+        <p>Past performance is not indicative of future results. All investments carry risk, including the possible loss of principal. The views expressed herein are those of the author as of the date of publication and are subject to change without notice.</p>
+        <p>Forward-looking statements are based on current expectations and assumptions, which are subject to risks and uncertainties. Actual results may differ materially from those anticipated.</p>
+        <p>Monachil Capital Partners LP is a private investment firm. Investment opportunities described herein may be available only to qualified purchasers as defined under the Investment Company Act of 1940.</p>
+      </div>
+      <div class="article-footer">
+        {article.data.pdf && (
+          <a href={article.data.pdf} target="_blank" rel="noopener" class="btn btn--primary">Download Full PDF &darr;</a>
+        )}
+        <a href="/research/" class="btn btn--ghost">&larr; Back to Research & Insights</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</BaseLayout>

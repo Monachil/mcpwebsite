@@ -1,0 +1,170 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
+---
+
+<BaseLayout title="Contact" description="Reach out to learn more about Monachil Capital Partners or explore career opportunities.">
+
+<section class="page-hero">
+  <div class="container">
+    <p class="page-hero-breadcrumb"><a href="/">Home</a> / Contact</p>
+    <h1>Get in <strong>Touch</strong></h1>
+    <p class="page-hero-sub">Reach out to learn more about Monachil Capital Partners or explore career opportunities.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="contact-tabs">
+      <button class="contact-tab contact-tab--active" data-tab="contact">Contact Us</button>
+      <button class="contact-tab" data-tab="careers">Careers</button>
+    </div>
+
+    <div class="contact-pane contact-pane--active" id="pane-contact">
+      <div class="contact-grid">
+        <div class="contact-info">
+          <h3>Monachil Capital Partners</h3>
+          <p>For inquiries about our investment strategies, partnership opportunities, or general questions, please use the form or contact us directly.</p>
+          <div class="contact-detail">
+            <p class="contact-detail-label">Address</p>
+            <p class="contact-detail-value">{site.address}<br />{site.city}</p>
+          </div>
+          <div class="contact-detail">
+            <p class="contact-detail-label">Phone</p>
+            <p class="contact-detail-value">{site.phone}</p>
+          </div>
+          <div class="contact-detail">
+            <p class="contact-detail-label">Email</p>
+            <p class="contact-detail-value"><a href={`mailto:${site.email}`} style="color: var(--blue);">{site.email}</a></p>
+          </div>
+          <div class="contact-detail">
+            <p class="contact-detail-label">Public Funds</p>
+            <p class="contact-detail-value"><a href={site.fundURL} target="_blank" rel="noopener" style="color: var(--blue);">monachilfunds.com &nearr;</a></p>
+          </div>
+        </div>
+
+        <div>
+          <form action={`https://formspree.io/f/${site.formspreeContact}`} method="POST">
+            <input type="hidden" name="_subject" value="New Contact Form Submission - Monachil Capital Partners">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="first-name">First Name</label>
+                <input type="text" id="first-name" name="first_name" required>
+              </div>
+              <div class="form-group">
+                <label for="last-name">Last Name</label>
+                <input type="text" id="last-name" name="last_name" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="company">Company</label>
+                <input type="text" id="company" name="company">
+              </div>
+              <div class="form-group">
+                <label for="job-title">Job Title</label>
+                <input type="text" id="job-title" name="job_title">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" name="phone">
+            </div>
+            <div class="form-group">
+              <label for="subject">Subject</label>
+              <select id="subject" name="subject">
+                <option value="">Select a topic...</option>
+                <option value="general">General Inquiry</option>
+                <option value="investment">Investment Inquiry</option>
+                <option value="media">Media Inquiry</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="5" required></textarea>
+            </div>
+            <div class="form-group form-checkbox-group">
+              <label class="form-checkbox-label">
+                <input type="checkbox" name="newsletter" value="yes">
+                <span>Subscribe to our newsletter for monthly market commentary and research updates</span>
+              </label>
+            </div>
+            <button type="submit" class="btn btn--primary" style="width: 100%;">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-pane" id="pane-careers">
+      <div class="careers-intro">
+        <h2>Join the <strong>Team</strong></h2>
+        <p>We are always seeking top talent to join our team of industry professionals. Browse our open positions and apply below.</p>
+      </div>
+
+      <div class="careers-layout">
+        <div class="careers-positions">
+          <h3 class="careers-section-title">Open Positions</h3>
+          <div class="position-card position-card--active" data-position="Python Software Engineer">
+            <span class="position-tag">Engineering</span>
+            <h4 class="position-title">Python Software Engineer</h4>
+            <p class="position-desc">Join our technology team building proprietary data analytics and risk management platforms for our investment process.</p>
+          </div>
+          <div class="position-card" data-position="DevOps Platform Engineer">
+            <span class="position-tag">Engineering</span>
+            <h4 class="position-title">DevOps Platform Engineer</h4>
+            <p class="position-desc">Help design and maintain the infrastructure powering Monachil's real-time portfolio surveillance and data analytics capabilities.</p>
+          </div>
+        </div>
+
+        <div class="careers-form-wrapper">
+          <h3 class="careers-form-title">Apply Now</h3>
+          <form action={`https://formspree.io/f/${site.formspreeContact}`} method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="_subject" value="Career Application - Monachil Capital Partners">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="app-name">Full Name <span class="form-required">*</span></label>
+                <input type="text" id="app-name" name="name" required>
+              </div>
+              <div class="form-group">
+                <label for="app-email">Email Address <span class="form-required">*</span></label>
+                <input type="email" id="app-email" name="email" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="app-linkedin">LinkedIn Profile URL</label>
+              <input type="url" id="app-linkedin" name="linkedin" placeholder="https://linkedin.com/in/yourprofile">
+            </div>
+            <div class="form-group">
+              <label>Position <span class="form-required">*</span></label>
+              <div class="form-radio-group">
+                <label class="form-radio-label">
+                  <input type="radio" name="position" value="Python Software Engineer" required checked>
+                  <span>Python Software Engineer</span>
+                </label>
+                <label class="form-radio-label">
+                  <input type="radio" name="position" value="DevOps Platform Engineer">
+                  <span>DevOps Platform Engineer</span>
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="app-resume">Resume <span class="form-required">*</span></label>
+              <input type="file" id="app-resume" name="resume" accept=".pdf,.doc,.docx" required class="form-file-input">
+            </div>
+            <div class="form-group">
+              <label for="app-message">Cover Letter / Message</label>
+              <textarea id="app-message" name="message" rows="4" placeholder="Tell us about yourself and why you're interested in this role..."></textarea>
+            </div>
+            <button type="submit" class="btn btn--primary" style="width: 100%;">Submit Application</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</BaseLayout>

@@ -1,0 +1,66 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { site } from '../../data/site';
+
+const articles = await getCollection('research');
+const sorted = articles.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const years = [...new Set(sorted.map(a => a.data.date.getFullYear().toString()))].sort((a, b) => Number(b) - Number(a));
+---
+
+<BaseLayout title="Research & Insights" description="Market commentary, research papers, and thought leadership from Monachil Capital Partners.">
+
+<section class="page-hero">
+  <div class="container">
+    <p class="page-hero-breadcrumb"><a href="/">Home</a> / Research & Insights</p>
+    <h1>Research & <strong>Insights</strong></h1>
+    <p class="page-hero-sub">Market commentary, research papers, and thought leadership from Monachil Capital Partners.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="year-filter">
+      <button class="year-filter-btn is-active" data-year="all">All</button>
+      {years.map(year => (
+        <button class="year-filter-btn" data-year={year}>{year}</button>
+      ))}
+    </div>
+
+    {sorted.length > 0 ? (
+      <div class="research-list">
+        {sorted.map(article => (
+          <a href={`/research/${article.id}/`} class="research-item" data-year={article.data.date.getFullYear().toString()}>
+            <time class="research-item-date">{article.data.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</time>
+            {article.data.category && <span class="research-item-category">{article.data.category}</span>}
+            <h3 class="research-item-title">{article.data.title}</h3>
+            <span class="research-item-arrow">&rarr;</span>
+          </a>
+        ))}
+      </div>
+    ) : (
+      <div class="empty-state">
+        <p class="section-label">Coming Soon</p>
+        <h3 class="section-title">Research content is being prepared</h3>
+        <p class="section-subtitle mx-auto">Subscribe below to be notified when new insights are published.</p>
+      </div>
+    )}
+  </div>
+</section>
+
+<section class="subscribe-band fade-in">
+  <div class="container">
+    <h3>Stay Informed</h3>
+    <p>Subscribe to receive our monthly market commentary and research.</p>
+    <form class="subscribe-form" action={`https://formspree.io/f/${site.formspreeNewsletter}`} method="POST">
+      <input type="hidden" name="_subject" value="Newsletter Subscription - Monachil Capital Partners">
+      <input type="hidden" name="_replyto" value="ir@monachilpartners.com">
+      <label for="subscribe-email-research" class="visually-hidden">Email Address</label>
+      <input type="email" id="subscribe-email-research" name="email" placeholder="Your email address" required>
+      <button type="submit">Subscribe</button>
+    </form>
+    <p class="subscribe-note">You will receive our monthly market commentary and research updates.</p>
+  </div>
+</section>
+
+</BaseLayout>

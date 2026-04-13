@@ -1,0 +1,108 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { mediaVideos } from '../data/media-videos';
+import { pressItems } from '../data/media-press';
+
+const years = [...new Set(mediaVideos.map(v => v.year))].sort((a, b) => Number(b) - Number(a));
+---
+
+<BaseLayout title="In the Media" description="Media appearances, video interviews, and press coverage featuring Monachil Capital Partners.">
+
+<section class="page-hero">
+  <div class="container">
+    <p class="page-hero-breadcrumb"><a href="/">Home</a> / In the Media</p>
+    <h1>In the <strong>Media</strong></h1>
+    <p class="page-hero-sub">Media appearances, video interviews, and press coverage featuring Monachil Capital Partners.</p>
+  </div>
+</section>
+
+<section class="logos-bar">
+  <div class="container">
+    <p class="logos-bar-label">As Seen In</p>
+    <div class="logos-grid">
+      <span class="logo-item">Bloomberg</span>
+      <span class="logo-item">CNBC</span>
+      <img src="/images/logo-forbes.png" alt="Forbes" class="logo-img" width="200" height="200" loading="lazy" decoding="async">
+      <img src="/images/logo-marketwatch.jpg" alt="MarketWatch" class="logo-img" width="474" height="315" loading="lazy" decoding="async">
+      <img src="/images/logo-reuters.jpg" alt="Reuters" class="logo-img" width="500" height="500" loading="lazy" decoding="async">
+      <img src="/images/logo-morningstar.jpg" alt="Morningstar" class="logo-img" width="879" height="659" loading="lazy" decoding="async">
+      <span class="logo-item">Schwab Network</span>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-label">Video Appearances</p>
+      <h2 class="section-title">Recent <strong>Interviews</strong></h2>
+    </div>
+
+    <div class="year-filter">
+      <button class="year-filter-btn is-active" data-year="all">All</button>
+      {years.map(year => (
+        <button class="year-filter-btn" data-year={year}>{year}</button>
+      ))}
+    </div>
+
+    <div class="media-grid">
+      {mediaVideos.map(video => (
+        <a
+          href={video.url}
+          class="media-card"
+          data-year={video.year}
+          {...(video.localVideo ? { 'data-video': video.localVideo } : {})}
+          {...(video.external ? { target: '_blank', rel: 'noopener' } : {})}
+        >
+          <div class="media-card-thumb">
+            <img src={video.image} alt={video.imageAlt} class="media-card-thumb-img" loading="lazy" decoding="async">
+            <span class="media-card-source">{video.source}</span>
+            <div class="media-card-play"></div>
+          </div>
+          <div class="media-card-body">
+            <p class="media-card-date">{video.date}</p>
+            <h3 class="media-card-title">{video.title}</h3>
+            <p class="media-card-desc">{video.description}</p>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="section section--alt">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-label">Press Coverage</p>
+      <h2 class="section-title">In <strong>Print</strong></h2>
+    </div>
+
+    <div class="press-list">
+      {pressItems.map(item => (
+        <a href={item.url} target="_blank" rel="noopener" class="press-item" data-year={item.year}>
+          <span class="press-source">{item.source}</span>
+          <span class="press-title">{item.title}</span>
+          <span class="press-date">{item.date}</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <p class="media-disclaimer">The views expressed in media appearances are the personal opinions of the individuals featured and do not necessarily represent the views of Monachil Capital Partners LP. These appearances are for informational purposes only and do not constitute investment advice. Past performance is not indicative of future results.</p>
+  </div>
+</section>
+
+<div class="video-modal" id="videoModal">
+  <div class="video-modal-inner">
+    <button class="video-modal-close" id="videoModalClose">&times;</button>
+    <video id="videoPlayer" controls preload="none">
+      <source src="" type="video/mp4">
+      Your browser does not support the video element.
+    </video>
+  </div>
+</div>
+
+</BaseLayout>

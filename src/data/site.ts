@@ -1,0 +1,15 @@
+export const site = {
+  title: 'Monachil Capital Partners',
+  description: 'Greenwich, CT based investment manager focused on asset-backed lending and specialty finance',
+  address: '1 Sound Shore Drive, Suite 303',
+  city: 'Greenwich, CT 06830',
+  phone: '(212) 393-4120',
+  email: 'info@monachilpartners.com',
+  fundURL: 'https://monachilfunds.com',
+  techURL: 'https://monachiltech.com',
+  copyright: 'Monachil Capital Partners LP',
+  baseURL: 'https://monachill.com',
+  linkedin: 'https://www.linkedin.com/company/monachil-capital-partners-lp/',
+  formspreeContact: 'xpwzgvpj',
+  formspreeNewsletter: 'xpwzgvpj',
+} as const;

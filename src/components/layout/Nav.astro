@@ -1,0 +1,58 @@
+---
+import { mainMenu } from '../../data/navigation';
+import { site } from '../../data/site';
+---
+
+<nav class="nav" id="nav" transition:persist>
+  <a href="/" class="nav-logo">
+    <img src="/images/mcp-logo-transparent.png" alt="Monachil Capital Partners" class="nav-logo-img" width="400" height="225" loading="eager">
+  </a>
+  <div class="nav-links">
+    {mainMenu.map(item => (
+      <a href={item.url} class="nav-link">{item.name}</a>
+    ))}
+    <a href={site.fundURL} target="_blank" rel="noopener" class="nav-investor-btn">Public Funds</a>
+  </div>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+    <span class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </span>
+  </button>
+</nav>
+
+<div class="menu-overlay" id="menuOverlay">
+  <div class="menu-overlay-inner">
+    <button class="menu-close" id="menuClose" aria-label="Close navigation">
+      <span></span>
+      <span></span>
+    </button>
+    <nav class="menu-nav">
+      <span class="menu-group-label">Firm</span>
+      {mainMenu.filter(item => item.name === 'About' || item.name === 'Approach').map(item => (
+        <a href={item.url} class="menu-link">{item.name}</a>
+      ))}
+
+      <span class="menu-group-label">Insights</span>
+      {mainMenu.filter(item => item.name === 'Research & Insights' || item.name === 'In the Media').map(item => (
+        <a href={item.url} class="menu-link">{item.name}</a>
+      ))}
+
+      <span class="menu-group-label">Connect</span>
+      {mainMenu.filter(item => item.name === 'Contact').map(item => (
+        <a href={item.url} class="menu-link">{item.name}</a>
+      ))}
+      <a href={site.fundURL} class="menu-link menu-link--external" target="_blank" rel="noopener">
+        Public Funds <span class="external-icon">&nearr;</span>
+      </a>
+      <a href={site.techURL} class="menu-link menu-link--external" target="_blank" rel="noopener">
+        Monachil Technologies <span class="external-icon">&nearr;</span>
+      </a>
+    </nav>
+    <div class="menu-footer">
+      <p class="menu-footer-addr">{site.address}<br />{site.city}</p>
+      <p class="menu-footer-phone">{site.phone}</p>
+    </div>
+  </div>
+</div>

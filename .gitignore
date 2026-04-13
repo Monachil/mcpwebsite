@@ -1,0 +1,15 @@
+# Astro
+dist/
+.astro/
+node_modules/
+
+# OS
+.DS_Store
+
+# Large media
+public/videos/
+
+# Test artifacts
+test-results/
+playwright-report/
+screenshots/

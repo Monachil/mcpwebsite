@@ -1,0 +1,90 @@
+---
+import { site } from '../../data/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+  thumbnail?: string;
+  section?: string;
+  date?: Date;
+  lastmod?: Date;
+  permalink?: string;
+  isHome?: boolean;
+}
+
+const {
+  title,
+  description = site.description,
+  thumbnail,
+  section,
+  date,
+  lastmod,
+  permalink,
+  isHome = false,
+} = Astro.props;
+
+const pageTitle = isHome ? 'Monachil Capital Partners' : `${title} | Monachil Capital Partners`;
+const canonicalURL = permalink || new URL(Astro.url.pathname, Astro.site).href;
+const ogImage = thumbnail
+  ? new URL(thumbnail.startsWith('/') ? thumbnail.slice(1) : thumbnail, Astro.site).href
+  : new URL('images/monachil-og.jpg', Astro.site).href;
+const ogType = section === 'research' ? 'article' : 'website';
+---
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{pageTitle}</title>
+<meta name="description" content={description}>
+
+<!-- Security -->
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+<meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://formspree.io; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://formspree.io">
+
+<!-- Favicon -->
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#0b1a2e">
+
+<!-- SEO -->
+<meta name="robots" content="index, follow">
+<meta name="author" content="Monachil Capital Partners LP">
+<link rel="canonical" href={canonicalURL}>
+
+<!-- Open Graph -->
+<meta property="og:title" content={pageTitle}>
+<meta property="og:description" content={description}>
+<meta property="og:image" content={ogImage}>
+<meta property="og:type" content={ogType}>
+<meta property="og:url" content={canonicalURL}>
+<meta property="og:site_name" content="Monachil Capital Partners">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content={pageTitle}>
+<meta name="twitter:description" content={description}>
+<meta name="twitter:image" content={ogImage}>
+
+<!-- Article metadata for research pages -->
+{section === 'research' && date && (
+  <>
+    <meta property="article:published_time" content={date.toISOString()}>
+    <meta property="article:modified_time" content={(lastmod || date).toISOString()}>
+    <meta property="article:author" content="Monachil Capital Partners">
+  </>
+)}
+
+<!-- Preload critical assets -->
+<link rel="preload" as="image" href="/images/mcp-logo-transparent.png">
+
+<!-- Fonts (async loading) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://formspree.io">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet"></noscript>
+
+<link rel="sitemap" href="/sitemap-index.xml">

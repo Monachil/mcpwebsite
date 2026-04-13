@@ -1,0 +1,68 @@
+---
+import { site } from '../../data/site';
+
+interface Props {
+  section?: string;
+  title?: string;
+  description?: string;
+  date?: Date;
+  lastmod?: Date;
+  permalink?: string;
+}
+
+const { section, title, description, date, lastmod, permalink } = Astro.props;
+
+const orgSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Monachil Capital Partners",
+  "url": site.baseURL,
+  "logo": `${site.baseURL}/images/monachil-logo.png`,
+  "description": site.description,
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": site.address,
+    "addressLocality": "Greenwich",
+    "addressRegion": "CT",
+    "postalCode": "06830",
+    "addressCountry": "US"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": site.phone,
+    "contactType": "Customer Service",
+    "email": site.email
+  },
+  "sameAs": [site.linkedin]
+};
+
+const articleSchema = section === 'research' && title ? {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": title,
+  "description": description,
+  "datePublished": date?.toISOString().split('T')[0],
+  "dateModified": (lastmod || date)?.toISOString().split('T')[0],
+  "author": {
+    "@type": "Organization",
+    "name": "Monachil Capital Partners"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Monachil Capital Partners",
+    "logo": {
+      "@type": "ImageObject",
+      "url": `${site.baseURL}/images/monachil-logo.png`
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": permalink
+  }
+} : null;
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
+{articleSchema && (
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+)}

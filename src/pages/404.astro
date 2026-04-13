@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Page Not Found">
+  <section class="error-page">
+    <div class="container">
+      <p class="error-code">404</p>
+      <h1 class="error-title">Page Not Found</h1>
+      <p class="error-desc">The page you're looking for doesn't exist or has been moved.</p>
+      <div class="error-actions">
+        <a href="/" class="btn btn--primary">Back to Home</a>
+        <a href="/contact/" class="btn btn--outline">Contact Us</a>
+      </div>
+      <div class="error-links">
+        <p class="error-links-label">Or try one of these:</p>
+        <a href="/about/">About Us</a>
+        <a href="/approach/">Our Approach</a>
+        <a href="/research/">Research & Insights</a>
+        <a href="/media/">In the Media</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

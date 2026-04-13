@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://monachill.com/sitemap-index.xml
