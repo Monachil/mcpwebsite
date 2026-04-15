@@ -3,6 +3,7 @@ import '../assets/css/global.css';
 import { ClientRouter } from 'astro:transitions';
 import BaseHead from '../components/layout/BaseHead.astro';
 import StructuredData from '../components/layout/StructuredData.astro';
+import { site } from '../data/site';
 import Nav from '../components/layout/Nav.astro';
 import Footer from '../components/layout/Footer.astro';
 
@@ -51,6 +52,24 @@ const props = Astro.props;
   </main>
   <Footer />
 
+  <div class="gate-modal" id="gateModal">
+    <div class="gate-modal-inner">
+      <button class="gate-modal-close" id="gateModalClose" aria-label="Close">&times;</button>
+      <h3 class="gate-modal-title">Access This Report</h3>
+      <p class="gate-modal-desc">Enter your email to download the PDF.</p>
+      <form class="gate-modal-form" id="gateForm" action={`${site.mailchimpAction}?u=${site.mailchimpU}&id=${site.mailchimpId}`} method="POST" data-mailchimp>
+        <input type="hidden" name="u" value={site.mailchimpU}>
+        <input type="hidden" name="id" value={site.mailchimpId}>
+        <input type="hidden" name="RESOURCE" id="gateResource" value="">
+        <input type="hidden" name="SIGNUP_SOURCE" value="pdf-download">
+        <div style="position:absolute;left:-5000px;" aria-hidden="true"><input type="text" name={`b_${site.mailchimpU}_${site.mailchimpId}`} tabindex="-1" value=""></div>
+        <input type="email" name="EMAIL" id="gateEmail" placeholder="Your email address" required>
+        <button type="submit" class="btn btn--primary">Download PDF</button>
+      </form>
+      <p class="gate-modal-note">We respect your privacy. Unsubscribe anytime.</p>
+    </div>
+  </div>
+
   <div class="video-modal" id="videoModal">
     <div class="video-modal-inner">
       <button class="video-modal-close" id="videoModalClose" aria-label="Close video">&times;</button>
@@ -89,6 +108,20 @@ const props = Astro.props;
     modal.classList.remove('is-open');
     document.body.style.overflow = '';
     if (player) player.innerHTML = '';
+  }
+
+  var _gatePdfUrl = '';
+  function openGate(pdfUrl, resource) {
+    _gatePdfUrl = pdfUrl;
+    var modal = document.getElementById('gateModal');
+    var resourceInput = document.getElementById('gateResource');
+    if (resourceInput) resourceInput.value = resource || pdfUrl.split('/').pop().replace('.pdf', '');
+    if (modal) { modal.classList.add('is-open'); document.body.style.overflow = 'hidden'; }
+  }
+  function closeGate() {
+    var modal = document.getElementById('gateModal');
+    if (modal) { modal.classList.remove('is-open'); document.body.style.overflow = ''; }
+    _gatePdfUrl = '';
   }
 
   function closeMenu() {
@@ -152,6 +185,7 @@ const props = Astro.props;
       if (e.key === 'Escape') {
         closeMenu();
         closeVideo();
+        closeGate();
       }
     });
 
@@ -174,6 +208,26 @@ const props = Astro.props;
       // Video modal close
       if (target.closest('#videoModalClose')) { closeVideo(); return; }
       if (target.id === 'videoModal') { closeVideo(); return; }
+
+      // Gate modal close
+      if (target.closest('#gateModalClose')) { closeGate(); return; }
+      if (target.id === 'gateModal') { closeGate(); return; }
+
+      // Gated PDF download button
+      var gateBtn = target.closest('.btn-gated');
+      if (gateBtn) {
+        var pdfUrl = gateBtn.dataset.gatePdf;
+        var resource = gateBtn.dataset.gateResource;
+        if (pdfUrl) {
+          // Check if user already provided email
+          if (localStorage.getItem('gate_email')) {
+            window.open(pdfUrl, '_blank');
+          } else {
+            openGate(pdfUrl, resource);
+          }
+        }
+        return;
+      }
 
       // Embeddable media cards
       var embedCard = target.closest('.media-card--embed');
@@ -243,31 +297,39 @@ const props = Astro.props;
       if (!btn) return;
       var originalText = btn.textContent;
 
-      // Mailchimp subscribe forms — submit via hidden iframe to avoid redirect
+      // Mailchimp forms — submit via hidden iframe to avoid redirect
       if (form.hasAttribute('data-mailchimp')) {
         e.preventDefault();
-        btn.textContent = 'Subscribing...';
+        var isGateForm = form.id === 'gateForm';
+        var emailValue = form.querySelector('input[name="EMAIL"]')?.value;
+        btn.textContent = isGateForm ? 'Processing...' : 'Subscribing...';
         btn.disabled = true;
 
-        // Create hidden iframe to receive Mailchimp's response
         var iframeName = 'mc-iframe-' + Date.now();
         var iframe = document.createElement('iframe');
         iframe.name = iframeName;
         iframe.style.display = 'none';
         document.body.appendChild(iframe);
 
-        // Point form at iframe
         form.target = iframeName;
         form.submit();
 
-        // Show success after brief delay (Mailchimp always returns 200)
         setTimeout(function() {
           form.reset();
           form.target = '';
           btn.textContent = originalText;
           btn.disabled = false;
           iframe.remove();
-          showMessage(form.parentElement, 'success', 'Thank you! Please check your email to confirm your subscription.');
+
+          if (isGateForm && _gatePdfUrl) {
+            // Save email to localStorage so they won't be asked again
+            localStorage.setItem('gate_email', emailValue);
+            // Trigger download
+            window.open(_gatePdfUrl, '_blank');
+            closeGate();
+          } else {
+            showMessage(form.parentElement, 'success', 'Thank you! Please check your email to confirm your subscription.');
+          }
         }, 2000);
         return;
       }
@@ -334,6 +396,12 @@ const props = Astro.props;
     }
     if (hash === 'team') { var t = document.getElementById('tab-team'); if (t) t.click(); }
     if (hash === 'press') { var p = document.getElementById('tab-press'); if (p) p.click(); }
+
+    // Gated PDF: show direct download for returning visitors
+    if (localStorage.getItem('gate_email')) {
+      document.querySelectorAll('.btn-gated').forEach(function(btn) { btn.style.display = 'none'; });
+      document.querySelectorAll('.btn-gated-direct').forEach(function(btn) { btn.style.display = ''; });
+    }
 
     // Update theme toggle icon
     updateToggleButton(document.documentElement.dataset.theme);
