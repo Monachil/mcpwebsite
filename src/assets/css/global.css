@@ -2540,6 +2540,21 @@ h4 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; font
   border-color: var(--blue);
 }
 
+.gate-checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  text-align: left;
+  cursor: pointer;
+}
+
+.gate-checkbox input[type="checkbox"] {
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
 .gate-modal-note {
   font-size: 0.72rem;
   color: var(--text-muted);
