@@ -2537,6 +2537,8 @@ h4 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; font
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+  gap: 16px;
+  flex-wrap: wrap;
 }
 
 .section-cta {
