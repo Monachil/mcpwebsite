@@ -7,8 +7,8 @@ export interface MediaVideo {
   image: string;
   imageAlt: string;
   url: string;
-  localVideo?: string;
-  external?: boolean;
+  youtubeId?: string;
+  embedUrl?: string;
 }
 
 import data from './media-videos.json';

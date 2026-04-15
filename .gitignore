@@ -3,8 +3,13 @@ dist/
 .astro/
 node_modules/
 
+
 # OS
 .DS_Store
+
+# Environment
+*.env
+.env.*
 
 # Large media
 public/videos/
@@ -13,3 +18,11 @@ public/videos/
 test-results/
 playwright-report/
 screenshots/
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+npm-debug.log*

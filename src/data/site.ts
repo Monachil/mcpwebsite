@@ -1,3 +1,5 @@
+const FOUNDED_YEAR = 2019;
+
 export const site = {
   title: 'Monachil Capital Partners',
   description: 'Greenwich, CT based investment manager focused on asset-backed lending and specialty finance',
@@ -11,5 +13,9 @@ export const site = {
   baseURL: 'https://monachill.com',
   linkedin: 'https://www.linkedin.com/company/monachil-capital-partners-lp/',
   formspreeContact: 'xpwzgvpj',
-  formspreeNewsletter: 'xpwzgvpj',
+  mailchimpAction: 'https://monachilpartners.us21.list-manage.com/subscribe/post',
+  mailchimpU: 'c7650375616475ed2ad041889',
+  mailchimpId: 'b6587dd9f2',
+  foundedYear: FOUNDED_YEAR,
+  yearsTrackRecord: new Date().getFullYear() - FOUNDED_YEAR,
 } as const;

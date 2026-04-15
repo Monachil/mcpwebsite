@@ -1,0 +1,86 @@
+---
+interface Props {
+  class?: string;
+}
+const { class: className } = Astro.props;
+---
+
+<section class:list={['logos-bar', className]}>
+  <div class="container">
+    <p class="logos-bar-label">As Seen In</p>
+    <div class="logos-grid logos-grid--enhanced">
+      <div class="media-logo" title="Bloomberg">
+        <svg viewBox="0 0 180 28" fill="currentColor" aria-label="Bloomberg">
+          <text x="0" y="22" font-family="'Georgia', 'Times New Roman', serif" font-size="24" font-weight="700" letter-spacing="0.5">Bloomberg</text>
+        </svg>
+      </div>
+      <div class="media-logo" title="CNBC">
+        <svg viewBox="0 0 90 28" fill="currentColor" aria-label="CNBC">
+          <text x="0" y="22" font-family="'Futura', 'Helvetica Neue', Arial, sans-serif" font-size="26" font-weight="700" letter-spacing="1">CNBC</text>
+        </svg>
+      </div>
+      <div class="media-logo" title="Forbes">
+        <svg viewBox="0 0 120 30" fill="currentColor" aria-label="Forbes">
+          <text x="0" y="24" font-family="'Georgia', 'Times New Roman', serif" font-size="28" font-style="italic" font-weight="400" letter-spacing="0.3">Forbes</text>
+        </svg>
+      </div>
+      <div class="media-logo" title="Schwab Network">
+        <svg viewBox="0 0 220 28" fill="currentColor" aria-label="Schwab Network">
+          <text x="0" y="21" font-family="'Helvetica Neue', Arial, sans-serif" font-size="22" font-weight="600" letter-spacing="0.8">Schwab Network</text>
+        </svg>
+      </div>
+      <div class="media-logo" title="MarketWatch">
+        <svg viewBox="0 0 195 28" fill="currentColor" aria-label="MarketWatch">
+          <text x="0" y="22" font-family="'Georgia', 'Times New Roman', serif" font-size="24" font-weight="700" letter-spacing="0.3">MarketWatch</text>
+        </svg>
+      </div>
+      <div class="media-logo" title="Reuters">
+        <svg viewBox="0 0 125 28" fill="currentColor" aria-label="Reuters">
+          <text x="0" y="22" font-family="'Helvetica Neue', Arial, sans-serif" font-size="26" font-weight="700" letter-spacing="0.5">Reuters</text>
+        </svg>
+      </div>
+      <div class="media-logo" title="Yahoo Finance">
+        <svg viewBox="0 0 195 28" fill="currentColor" aria-label="Yahoo Finance">
+          <text x="0" y="22" font-family="'Helvetica Neue', Arial, sans-serif" font-size="24" font-weight="700" letter-spacing="0.3">Yahoo Finance</text>
+        </svg>
+      </div>
+      <div class="media-logo" title="Morningstar">
+        <svg viewBox="0 0 185 28" fill="currentColor" aria-label="Morningstar">
+          <text x="0" y="22" font-family="'Helvetica Neue', Arial, sans-serif" font-size="24" font-weight="600" letter-spacing="0.5">Morningstar</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .logos-grid--enhanced {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 40px 56px;
+    padding: 8px 0;
+  }
+  .media-logo {
+    opacity: 0.35;
+    transition: opacity 0.3s ease;
+    color: var(--navy);
+  }
+  .media-logo:hover {
+    opacity: 0.7;
+  }
+  .media-logo svg {
+    height: 24px;
+    width: auto;
+    display: block;
+  }
+  @media (max-width: 900px) {
+    .logos-grid--enhanced {
+      gap: 28px 36px;
+    }
+    .media-logo svg {
+      height: 18px;
+    }
+  }
+</style>

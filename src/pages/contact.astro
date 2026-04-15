@@ -10,6 +10,7 @@ import { site } from '../data/site';
     <p class="page-hero-breadcrumb"><a href="/">Home</a> / Contact</p>
     <h1>Get in <strong>Touch</strong></h1>
     <p class="page-hero-sub">Reach out to learn more about Monachil Capital Partners or explore career opportunities.</p>
+    <div class="page-hero-rule"></div>
   </div>
 </section>
 
@@ -35,11 +36,11 @@ import { site } from '../data/site';
           </div>
           <div class="contact-detail">
             <p class="contact-detail-label">Email</p>
-            <p class="contact-detail-value"><a href={`mailto:${site.email}`} style="color: var(--blue);">{site.email}</a></p>
+            <p class="contact-detail-value"><a href={`mailto:${site.email}`} class="link-blue">{site.email}</a></p>
           </div>
           <div class="contact-detail">
             <p class="contact-detail-label">Public Funds</p>
-            <p class="contact-detail-value"><a href={site.fundURL} target="_blank" rel="noopener" style="color: var(--blue);">monachilfunds.com &nearr;</a></p>
+            <p class="contact-detail-value"><a href={site.fundURL} target="_blank" rel="noopener" class="link-blue">monachilfunds.com &nearr;</a></p>
           </div>
         </div>
 
@@ -93,7 +94,7 @@ import { site } from '../data/site';
                 <span>Subscribe to our newsletter for monthly market commentary and research updates</span>
               </label>
             </div>
-            <button type="submit" class="btn btn--primary" style="width: 100%;">Send Message</button>
+            <button type="submit" class="btn btn--primary btn-full">Send Message</button>
           </form>
         </div>
       </div>
@@ -159,7 +160,7 @@ import { site } from '../data/site';
               <label for="app-message">Cover Letter / Message</label>
               <textarea id="app-message" name="message" rows="4" placeholder="Tell us about yourself and why you're interested in this role..."></textarea>
             </div>
-            <button type="submit" class="btn btn--primary" style="width: 100%;">Submit Application</button>
+            <button type="submit" class="btn btn--primary btn-full">Submit Application</button>
           </form>
         </div>
       </div>

@@ -2,18 +2,21 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 import { site } from '../data/site';
+import { mediaVideos } from '../data/media-videos';
+import LogosBar from '../components/LogosBar.astro';
 
 const allResearch = await getCollection('research');
 const latestResearch = allResearch
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
   .slice(0, 3);
+
+const latestMedia = mediaVideos.slice(0, 3);
 ---
 
 <BaseLayout isHome={true}>
 
 <section class="hero" data-hero-effect="mountains">
   <div class="hero-bg"></div>
-  <canvas id="heroParticles" class="hero-canvas" aria-hidden="true"></canvas>
   <div class="hero-mountains" aria-hidden="true">
     <svg class="mountain-layer mountain-layer--far" viewBox="0 0 1440 320" preserveAspectRatio="none">
       <path d="M0,320 L0,200 L80,170 L140,190 L200,120 L260,155 L320,100 L380,140 L460,80 L520,130 L580,110 L660,60 L720,105 L780,85 L840,130 L920,70 L980,115 L1040,90 L1100,140 L1160,100 L1220,125 L1300,75 L1360,110 L1440,150 L1440,320 Z" fill="#0d1f3c"/>
@@ -26,17 +29,39 @@ const latestResearch = allResearch
     </svg>
   </div>
   <div class="hero-logo-mark" aria-hidden="true">
-    <img src="/images/mcp-logo-transparent.png" alt="" class="hero-logo-img" width="400" height="225">
+    <svg class="hero-logo-svg" viewBox="0 0 1063.36 581.79" xmlns="http://www.w3.org/2000/svg">
+      <g transform="matrix(0.13333333,0,0,-0.13333333,0,581.78667)">
+        <g class="hero-logo-icon">
+          <path d="M 4584.72,2025.74 3449.53,4363.42 2336.16,2025.74 h 87.33 l 1036.95,1439.31 1004.22,-1439.64 120.06,0.33" fill="#fff"/>
+          <path d="M 3466.42,3465.05 2966.26,3349.14 2337.12,2025.41 h 87.82 l 1041.48,1439.64" fill="rgba(255,255,255,0.5)"/>
+          <path d="M 3170.44,2025.74 4305.63,4363.42 5419,2025.74 h -87.32 L 4294.72,3465.05 3290.51,2025.41 l -120.07,0.33" fill="#fff"/>
+          <path d="m 4288.75,3465.05 500.15,-115.91 629.15,-1323.73 h -87.83 L 4288.75,3465.05" fill="rgba(255,255,255,0.5)"/>
+        </g>
+        <g class="hero-logo-text">
+          <path d="m 0,749.828 v 803.982 c 0,70.8 21.4414,116.05 64.3516,135.77 28.6132,13.47 54.9724,20.17 79.1134,20.17 60.762,0 102.324,-39.49 124.676,-118.54 l 198.824,-689.12 207.457,689.49 c 23.348,78.78 65.105,118.17 125.266,118.17 24.242,0 50.734,-6.7 79.468,-20.17 42.18,-19.72 63.285,-64.97 63.285,-135.77 V 749.828 H 806.656 V 1555.16 L 596.961,853.352 c -11.664,-38.543 -25.555,-66.364 -41.676,-83.364 -19.73,-21.5 -47.519,-32.238 -83.355,-32.238 -35.887,0 -63.676,10.738 -83.387,32.238 -16.129,17 -30.031,44.821 -41.676,83.364 L 135.789,1555.16 V 749.828 H 0" fill="#fff"/>
+          <path d="m 1642,885.641 h 145.68 c 46.77,0 79.8,8.468 99.13,25.507 19.32,17.043 29.02,48.411 29.02,94.132 v 427.51 c 0,46.63 -9.46,78.67 -28.35,96.15 -18.88,17.47 -52.16,26.22 -99.8,26.22 H 1642 c -47.69,0 -81.4,-8.75 -101.2,-26.22 -19.78,-17.48 -29.66,-49.52 -29.66,-96.15 v -424.82 c 0,-46.618 9.88,-78.669 29.66,-96.138 19.8,-17.473 53.51,-26.191 101.2,-26.191 z m -266.64,127.679 v 414.11 c 0,94.97 24.2,163.55 72.6,205.7 45.71,38.51 116.96,57.8 213.77,57.8 h 103.52 c 96.8,0 168.05,-19.29 213.77,-57.8 48.39,-42.15 72.59,-110.73 72.59,-205.7 v -414.11 c 0,-95 -24.2,-163.57 -72.59,-205.691 -45.72,-38.547 -116.97,-57.801 -213.77,-57.801 h -103.52 c -124.6,0 -209.74,43.902 -255.45,131.762 -20.62,39.43 -30.92,83.359 -30.92,131.73" fill="#fff"/>
+          <path d="m 2484.53,749.828 v 810.512 c 0,93.32 37.45,140.01 112.39,140.01 12.47,0 26.76,-1.84 42.8,-5.48 35.69,-8.25 63.78,-38.38 84.32,-90.46 L 3010.2,908.969 v 781.961 h 135.79 V 862.781 c 0,-32.293 -9.87,-60.301 -29.58,-84.031 -19.72,-23.77 -45.71,-37.441 -77.98,-41 -60.06,-7.168 -104.87,24.172 -134.44,94.09 l -283.68,679.01 V 749.828 h -135.78" fill="#fff"/>
+          <path d="m 4060.99,1081.9 -157.03,427.78 -152.69,-427.78 z m -576.22,-332.072 313.28,853.712 c 24.19,64.53 59.15,96.81 104.88,96.81 51.95,0 90.05,-32.68 114.23,-97.99 l 310.58,-852.532 h -144.51 l -72.83,196.301 h -407.53 l -73.45,-196.301 h -144.65" fill="#fff"/>
+          <path d="m 4667.87,975.691 v 483.999 c 0,67.23 19.71,122.57 59.17,166.03 39.42,43.46 92.29,65.21 158.62,65.21 h 395.27 v -135.77 h -377.78 c -66.34,0 -99.49,-33.2 -99.49,-99.51 V 986.461 c 0,-27.813 9.63,-51.582 28.92,-71.27 19.25,-19.73 42.78,-29.55 70.57,-29.55 h 375.1 V 749.828 h -403.34 c -38.55,0 -77.97,13.434 -118.3,40.332 -59.16,39.418 -88.74,101.27 -88.74,185.531" fill="#fff"/>
+          <path d="m 5686.94,749.828 v 941.102 h 135.78 v -406 h 411.41 v 406 h 135.78 V 749.828 H 6234.13 V 1149.13 H 5822.72 V 749.828 h -135.78" fill="#fff"/>
+          <path d="m 6802.81,749.828 v 941.102 h 135.78 V 749.828 h -135.78" fill="#fff"/>
+          <path d="m 7372.85,986.461 v 704.469 h 135.79 V 987.801 c 0,-37.66 8.73,-64.09 26.22,-79.34 17.47,-15.25 45.48,-22.82 84.03,-22.82 h 356.27 V 749.828 h -353.58 c -78.89,0 -139.39,19.692 -181.5,59.152 -44.83,40.329 -67.23,99.481 -67.23,177.481" fill="#fff"/>
+        </g>
+        <g class="hero-logo-sub">
+          <path d="M 1028.49,17.8008 C 1010.43,8.64063 975.027,0 930.152,0 819.953,0 738.059,74.1289 738.059,217.121 c 0,145.731 89.129,225.77 203.316,225.77 45.078,0 74.805,-9.422 87.695,-16.469 L 1016.2,382.09 c -17.802,8.43 -41.899,15.18 -73.723,15.18 -84.653,0 -147.782,-58.782 -147.782,-177.411 0,-113.539 57.129,-173.6402 146.149,-173.6402 29.5,0 58.558,6.1523 77.456,15.1328 l 10.19,-43.5508" fill="rgba(255,255,255,0.65)"/><path d="m 1349.01,181.832 -36.63,119.75 c -8.45,28.918 -14.73,57.547 -20.74,84.547 h -1.7 c -5.81,-27.438 -12.43,-56.899 -20.19,-84.16 L 1233.22,181.832 Z M 1223.21,139.531 1183.46,5.85938 h -54.71 L 1260.99,437.031 h 63.23 L 1456.01,5.85938 h -56.25 L 1358.91,139.531 h -135.7" fill="rgba(255,255,255,0.65)"/><path d="m 1634.04,224 c 10.36,-2.852 22.89,-3.852 38.19,-3.852 61.72,0 100.01,32.711 100.01,92.192 0,53.281 -33.93,84.629 -93.14,84.629 -20.58,0 -36.17,-1.969 -45.06,-4.028 z m -53.62,207.441 c 24.75,4.86 56.31,8.508 96.46,8.508 50.15,0 88.52,-11.719 113.21,-34.597 22.6,-20.582 36.1,-51.84 36.1,-90 0,-39.243 -11.08,-68.77 -31.31,-90.93 -27.92,-31.762 -73.22,-47.531 -122.76,-47.531 -14.38,0 -27.02,0.441 -38.08,3.058 V 5.85938 h -53.62 V 431.441" fill="rgba(255,255,255,0.65)"/><path d="M 2013,437.031 V 5.85938 h -53.9 V 437.031 h 53.9" fill="rgba(255,255,255,0.65)"/><path d="m 2241.06,390.809 h -115.6 v 46.222 h 285.6 v -46.222 h -116.1 V 5.85938 h -53.9 V 390.809" fill="rgba(255,255,255,0.65)"/><path d="m 2670.59,181.832 -36.63,119.75 c -8.45,28.918 -14.72,57.547 -20.73,84.547 h -1.7 c -5.81,-27.438 -12.43,-56.899 -20.19,-84.16 L 2554.81,181.832 Z M 2544.8,139.531 2505.05,5.85938 h -54.72 L 2582.58,437.031 h 63.22 L 2777.59,5.85938 h -56.24 L 2680.5,139.531 h -135.7" fill="rgba(255,255,255,0.65)"/><path d="m 2902.03,437.031 h 53.91 V 51.2695 h 165.4 V 5.85938 H 2902.03 V 437.031" fill="rgba(255,255,255,0.65)"/><path d="m 3486.05,224 c 10.35,-2.852 22.89,-3.852 38.19,-3.852 61.71,0 100.01,32.711 100.01,92.192 0,53.281 -33.94,84.629 -93.14,84.629 -20.59,0 -36.18,-1.969 -45.06,-4.028 z m -53.62,207.441 c 24.75,4.86 56.31,8.508 96.46,8.508 50.15,0 88.52,-11.719 113.21,-34.597 22.6,-20.582 36.1,-51.84 36.1,-90 0,-39.243 -11.08,-68.77 -31.32,-90.93 -27.91,-31.762 -73.21,-47.531 -122.76,-47.531 -14.38,0 -27.01,0.441 -38.07,3.058 V 5.85938 h -53.62 V 431.441" fill="rgba(255,255,255,0.65)"/><path d="m 3952.64,181.832 -36.63,119.75 c -8.44,28.918 -14.71,57.547 -20.73,84.547 h -1.71 c -5.8,-27.438 -12.42,-56.899 -20.17,-84.16 L 3836.86,181.832 Z M 3826.85,139.531 3787.1,5.85938 h -54.71 L 3864.64,437.031 h 63.22 L 4059.65,5.85938 H 4003.4 L 3962.55,139.531 h -135.7" fill="rgba(255,255,255,0.65)"/><path d="m 4237.7,233.941 h 46.09 c 55.75,0 91.67,33.098 91.67,83.161 0,54.109 -34.35,80.5 -91.39,80.687 -21.89,0 -37.8,-1.91 -46.37,-4.187 z m -53.61,197.028 c 26.01,5.781 62.11,8.98 96.25,8.98 54.09,0 90.97,-10.539 116.52,-34.097 21.33,-19.633 32.81,-48.801 32.81,-82.59 0,-56.192 -33.13,-93.332 -77.68,-110.223 v -1.488 c 32.54,-10.981 51.47,-41.903 61.65,-90.129 12.91,-59.8712 22.68,-99.7111 30.63,-115.56262 h -55.54 c -6.57,12.60152 -15.9,50.53902 -26.7,104.24262 -11.81,59.109 -33.74,81.73 -81.6,82.898 H 4237.7 V 5.85938 h -53.61 V 430.969" fill="rgba(255,255,255,0.65)"/><path d="m 4642.14,390.809 h -115.61 v 46.222 h 285.61 v -46.222 h -116.1 V 5.85938 h -53.9 V 390.809" fill="rgba(255,255,255,0.65)"/><path d="M 4923.71,5.85938 V 437.031 h 56.76 l 120.42,-213.222 c 27.47,-49.297 51.68,-98.118 70.42,-143.2777 L 5172.68,81 c -4.7,60.641 -6.04,114.129 -6.04,183.262 v 172.769 h 50 V 5.85938 h -53.51 L 5042.62,221.059 c -26.02,46.871 -51.87,95.961 -71.52,144.953 l -1.72,-0.473 c 3.45,-55.551 4.32,-108.301 4.32,-185.82 V 5.85938 h -49.99" fill="rgba(255,255,255,0.65)"/><path d="M 5574.88,208.82 H 5425.49 V 51.1719 h 167.78 V 5.85938 H 5371.59 V 437.031 h 212.4 v -45.312 h -158.5 V 253.57 h 149.39 v -44.75" fill="rgba(255,255,255,0.65)"/><path d="m 5777.2,233.941 h 46.09 c 55.75,0 91.67,33.098 91.67,83.161 0,54.109 -34.35,80.5 -91.39,80.687 -21.88,0 -37.8,-1.91 -46.37,-4.187 z m -53.61,197.028 c 26.02,5.781 62.12,8.98 96.25,8.98 54.1,0 90.97,-10.539 116.52,-34.097 21.33,-19.633 32.82,-48.801 32.82,-82.59 0,-56.192 -33.14,-93.332 -77.69,-110.223 v -1.488 c 32.54,-10.981 51.49,-41.903 61.65,-90.129 12.91,-59.8712 22.69,-99.7111 30.64,-115.56262 h -55.55 c -6.54,12.60152 -15.9,50.53902 -26.7,104.24262 -11.81,59.109 -33.75,81.73 -81.6,82.898 H 5777.2 V 5.85938 h -53.61 V 430.969" fill="rgba(255,255,255,0.65)"/><path d="m 6099.03,70.4297 c 21.77,-13.6914 55.01,-24.8008 88.2,-24.8008 53.41,0 84.93,29.6914 84.93,73.3711 0,39.93 -23.35,63.691 -74.18,86.602 -59.46,24.57 -104.19,62.539 -104.19,121.457 0,66.562 52.74,115.832 132.06,115.832 38.68,0 68.41,-9.68 84.66,-19.34 l -14.41,-44.61 c -12.93,8.02 -38.56,18.77 -72.41,18.77 -54.12,0 -75.79,-34.18 -75.79,-63.672 0,-40.809 25.08,-59.758 79.04,-84.508 66.76,-31.16 99.42,-67.59 99.42,-126.16 C 6326.36,54.7109 6276.58,0 6184.53,0 c -38.04,0 -79.14,11.7109 -98.92,25.3516 l 13.42,45.0781" fill="rgba(255,255,255,0.65)"/><path d="m 6650.03,437.031 h 53.89 V 51.2695 h 165.41 V 5.85938 h -219.3 V 437.031" fill="rgba(255,255,255,0.65)"/><path d="m 7044.96,224 c 10.36,-2.852 22.89,-3.852 38.19,-3.852 61.71,0 100.01,32.711 100.01,92.192 0,53.281 -33.93,84.629 -93.13,84.629 -20.6,0 -36.19,-1.969 -45.07,-4.028 z m -53.63,207.441 c 24.76,4.86 56.32,8.508 96.47,8.508 50.16,0 88.52,-11.719 113.2,-34.597 22.61,-20.582 36.11,-51.84 36.11,-90 0,-39.243 -11.08,-68.77 -31.31,-90.93 -27.92,-31.762 -73.22,-47.531 -122.77,-47.531 -14.38,0 -27.01,0.441 -38.07,3.058 V 5.85938 h -53.63 V 431.441" fill="rgba(255,255,255,0.65)"/>
+        </g>
+      </g>
+    </svg>
   </div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <p class="hero-eyebrow">Asset-Backed Lending &middot; Specialty Finance</p>
     <div class="hero-rule"></div>
     <h1>Differentiated Alpha<br>through <strong>Disciplined Investing</strong></h1>
-    <p class="hero-text">Monachil Capital Partners is a Greenwich, CT based investment manager focused on asset-backed lending and specialty finance with a 7+ year track record.</p>
+    <p class="hero-text">Senior-secured, asset-backed private credit. Greenwich, CT.</p>
     <div class="hero-actions">
-      <a href="/about/" class="btn btn--primary">About Us</a>
-      <a href="/approach/" class="btn btn--outline">Our Approach</a>
+      <a href="/approach/" class="btn btn--primary">Our Approach</a>
+      <a href="/contact/" class="btn btn--outline">Get in Touch</a>
     </div>
   </div>
 </section>
@@ -45,7 +70,7 @@ const latestResearch = allResearch
   <div class="container">
     <div class="stats-grid">
       <div class="fade-in">
-        <p class="stat-number">7+</p>
+        <p class="stat-number">{site.yearsTrackRecord}+</p>
         <p class="stat-label">Years Track Record</p>
       </div>
       <div class="fade-in">
@@ -54,13 +79,14 @@ const latestResearch = allResearch
       </div>
       <div class="fade-in">
         <p class="stat-number">$30M+</p>
-        <p class="stat-label">Senior Mgmt Capital Committed</p>
+        <p class="stat-label">Senior Management Capital Committed</p>
       </div>
       <div class="fade-in">
         <p class="stat-number">2</p>
         <p class="stat-label">Investment Vehicles</p>
       </div>
     </div>
+    <p class="stats-disclaimer">All investments involve risk, including possible loss of principal. Past performance is not indicative of future results.</p>
   </div>
 </section>
 
@@ -70,10 +96,10 @@ const latestResearch = allResearch
       <div>
         <div class="section-header">
           <p class="section-label">Who We Are</p>
-          <h2 class="section-title">A <strong>data-driven</strong> approach to investing</h2>
+          <h2 class="section-title">Built on <strong>risk management</strong>, powered by data</h2>
         </div>
         <div class="who-text">
-          <p>Monachil Capital Partners is a Greenwich, CT based investment manager focused on <strong>asset-backed lending and specialty finance</strong> with a 7+ year track record. We directly originate senior-secured investments and differentiate ourselves with a <strong>data-driven approach</strong> — monitoring collateral in near real time and partnering with high-growth originators seeking capital solutions.</p>
+          <p>We directly originate privately negotiated, senior-secured investments and differentiate ourselves with a <strong>data-driven approach</strong> — monitoring and reconciling collateral in near real time. By partnering with high-growth specialty finance originators, we deliver <strong>consistent current income</strong> with downside protection as the foundation.</p>
           <a href="/about/" class="btn btn--ghost">Learn More</a>
         </div>
       </div>
@@ -82,14 +108,14 @@ const latestResearch = allResearch
           <div class="pillar-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
           <div>
             <p class="pillar-title">Downside Protection First</p>
-            <p class="pillar-desc">Zero-credit loss underwriting target with control, transparency, and structural seniority as foundation.</p>
+            <p class="pillar-desc">Capital preservation underwriting mandate with control, transparency, and structural seniority as foundation.</p>
           </div>
         </div>
         <div class="pillar">
           <div class="pillar-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
           <div>
             <p class="pillar-title">Data-Driven Process</p>
-            <p class="pillar-desc">Proprietary risk platform with real-time analytics integral to deal and portfolio risk management.</p>
+            <p class="pillar-desc">Proprietary risk platform with real-time analytics powering deal-level and portfolio risk management.</p>
           </div>
         </div>
         <div class="pillar">
@@ -108,44 +134,29 @@ const latestResearch = allResearch
   <div class="container">
     <div class="section-header section-header--centered">
       <p class="section-label">Our Approach</p>
-      <h2 class="section-title">Differentiated, <strong>Data-Driven</strong> Investment Process</h2>
-      <p class="section-subtitle mx-auto">A transparent, disciplined and repeatable investment process with proven ability to add value through various market cycles.</p>
+      <h2 class="section-title">Disciplined, <strong>Repeatable</strong> Process</h2>
+      <p class="section-subtitle mx-auto">Proprietary data analytics powering every decision — from sourcing through ongoing portfolio surveillance.</p>
     </div>
-    <div class="steps">
-      <div class="step">
-        <div class="step-num-col"><span class="step-num">01</span></div>
-        <div class="step-body">
-          <p class="step-title">Origination</p>
-          <p class="step-desc">Source and review opportunities from multiple channels with dedicated teams and deep industry relationships.</p>
-        </div>
+    <div class="process-preview">
+      <div class="process-step">
+        <span class="process-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
+        <span class="process-name">Source</span>
       </div>
-      <div class="step">
-        <div class="step-num-col"><span class="step-num">02</span></div>
-        <div class="step-body">
-          <p class="step-title">Underwriting</p>
-          <p class="step-desc">Rigorous due diligence and quantitative analysis on asset performance and cash flows with focus on retaining the "V" in LTV.</p>
-        </div>
+      <div class="process-step">
+        <span class="process-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span>
+        <span class="process-name">Underwrite</span>
       </div>
-      <div class="step">
-        <div class="step-num-col"><span class="step-num">03</span></div>
-        <div class="step-body">
-          <p class="step-title">Execution</p>
-          <p class="step-desc">All investments reviewed by investment committee with structural protections and outside counsel.</p>
-        </div>
+      <div class="process-step">
+        <span class="process-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></span>
+        <span class="process-name">Execute</span>
       </div>
-      <div class="step">
-        <div class="step-num-col"><span class="step-num">04</span></div>
-        <div class="step-body">
-          <p class="step-title">Monitoring</p>
-          <p class="step-desc">Real-time surveillance with dedicated data analytics team providing asset-level portfolio monitoring.</p>
-        </div>
+      <div class="process-step">
+        <span class="process-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
+        <span class="process-name">Monitor</span>
       </div>
-      <div class="step">
-        <div class="step-num-col"><span class="step-num">05</span></div>
-        <div class="step-body">
-          <p class="step-title">Portfolio Management</p>
-          <p class="step-desc">Tactical capital allocation, currency hedging, and complete funding account control.</p>
-        </div>
+      <div class="process-step">
+        <span class="process-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span>
+        <span class="process-name">Manage</span>
       </div>
     </div>
     <div class="section-cta">
@@ -195,70 +206,51 @@ const latestResearch = allResearch
       <a href="/media/" class="btn btn--ghost">View All</a>
     </div>
     <div class="media-grid media-grid--home">
-      <a href="/media/" class="media-card">
-        <div class="media-card-thumb">
-          <img src="/images/bloomberg-aug-2024.jpg" alt="Bloomberg Surveillance" class="media-card-thumb-img" loading="lazy" decoding="async">
-          <span class="media-card-source">Bloomberg</span>
-          <div class="media-card-play"></div>
+      {latestMedia.map(video => (video.youtubeId || video.embedUrl) ? (
+        <div class="media-card media-card--embed" {...(video.youtubeId ? { 'data-youtube': video.youtubeId } : { 'data-embed': video.embedUrl })}>
+          <div class="media-card-thumb">
+            <img src={video.image} alt={video.imageAlt} class="media-card-thumb-img" loading="lazy" decoding="async">
+            <span class="media-card-source">{video.source}</span>
+            <div class="media-card-play"></div>
+          </div>
+          <div class="media-card-body">
+            <p class="media-card-date">{video.date}</p>
+            <h3 class="media-card-title">{video.title}</h3>
+          </div>
         </div>
-        <div class="media-card-body">
-          <p class="media-card-date">August 2025</p>
-          <h3 class="media-card-title">Bloomberg Surveillance</h3>
-        </div>
-      </a>
-      <a href="https://schwabnetwork.com/video/meli-watch-factory-orders-foresee-10-15-market-pullback-before-year-end" target="_blank" rel="noopener" class="media-card">
-        <div class="media-card-thumb">
-          <img src="/images/schwab-aug-2025.jpg" alt="Ali Meli on Schwab Network" class="media-card-thumb-img" loading="lazy" decoding="async">
-          <span class="media-card-source">Schwab Network</span>
-          <div class="media-card-play"></div>
-        </div>
-        <div class="media-card-body">
-          <p class="media-card-date">August 2025</p>
-          <h3 class="media-card-title">Market Data & Valuations</h3>
-        </div>
-      </a>
-      <a href="https://youtu.be/Wbkvj-IFrvc?si=E0D4fJmhCm0JUauT" target="_blank" rel="noopener" class="media-card">
-        <div class="media-card-thumb">
-          <img src="/images/podcast-exploring-prosperity.jpg" alt="Exploring Prosperity Podcast" class="media-card-thumb-img" loading="lazy" decoding="async">
-          <span class="media-card-source">Podcast</span>
-          <div class="media-card-play"></div>
-        </div>
-        <div class="media-card-body">
-          <p class="media-card-date">June 2025</p>
-          <h3 class="media-card-title">Exploring Prosperity Podcast</h3>
-        </div>
-      </a>
+      ) : (
+        <a href={video.url} target="_blank" rel="noopener" class="media-card media-card--external">
+          <div class="media-card-thumb">
+            <img src={video.image} alt={video.imageAlt} class="media-card-thumb-img" loading="lazy" decoding="async">
+            <span class="media-card-source">{video.source}</span>
+            <div class="media-card-play media-card-play--external"></div>
+          </div>
+          <div class="media-card-body">
+            <p class="media-card-date">{video.date}</p>
+            <h3 class="media-card-title">{video.title}</h3>
+          </div>
+        </a>
+      ))}
     </div>
   </div>
 </section>
 
-<section class="logos-bar fade-in">
-  <div class="container">
-    <p class="logos-bar-label">As Seen In</p>
-    <div class="logos-grid">
-      <span class="logo-item">Bloomberg</span>
-      <span class="logo-item">CNBC</span>
-      <img src="/images/logo-forbes.png" alt="Forbes" class="logo-img" width="200" height="200" loading="lazy" decoding="async">
-      <img src="/images/logo-marketwatch.jpg" alt="MarketWatch" class="logo-img" width="474" height="315" loading="lazy" decoding="async">
-      <img src="/images/logo-reuters.jpg" alt="Reuters" class="logo-img" width="500" height="500" loading="lazy" decoding="async">
-      <img src="/images/logo-morningstar.jpg" alt="Morningstar" class="logo-img" width="879" height="659" loading="lazy" decoding="async">
-      <span class="logo-item">Schwab Network</span>
-    </div>
-  </div>
-</section>
+<LogosBar class="fade-in" />
 
 <section class="subscribe-band fade-in">
   <div class="container">
     <h3>Stay Informed</h3>
-    <p>Subscribe to receive our monthly market commentary and research.</p>
-    <form class="subscribe-form" action={`https://formspree.io/f/${site.formspreeNewsletter}`} method="POST">
-      <input type="hidden" name="_subject" value="Newsletter Subscription - Monachil Capital Partners">
-      <input type="hidden" name="_replyto" value="ir@monachilpartners.com">
+    <p>Subscribe to access our latest research and media appearances.</p>
+    <form class="subscribe-form" action={`${site.mailchimpAction}?u=${site.mailchimpU}&id=${site.mailchimpId}`} method="POST" data-mailchimp>
+      <input type="hidden" name="u" value={site.mailchimpU}>
+      <input type="hidden" name="id" value={site.mailchimpId}>
+      <input type="hidden" name="SIGNUP_SOURCE" value="website-newsletter">
       <label for="subscribe-email" class="visually-hidden">Email Address</label>
-      <input type="email" id="subscribe-email" name="email" placeholder="Your email address" required>
+      <input type="email" id="subscribe-email" name="EMAIL" placeholder="Your email address" required>
+      <div style="position:absolute;left:-5000px;" aria-hidden="true"><input type="text" name={`b_${site.mailchimpU}_${site.mailchimpId}`} tabindex="-1" value=""></div>
       <button type="submit">Subscribe</button>
     </form>
-    <p class="subscribe-note">You will receive our monthly market commentary and research updates.</p>
+    <p class="subscribe-note">No spam. Unsubscribe anytime.</p>
   </div>
 </section>
 

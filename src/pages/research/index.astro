@@ -6,6 +6,14 @@ import { site } from '../../data/site';
 const articles = await getCollection('research');
 const sorted = articles.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 const years = [...new Set(sorted.map(a => a.data.date.getFullYear().toString()))].sort((a, b) => Number(b) - Number(a));
+
+// Group by year for section headers
+const grouped = new Map<string, typeof sorted>();
+for (const article of sorted) {
+  const year = article.data.date.getFullYear().toString();
+  if (!grouped.has(year)) grouped.set(year, []);
+  grouped.get(year)!.push(article);
+}
 ---
 
 <BaseLayout title="Research & Insights" description="Market commentary, research papers, and thought leadership from Monachil Capital Partners.">
@@ -15,26 +23,41 @@ const years = [...new Set(sorted.map(a => a.data.date.getFullYear().toString()))
     <p class="page-hero-breadcrumb"><a href="/">Home</a> / Research & Insights</p>
     <h1>Research & <strong>Insights</strong></h1>
     <p class="page-hero-sub">Market commentary, research papers, and thought leadership from Monachil Capital Partners.</p>
+    <div class="page-hero-rule"></div>
   </div>
 </section>
 
 <section class="section">
   <div class="container">
-    <div class="year-filter">
-      <button class="year-filter-btn is-active" data-year="all">All</button>
-      {years.map(year => (
-        <button class="year-filter-btn" data-year={year}>{year}</button>
-      ))}
+    <div class="research-controls">
+      <div class="year-filter">
+        <button class="year-filter-btn is-active" data-year="all">All</button>
+        {years.map(year => (
+          <button class="year-filter-btn" data-year={year}>{year}</button>
+        ))}
+      </div>
+      <p class="research-count"><span id="research-visible-count">{sorted.length}</span> articles</p>
     </div>
 
     {sorted.length > 0 ? (
-      <div class="research-list">
+      <div class="research-list research-list--enhanced">
         {sorted.map(article => (
-          <a href={`/research/${article.id}/`} class="research-item" data-year={article.data.date.getFullYear().toString()}>
-            <time class="research-item-date">{article.data.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</time>
-            {article.data.category && <span class="research-item-category">{article.data.category}</span>}
-            <h3 class="research-item-title">{article.data.title}</h3>
-            <span class="research-item-arrow">&rarr;</span>
+          <a href={`/research/${article.id}/`} class="research-card" data-year={article.data.date.getFullYear().toString()}>
+            <div class="research-card-meta">
+              <time class="research-card-date">{article.data.date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</time>
+              {article.data.category && <span class="research-card-category">{article.data.category}</span>}
+            </div>
+            <h3 class="research-card-title">{article.data.title}</h3>
+            <p class="research-card-desc">{article.data.description}</p>
+            <div class="research-card-footer">
+              {article.data.pdf && (
+                <span class="research-card-pdf">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                  PDF Available
+                </span>
+              )}
+              <span class="research-card-read">Read Article &rarr;</span>
+            </div>
           </a>
         ))}
       </div>
@@ -51,15 +74,17 @@ const years = [...new Set(sorted.map(a => a.data.date.getFullYear().toString()))
 <section class="subscribe-band fade-in">
   <div class="container">
     <h3>Stay Informed</h3>
-    <p>Subscribe to receive our monthly market commentary and research.</p>
-    <form class="subscribe-form" action={`https://formspree.io/f/${site.formspreeNewsletter}`} method="POST">
-      <input type="hidden" name="_subject" value="Newsletter Subscription - Monachil Capital Partners">
-      <input type="hidden" name="_replyto" value="ir@monachilpartners.com">
+    <p>Subscribe to access our latest research and media appearances.</p>
+    <form class="subscribe-form" action={`${site.mailchimpAction}?u=${site.mailchimpU}&id=${site.mailchimpId}`} method="POST" data-mailchimp>
+      <input type="hidden" name="u" value={site.mailchimpU}>
+      <input type="hidden" name="id" value={site.mailchimpId}>
+      <input type="hidden" name="SIGNUP_SOURCE" value="website-newsletter">
       <label for="subscribe-email-research" class="visually-hidden">Email Address</label>
-      <input type="email" id="subscribe-email-research" name="email" placeholder="Your email address" required>
+      <input type="email" id="subscribe-email-research" name="EMAIL" placeholder="Your email address" required>
+      <div style="position:absolute;left:-5000px;" aria-hidden="true"><input type="text" name={`b_${site.mailchimpU}_${site.mailchimpId}`} tabindex="-1" value=""></div>
       <button type="submit">Subscribe</button>
     </form>
-    <p class="subscribe-note">You will receive our monthly market commentary and research updates.</p>
+    <p class="subscribe-note">No spam. Unsubscribe anytime.</p>
   </div>
 </section>
 

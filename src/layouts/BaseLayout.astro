@@ -33,9 +33,17 @@ const props = Astro.props;
     permalink={props.permalink}
   />
   <ClientRouter />
+  <script is:inline>
+    (function(){
+      var s = localStorage.getItem('theme');
+      var os = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      document.documentElement.dataset.theme = s || os;
+    })();
+  </script>
   <slot name="head" />
 </head>
 <body>
+  <div class="scroll-progress" id="scrollProgress"></div>
   <a href="#main-content" class="skip-link">Skip to main content</a>
   <Nav />
   <main id="main-content">
@@ -43,285 +51,306 @@ const props = Astro.props;
   </main>
   <Footer />
 
+  <div class="video-modal" id="videoModal">
+    <div class="video-modal-inner">
+      <button class="video-modal-close" id="videoModalClose" aria-label="Close video">&times;</button>
+      <div class="video-modal-player" id="videoModalPlayer"></div>
+    </div>
+  </div>
+
   <script is:inline>
-  function initPage() {
-    // Nav scroll effect
-    var nav = document.getElementById('nav');
-    if (nav) {
-      window.addEventListener('scroll', function() {
-        nav.classList.toggle('nav--scrolled', window.scrollY > 10);
-      });
-    }
+  // ── Global listeners (bound ONCE, never duplicated) ──
+  var _globalsBound = false;
 
-    // Menu overlay
-    var toggle = document.getElementById('navToggle');
+  function showMessage(container, type, text, duration) {
+    var existing = container.querySelector('.form-message');
+    if (existing) existing.remove();
+    var msg = document.createElement('div');
+    msg.className = 'form-message form-message--' + type;
+    msg.textContent = text;
+    msg.setAttribute('role', 'status');
+    container.appendChild(msg);
+    setTimeout(function() { msg.remove(); }, duration || 6000);
+  }
+
+  function openVideo(src) {
+    var modal = document.getElementById('videoModal');
+    var player = document.getElementById('videoModalPlayer');
+    if (!modal || !player) return;
+    player.innerHTML = '<iframe src="' + src + '" title="Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>';
+    modal.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeVideo() {
+    var modal = document.getElementById('videoModal');
+    var player = document.getElementById('videoModalPlayer');
+    if (!modal) return;
+    modal.classList.remove('is-open');
+    document.body.style.overflow = '';
+    if (player) player.innerHTML = '';
+  }
+
+  function closeMenu() {
     var overlay = document.getElementById('menuOverlay');
-    var close = document.getElementById('menuClose');
+    if (overlay) { overlay.classList.remove('is-open'); document.body.style.overflow = ''; }
+  }
 
-    function openMenu() {
-      overlay.classList.add('is-open');
-      document.body.style.overflow = 'hidden';
+  function toggleTheme() {
+    var current = document.documentElement.dataset.theme;
+    var next = current === 'dark' ? 'light' : 'dark';
+    document.documentElement.dataset.theme = next;
+    localStorage.setItem('theme', next);
+    updateToggleButton(next);
+  }
+
+  function updateToggleButton(theme) {
+    var btn = document.getElementById('themeToggle');
+    if (!btn) return;
+    btn.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+    btn.setAttribute('aria-checked', theme === 'light' ? 'true' : 'false');
+    btn.innerHTML = theme === 'dark'
+      ? '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>'
+      : '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+  }
+
+  function bindGlobalListeners() {
+    if (_globalsBound) return;
+    _globalsBound = true;
+
+    // Single scroll handler for nav, progress bar, and parallax
+    window.addEventListener('scroll', function() {
+      var nav = document.getElementById('nav');
+      var scrollBar = document.getElementById('scrollProgress');
+      if (nav) nav.classList.toggle('nav--scrolled', window.scrollY > 10);
+      if (scrollBar) {
+        var dh = document.documentElement.scrollHeight - window.innerHeight;
+        scrollBar.style.width = dh > 0 ? (window.scrollY / dh * 100) + '%' : '0%';
+      }
+    }, { passive: true });
+
+    // Parallax (separate RAF-throttled handler)
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      var pTicking = false;
+      window.addEventListener('scroll', function() {
+        if (pTicking) return;
+        pTicking = true;
+        requestAnimationFrame(function() {
+          document.querySelectorAll('.section-title').forEach(function(h) {
+            var r = h.getBoundingClientRect();
+            if (r.top < window.innerHeight && r.bottom > 0) {
+              h.style.transform = 'translateY(' + (r.top - window.innerHeight * 0.5) * 0.04 + 'px)';
+            }
+          });
+          pTicking = false;
+        });
+      }, { passive: true });
     }
 
-    function closeMenu() {
-      overlay.classList.remove('is-open');
-      document.body.style.overflow = '';
-    }
-
-    if (toggle) toggle.addEventListener('click', openMenu);
-    if (close) close.addEventListener('click', closeMenu);
-
+    // Global keyboard handler
     document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') closeMenu();
+      if (e.key === 'Escape') {
+        closeMenu();
+        closeVideo();
+      }
     });
 
-    if (overlay) {
-      overlay.addEventListener('click', function(e) {
-        if (e.target === overlay) closeMenu();
-      });
-    }
+    // Global click delegation for interactive elements
+    document.addEventListener('click', function(e) {
+      var target = e.target;
 
-    // Fade-in on scroll
+      // Theme toggle
+      if (target.closest('#themeToggle')) { toggleTheme(); return; }
+
+      // Menu open/close
+      if (target.closest('#navToggle')) {
+        var overlay = document.getElementById('menuOverlay');
+        if (overlay) { overlay.classList.add('is-open'); document.body.style.overflow = 'hidden'; }
+        return;
+      }
+      if (target.closest('#menuClose')) { closeMenu(); return; }
+      if (target.id === 'menuOverlay') { closeMenu(); return; }
+
+      // Video modal close
+      if (target.closest('#videoModalClose')) { closeVideo(); return; }
+      if (target.id === 'videoModal') { closeVideo(); return; }
+
+      // Embeddable media cards
+      var embedCard = target.closest('.media-card--embed');
+      if (embedCard) {
+        var ytId = embedCard.dataset.youtube;
+        var embedUrl = embedCard.dataset.embed;
+        if (ytId) openVideo('https://www.youtube.com/embed/' + ytId + '?autoplay=1&rel=0&modestbranding=1');
+        else if (embedUrl) openVideo(embedUrl);
+        return;
+      }
+
+      // Contact tabs
+      var contactTab = target.closest('.contact-tab');
+      if (contactTab) {
+        document.querySelectorAll('.contact-tab').forEach(function(t) { t.classList.remove('contact-tab--active'); });
+        document.querySelectorAll('.contact-pane').forEach(function(p) { p.classList.remove('contact-pane--active'); });
+        contactTab.classList.add('contact-tab--active');
+        var pane = document.getElementById('pane-' + contactTab.dataset.tab);
+        if (pane) pane.classList.add('contact-pane--active');
+        return;
+      }
+
+      // Page tabs
+      var pageTab = target.closest('.page-tab');
+      if (pageTab) {
+        document.querySelectorAll('.page-tab').forEach(function(t) { t.classList.remove('is-active'); t.setAttribute('aria-selected', 'false'); });
+        document.querySelectorAll('.tab-panel').forEach(function(p) { p.classList.remove('is-active'); });
+        pageTab.classList.add('is-active');
+        pageTab.setAttribute('aria-selected', 'true');
+        var panel = document.getElementById(pageTab.getAttribute('aria-controls'));
+        if (panel) panel.classList.add('is-active');
+        return;
+      }
+
+      // Position cards
+      var posCard = target.closest('.position-card[data-position]');
+      if (posCard) {
+        document.querySelectorAll('.position-card').forEach(function(c) { c.classList.remove('position-card--active'); });
+        posCard.classList.add('position-card--active');
+        var radios = document.querySelectorAll('input[name="position"]');
+        radios.forEach(function(r) { if (r.value === posCard.dataset.position) r.checked = true; });
+        return;
+      }
+
+      // Year filter buttons
+      var filterBtn = target.closest('.year-filter-btn');
+      if (filterBtn) {
+        var year = filterBtn.dataset.year;
+        document.querySelectorAll('.year-filter-btn').forEach(function(b) { b.classList.remove('is-active'); });
+        filterBtn.classList.add('is-active');
+        var count = 0;
+        document.querySelectorAll('[data-year]:not(.year-filter-btn)').forEach(function(item) {
+          var show = year === 'all' || item.dataset.year === year;
+          item.style.display = show ? '' : 'none';
+          if (show) count++;
+        });
+        var counter = document.getElementById('research-visible-count');
+        if (counter) counter.textContent = count;
+        return;
+      }
+    });
+
+    // Form submission (delegated)
+    document.addEventListener('submit', function(e) {
+      var form = e.target;
+      var btn = form.querySelector('button[type="submit"]');
+      if (!btn) return;
+      var originalText = btn.textContent;
+
+      // Mailchimp subscribe forms — submit via hidden iframe to avoid redirect
+      if (form.hasAttribute('data-mailchimp')) {
+        e.preventDefault();
+        btn.textContent = 'Subscribing...';
+        btn.disabled = true;
+
+        // Create hidden iframe to receive Mailchimp's response
+        var iframeName = 'mc-iframe-' + Date.now();
+        var iframe = document.createElement('iframe');
+        iframe.name = iframeName;
+        iframe.style.display = 'none';
+        document.body.appendChild(iframe);
+
+        // Point form at iframe
+        form.target = iframeName;
+        form.submit();
+
+        // Show success after brief delay (Mailchimp always returns 200)
+        setTimeout(function() {
+          form.reset();
+          form.target = '';
+          btn.textContent = originalText;
+          btn.disabled = false;
+          iframe.remove();
+          showMessage(form.parentElement, 'success', 'Thank you! Please check your email to confirm your subscription.');
+        }, 2000);
+        return;
+      }
+
+      // Formspree forms (contact, careers)
+      if (!form.action || form.action.indexOf('formspree.io') === -1) return;
+      e.preventDefault();
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+
+      fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      }).then(function(res) {
+        if (res.ok) { form.reset(); showMessage(form.parentElement, 'success', 'Thank you! Your message has been sent.'); }
+        else showMessage(form.parentElement, 'error', 'Something went wrong. Please try again.');
+      }).catch(function() {
+        showMessage(form.parentElement, 'error', 'Network error. Please check your connection and try again.');
+      }).finally(function() { btn.textContent = originalText; btn.disabled = false; });
+    });
+
+    // OS theme change listener
+    window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', function(e) {
+      if (!localStorage.getItem('theme')) {
+        document.documentElement.dataset.theme = e.matches ? 'light' : 'dark';
+        updateToggleButton(e.matches ? 'light' : 'dark');
+      }
+    });
+  }
+
+  // ── Per-page init (safe to call multiple times) ──
+  function initPage() {
+    // Fade-in observers (safe: unobserve on trigger)
     document.documentElement.classList.add('js-fade-ready');
-
-    var faders = document.querySelectorAll('.fade-in');
+    var faders = document.querySelectorAll('.fade-in:not(.is-visible)');
     if (faders.length && 'IntersectionObserver' in window) {
-      var observer = new IntersectionObserver(function(entries) {
+      var obs = new IntersectionObserver(function(entries) {
         entries.forEach(function(entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            observer.unobserve(entry.target);
-          }
+          if (entry.isIntersecting) { entry.target.classList.add('is-visible'); obs.unobserve(entry.target); }
         });
       }, { threshold: 0.1 });
-
-      faders.forEach(function(el) { observer.observe(el); });
+      faders.forEach(function(el) { obs.observe(el); });
     } else {
       faders.forEach(function(el) { el.classList.add('is-visible'); });
     }
 
-    // Video modal (media page)
-    var videoModal = document.getElementById('videoModal');
-    var videoPlayer = document.getElementById('videoPlayer');
-    var videoModalClose = document.getElementById('videoModalClose');
-
-    if (videoModal && videoPlayer) {
-      document.querySelectorAll('.media-card[data-video]').forEach(function(card) {
-        card.addEventListener('click', function(e) {
-          e.preventDefault();
-          var src = this.dataset.video;
-          videoPlayer.querySelector('source').src = src;
-          videoPlayer.load();
-          videoModal.classList.add('is-open');
-          document.body.style.overflow = 'hidden';
-          videoPlayer.play();
-        });
-      });
-
-      function closeVideoModal() {
-        videoModal.classList.remove('is-open');
-        document.body.style.overflow = '';
-        videoPlayer.pause();
-        videoPlayer.currentTime = 0;
-      }
-
-      if (videoModalClose) videoModalClose.addEventListener('click', closeVideoModal);
-
-      videoModal.addEventListener('click', function(e) {
-        if (e.target === videoModal) closeVideoModal();
-      });
-
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && videoModal.classList.contains('is-open')) {
-          closeVideoModal();
-        }
-      });
-    }
-
-    // Hero particle animation
-    var heroSection = document.querySelector('.hero[data-hero-effect="particles"]');
-    var canvas = document.getElementById('heroParticles');
-    if (heroSection && canvas && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      var ctx = canvas.getContext('2d');
-      var dpr = window.devicePixelRatio || 1;
-      var particles = [];
-      var pw, ph;
-      var PARTICLE_COUNT = window.innerWidth < 768 ? 30 : 55;
-      var MAX_DIST = 140;
-
-      function resizeCanvas() {
-        pw = canvas.parentElement.offsetWidth;
-        ph = canvas.parentElement.offsetHeight;
-        canvas.width = pw * dpr;
-        canvas.height = ph * dpr;
-        canvas.style.width = pw + 'px';
-        canvas.style.height = ph + 'px';
-        ctx.scale(dpr, dpr);
-      }
-
-      function makeParticle() {
-        return {
-          x: Math.random() * pw,
-          y: Math.random() * ph,
-          vx: (Math.random() - 0.5) * 0.3,
-          vy: (Math.random() - 0.5) * 0.3,
-          size: Math.random() * 1.5 + 0.5,
-          alpha: Math.random() * 0.35 + 0.1
-        };
-      }
-
-      function initParticles() {
-        resizeCanvas();
-        particles = [];
-        for (var i = 0; i < PARTICLE_COUNT; i++) particles.push(makeParticle());
-      }
-
-      function animateParticles() {
-        ctx.clearRect(0, 0, pw, ph);
-        for (var i = 0; i < particles.length; i++) {
-          var p = particles[i];
-          p.x += p.vx; p.y += p.vy;
-          if (p.x < 0) p.x = pw; if (p.x > pw) p.x = 0;
-          if (p.y < 0) p.y = ph; if (p.y > ph) p.y = 0;
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-          ctx.fillStyle = 'rgba(255,255,255,' + p.alpha + ')';
-          ctx.fill();
-          for (var j = i + 1; j < particles.length; j++) {
-            var p2 = particles[j];
-            var dx = p.x - p2.x, dy = p.y - p2.y;
-            var dist = Math.sqrt(dx * dx + dy * dy);
-            if (dist < MAX_DIST) {
-              ctx.beginPath();
-              ctx.moveTo(p.x, p.y);
-              ctx.lineTo(p2.x, p2.y);
-              ctx.strokeStyle = 'rgba(255,255,255,' + ((1 - dist / MAX_DIST) * 0.12) + ')';
-              ctx.lineWidth = 0.5;
-              ctx.stroke();
-            }
-          }
-        }
-        requestAnimationFrame(animateParticles);
-      }
-
-      initParticles();
-      animateParticles();
-      var resizeTimer;
-      window.addEventListener('resize', function() {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(initParticles, 200);
-      });
-    }
-
-    // Contact page tabs
-    var contactTabs = document.querySelectorAll('.contact-tab');
-    function switchTab(target) {
-      contactTabs.forEach(function(t) { t.classList.remove('contact-tab--active'); });
-      document.querySelectorAll('.contact-pane').forEach(function(pane) {
-        pane.classList.remove('contact-pane--active');
-      });
-      var btn = document.querySelector('.contact-tab[data-tab="' + target + '"]');
-      var pane = document.getElementById('pane-' + target);
-      if (btn) btn.classList.add('contact-tab--active');
-      if (pane) pane.classList.add('contact-pane--active');
-    }
-    contactTabs.forEach(function(tab) {
-      tab.addEventListener('click', function() { switchTab(this.dataset.tab); });
-    });
-    if (contactTabs.length && window.location.hash === '#careers') switchTab('careers');
-
-    // Careers position card selection
-    var positionCards = document.querySelectorAll('.position-card[data-position]');
-    positionCards.forEach(function(card) {
-      card.addEventListener('click', function() {
-        var position = this.dataset.position;
-        positionCards.forEach(function(c) { c.classList.remove('position-card--active'); });
-        this.classList.add('position-card--active');
-        var radios = document.querySelectorAll('input[name="position"]');
-        radios.forEach(function(radio) {
-          if (radio.value === position) radio.checked = true;
-        });
-      });
-    });
-
-    // Year filter (research & media pages)
-    var filterBtns = document.querySelectorAll('.year-filter-btn');
-    filterBtns.forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        var year = this.dataset.year;
-
-        filterBtns.forEach(function(b) { b.classList.remove('is-active'); });
-        this.classList.add('is-active');
-
-        var items = document.querySelectorAll('[data-year]');
-        items.forEach(function(item) {
-          if (item.classList.contains('year-filter-btn')) return;
-          if (year === 'all' || item.dataset.year === year) {
-            item.style.display = '';
-          } else {
-            item.style.display = 'none';
-          }
-        });
-      });
-    });
-
-    // AJAX form submission with feedback
-    document.querySelectorAll('form[action*="formspree.io"]').forEach(function(form) {
-      form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        var btn = form.querySelector('button[type="submit"]');
-        var originalText = btn.textContent;
-        btn.textContent = 'Sending...';
-        btn.disabled = true;
-
-        fetch(form.action, {
-          method: 'POST',
-          body: new FormData(form),
-          headers: { 'Accept': 'application/json' }
-        }).then(function(response) {
-          if (response.ok) {
-            form.reset();
-            showFormMessage(form, 'success', 'Thank you! Your message has been sent.');
-          } else {
-            showFormMessage(form, 'error', 'Something went wrong. Please try again.');
-          }
-        }).catch(function() {
-          showFormMessage(form, 'error', 'Network error. Please check your connection and try again.');
-        }).finally(function() {
-          btn.textContent = originalText;
-          btn.disabled = false;
-        });
-      });
-    });
-
-    function showFormMessage(form, type, text) {
-      var existing = form.parentElement.querySelector('.form-message');
-      if (existing) existing.remove();
-      var msg = document.createElement('div');
-      msg.className = 'form-message form-message--' + type;
-      msg.textContent = text;
-      msg.setAttribute('role', 'status');
-      form.parentElement.insertBefore(msg, form.nextSibling);
-      setTimeout(function() { msg.remove(); }, 6000);
-    }
-
-    // Stat counter animation
-    var statNumbers = document.querySelectorAll('.stat-number');
-    if (statNumbers.length && 'IntersectionObserver' in window) {
-      var statObserver = new IntersectionObserver(function(entries) {
+    // Stat counter observers (safe: unobserve on trigger)
+    var stats = document.querySelectorAll('.stat-number:not(.stat-counted)');
+    if (stats.length && 'IntersectionObserver' in window) {
+      var sObs = new IntersectionObserver(function(entries) {
         entries.forEach(function(entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('stat-counted');
-            statObserver.unobserve(entry.target);
-          }
+          if (entry.isIntersecting) { entry.target.classList.add('stat-counted'); sObs.unobserve(entry.target); }
         });
       }, { threshold: 0.5 });
-      statNumbers.forEach(function(el) { statObserver.observe(el); });
+      stats.forEach(function(el) { sObs.observe(el); });
     }
+
+    // Hash-based tab activation
+    var hash = window.location.hash.slice(1);
+    if (hash === 'careers') {
+      var ct = document.querySelector('.contact-tab[data-tab="careers"]');
+      if (ct) ct.click();
+    }
+    if (hash === 'team') { var t = document.getElementById('tab-team'); if (t) t.click(); }
+    if (hash === 'press') { var p = document.getElementById('tab-press'); if (p) p.click(); }
+
+    // Update theme toggle icon
+    updateToggleButton(document.documentElement.dataset.theme);
   }
 
-  // Run on initial load and on each client-side navigation
-  document.addEventListener('astro:page-load', initPage);
+  // Re-apply theme after Astro client-side navigation
+  document.addEventListener('astro:after-swap', function() {
+    var s = localStorage.getItem('theme');
+    var os = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+    document.documentElement.dataset.theme = s || os;
+  });
+
+  // Bind globals once, then run per-page init on each navigation
+  document.addEventListener('astro:page-load', function() {
+    bindGlobalListeners();
+    initPage();
+  });
   </script>
 </body>
 </html>

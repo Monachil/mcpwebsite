@@ -1,14 +1,86 @@
 [
   {
+    "year": "2026",
+    "date": "March 20, 2026",
+    "title": "Bloomberg Surveillance",
+    "description": "Ali Meli joins Bloomberg Surveillance to discuss markets and the macro outlook.",
+    "source": "Bloomberg",
+    "image": "/images/bloomberg-mar-2026.jpg",
+    "imageAlt": "Ali Meli on Bloomberg Surveillance",
+    "url": "https://youtu.be/_6gPalnmX7w",
+    "youtubeId": "_6gPalnmX7w"
+  },
+  {
+    "year": "2026",
+    "date": "February 27, 2026",
+    "title": "AI Divergence in PPI & CPI",
+    "description": "Ali Meli explains why AI is causing a divergence between PPI and CPI, and what it means for Fed policy.",
+    "source": "Schwab Network",
+    "image": "/images/schwab-feb-2026.jpg",
+    "imageAlt": "Ali Meli on Schwab Network",
+    "url": "https://schwabnetwork.com/video/why-ai-is-causing-a-divergence-in-ppi-cpi-what-it-means-for-the-fed"
+  },
+  {
+    "year": "2025",
+    "date": "December 31, 2025",
+    "title": "Bloomberg Surveillance",
+    "description": "Ali Meli on Bloomberg Surveillance discussing year-end market dynamics and the outlook for 2026.",
+    "source": "Bloomberg",
+    "image": "/images/bloomberg-dec-2025.jpg",
+    "imageAlt": "Ali Meli on Bloomberg Surveillance",
+    "url": "https://youtu.be/lmy3EjQQASw",
+    "youtubeId": "lmy3EjQQASw"
+  },
+  {
+    "year": "2025",
+    "date": "December 31, 2025",
+    "title": "Oracle, OpenAI & Market Risks",
+    "description": "Ali Meli on why Oracle's OpenAI dependency could be a major risk, citing $12 billion quarterly losses.",
+    "source": "Yahoo Finance",
+    "image": "/images/yahoo-oracle-dec-2025.jpg",
+    "imageAlt": "Ali Meli on Yahoo Finance",
+    "url": "https://finance.yahoo.com/video/why-oracles-openai-tie-could-123043550.html"
+  },
+  {
+    "year": "2025",
+    "date": "December 29, 2025",
+    "title": "Equities Outlook & Fed Policy",
+    "description": "Ali Meli discusses GDP growth, stretched equity valuations, and Fed rate cut prospects heading into 2026 with Thomas White.",
+    "source": "Schwab Network",
+    "image": "/images/schwab-dec-2025.jpg",
+    "imageAlt": "Ali Meli on Schwab Network",
+    "url": "https://schwabnetwork.com/video/market-weighs-earnings-to-valuation-balance-fomc-s-negative-equity-issue"
+  },
+  {
+    "year": "2025",
+    "date": "November 17, 2025",
+    "title": "Bloomberg Surveillance \u2014 Systemic Credit Risks",
+    "description": "Ali Meli highlights concerns about AI-related credit overheating and datacenter investment risks with Tom Keene.",
+    "source": "Bloomberg",
+    "image": "/images/bloomberg-nov-2025.jpg",
+    "imageAlt": "Ali Meli on Bloomberg",
+    "url": "https://www.linkedin.com/posts/monachil-capital-partners-lp_yesterday-ali-meli-founder-and-cio-of-monachil-activity-7396510057619939329-0iUb"
+  },
+  {
+    "year": "2025",
+    "date": "November 3, 2025",
+    "title": "AI Depreciation & Tech Valuations",
+    "description": "GPU lease prices dropped from $10/hr to $2/hr \u2014 Ali Meli explains how accounting depreciation gaps overstate Big Tech earnings.",
+    "source": "Yahoo Finance",
+    "image": "/images/yahoo-nov-2025.jpg",
+    "imageAlt": "Ali Meli on Yahoo Finance Market Domination",
+    "url": "https://finance.yahoo.com/video/ai-growth-depreciation-poses-risk-110046469.html"
+  },
+  {
     "year": "2025",
     "date": "August 2025",
     "title": "Bloomberg Surveillance",
     "description": "Ali Meli discusses AI-driven capex in Big Tech, noting the gap between accounting and economic GPU values.",
     "source": "Bloomberg",
-    "image": "/images/bloomberg-aug-2024.jpg",
+    "image": "/images/bloomberg-aug-2025.jpg",
     "imageAlt": "Bloomberg Surveillance",
-    "url": "#",
-    "localVideo": "/videos/bloomberg-surveillance-aug-2025.mp4"
+    "url": "https://youtu.be/N4uRONJlRDs",
+    "youtubeId": "N4uRONJlRDs"
   },
   {
     "year": "2025",
@@ -18,8 +90,7 @@
     "source": "Schwab Network",
     "image": "/images/schwab-aug-2025.jpg",
     "imageAlt": "Ali Meli on Schwab Network",
-    "url": "https://schwabnetwork.com/video/meli-watch-factory-orders-foresee-10-15-market-pullback-before-year-end",
-    "external": true
+    "url": "https://schwabnetwork.com/video/meli-watch-factory-orders-foresee-10-15-market-pullback-before-year-end"
   },
   {
     "year": "2025",
@@ -30,7 +101,7 @@
     "image": "/images/podcast-exploring-prosperity.jpg",
     "imageAlt": "Exploring Prosperity Podcast",
     "url": "https://youtu.be/Wbkvj-IFrvc?si=E0D4fJmhCm0JUauT",
-    "external": true
+    "youtubeId": "Wbkvj-IFrvc"
   },
   {
     "year": "2025",
@@ -40,8 +111,7 @@
     "source": "Schwab Network",
     "image": "/images/schwab-jun-2025.jpg",
     "imageAlt": "Ali Meli on Schwab Network",
-    "url": "https://schwabnetwork.com/video/why-the-u-s-s-net-energy-exporter-status-is-critical-for-oil-prices",
-    "external": true
+    "url": "https://schwabnetwork.com/video/why-the-u-s-s-net-energy-exporter-status-is-critical-for-oil-prices"
   },
   {
     "year": "2025",
@@ -52,7 +122,17 @@
     "image": "/images/podcast-asset-backed.jpg",
     "imageAlt": "Asset Backed Podcast",
     "url": "https://www.youtube.com/watch?v=9OsDqg6bk1g",
-    "external": true
+    "youtubeId": "9OsDqg6bk1g"
+  },
+  {
+    "year": "2025",
+    "date": "March 31, 2025",
+    "title": "Bloomberg Surveillance \u2014 Private Credit & Tariffs",
+    "description": "Ali Meli discusses credit spreads widening 70-80 bps and warns about private credit sector overheating from excessive capital inflows.",
+    "source": "Bloomberg",
+    "image": "/images/bloomberg-mar-2025.jpg",
+    "imageAlt": "Ali Meli on Bloomberg",
+    "url": "https://www.linkedin.com/posts/monachil-capital-partners-lp_on-march-31st-ali-meli-founder-and-cio-activity-7315095802870198273-b0OD"
   },
   {
     "year": "2025",
@@ -62,8 +142,7 @@
     "source": "Schwab Network",
     "image": "/images/schwab-mar-2025.jpg",
     "imageAlt": "Ali Meli on Schwab Network",
-    "url": "https://schwabnetwork.com/video/meli-fed-s-new-goldilocks-scenario-federal-spending-cuts-hurt-gdp",
-    "external": true
+    "url": "https://schwabnetwork.com/video/meli-fed-s-new-goldilocks-scenario-federal-spending-cuts-hurt-gdp"
   },
   {
     "year": "2025",
@@ -73,19 +152,18 @@
     "source": "Schwab Network",
     "image": "/images/schwab-jan-2025.jpg",
     "imageAlt": "Ali Meli on Schwab Network",
-    "url": "https://schwabnetwork.com/video/using-the-cape-ratio-to-gauge-valuation",
-    "external": true
+    "url": "https://schwabnetwork.com/video/using-the-cape-ratio-to-gauge-valuation"
   },
   {
     "year": "2024",
     "date": "December 2024",
-    "title": "Bloomberg Surveillance — Private Credit",
+    "title": "Bloomberg Surveillance \u2014 Private Credit",
     "description": "Ali Meli with Tom Keene and Paul Sweeney discussing private credit markets.",
     "source": "Bloomberg",
     "image": "/images/bloomberg-oct-2024.jpg",
     "imageAlt": "Ali Meli on Bloomberg",
-    "url": "#",
-    "localVideo": "/videos/bloomberg-private-credit-dec-2024.mp4"
+    "url": "https://youtu.be/vKtgOf30nV0",
+    "youtubeId": "vKtgOf30nV0"
   },
   {
     "year": "2024",
@@ -95,8 +173,8 @@
     "source": "Bloomberg",
     "image": "/images/bloomberg-sep-2024.jpg",
     "imageAlt": "Ali Meli on Bloomberg Surveillance",
-    "url": "#",
-    "localVideo": "/videos/bloomberg-surveillance-aug-2024.mp4"
+    "url": "https://youtu.be/dSHomZYhRvA",
+    "youtubeId": "dSHomZYhRvA"
   },
   {
     "year": "2024",
@@ -106,8 +184,7 @@
     "source": "Schwab Network",
     "image": "/images/schwab-may-2024.jpg",
     "imageAlt": "Ali Meli on Schwab Network",
-    "url": "https://schwabnetwork.com/video/impact-of-money-on-the-sidelines-in-today-s-economy",
-    "external": true
+    "url": "https://schwabnetwork.com/video/impact-of-money-on-the-sidelines-in-today-s-economy"
   },
   {
     "year": "2024",
@@ -117,8 +194,7 @@
     "source": "RIA Channel",
     "image": "/images/schwab-ria-2024.jpg",
     "imageAlt": "RIA Channel",
-    "url": "https://www.riachannel.com/utilizing-asset-backed-private-credit-to-help-generate-income-and-uncorrelated-returns-monachil-capital-partners-2-13-24/",
-    "external": true
+    "url": "https://www.riachannel.com/utilizing-asset-backed-private-credit-to-help-generate-income-and-uncorrelated-returns-monachil-capital-partners-2-13-24/"
   },
   {
     "year": "2024",
@@ -128,8 +204,7 @@
     "source": "Schwab Network",
     "image": "/images/schwab-dec-2023.jpg",
     "imageAlt": "Ali Meli on Schwab Network",
-    "url": "https://schwabnetwork.com/video/gdp-inflation-the-path-ahead",
-    "external": true
+    "url": "https://schwabnetwork.com/video/gdp-inflation-the-path-ahead"
   },
   {
     "year": "2023",
@@ -140,7 +215,7 @@
     "image": "/images/podcast-on-the-tape.jpg",
     "imageAlt": "On the Tape Podcast",
     "url": "https://open.spotify.com/episode/5NRjdFd9QvA6e08fbLgFuH?si=m_tHH5tUQLK4f0WURt8UoA",
-    "external": true
+    "embedUrl": "https://open.spotify.com/embed/episode/5NRjdFd9QvA6e08fbLgFuH"
   },
   {
     "year": "2023",
@@ -150,18 +225,17 @@
     "source": "Schwab Network",
     "image": "/images/schwab-feb-2024.jpg",
     "imageAlt": "Ali Meli on Schwab Network",
-    "url": "https://schwabnetwork.com/video/a-soft-landing-is-not-feasible",
-    "external": true
+    "url": "https://schwabnetwork.com/video/a-soft-landing-is-not-feasible"
   },
   {
     "year": "2023",
     "date": "August 2023",
     "title": "Labor Market Assessment",
-    "description": "Labor market may not be as strong as it appears — Ali Meli on CNBC.",
+    "description": "Labor market may not be as strong as it appears \u2014 Ali Meli on CNBC.",
     "source": "CNBC",
     "image": "/images/cnbc-aug-2023.jpg",
     "imageAlt": "Ali Meli on CNBC",
     "url": "https://player.cnbc.com/p/gZWlPC/cnbc_global?playertype=synd&byGuid=7000313141",
-    "external": true
+    "embedUrl": "https://player.cnbc.com/p/gZWlPC/cnbc_global?playertype=synd&byGuid=7000313141"
   }
 ]
