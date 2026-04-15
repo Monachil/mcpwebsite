@@ -38,15 +38,93 @@ Monthly "Chart of the Month" — single chart image with 2-3 paragraphs commenta
 ## Infrastructure
 
 ### Azure Functions Form Backend
-Create separate `monachil-forms` repo (Python). Azure Functions Consumption plan with:
-- `/api/contact` — validate, send email via Graph API, (later: Jira ticket)
-- `/api/careers` — parse resume upload, save to SharePoint/OneDrive via Graph API, send notification, (later: Jira ticket)
-- Azure AD app registration with `Mail.Send` + `Files.ReadWrite.All` permissions
-- Shared utilities: Graph auth, input validation, config
-- CORS locked to production domain
-- Honeypot + rate limiting for spam protection
-- Replace Formspree on contact and careers forms
-- GitHub Actions deploy to Azure
+
+**Repo:** Separate `monachil-forms` repo
+**Runtime:** Python v2 programming model (decorator-based `@app.route`)
+**Plan:** Consumption (free at ~100 req/month, 1M free executions)
+**Framework:** Native Azure Functions HTTP triggers with Pydantic validation (NOT FastAPI — adds cold start overhead, unnecessary for 3 endpoints)
+
+**Project structure:**
+```
+monachil-forms/
+├── function_app.py              # Main app, imports blueprints
+├── blueprints/
+│   ├── contact.py               # POST /api/contact
+│   ├── careers.py               # POST /api/careers (multipart/file upload)
+│   └── subscribe.py             # POST /api/subscribe (Mailchimp)
+├── shared/
+│   ├── graph.py                 # Microsoft Graph client (email + SharePoint)
+│   ├── mailchimp.py             # Mailchimp API client
+│   ├── jira.py                  # Jira Cloud REST API client
+│   ├── validation.py            # Pydantic models for form validation
+│   ├── spam.py                  # Honeypot check + reCAPTCHA verification
+│   └── config.py                # Environment variable loading
+├── host.json
+├── local.settings.json          # Local dev secrets (gitignored)
+├── requirements.txt
+├── tests/
+│   ├── test_contact.py
+│   ├── test_careers.py
+│   └── test_subscribe.py
+└── .github/workflows/deploy.yml # GitHub Actions → Azure
+```
+
+**Endpoints:**
+
+`POST /api/contact`
+- Input: name, email, company, phone, subject, message, honeypot, recaptcha_token
+- Validate with Pydantic (EmailStr, required fields)
+- Reject if honeypot filled or reCAPTCHA fails
+- Send notification email via Graph API (`Mail.Send` permission)
+- If subject = "originator": tag differently in email subject
+- Response: `{ "success": true, "message": "Message received" }` (201)
+- Later: create Jira ticket in appropriate project
+
+`POST /api/careers`
+- Input: name, email, linkedin, position, resume (file), message (multipart/form-data)
+- Validate fields, check file type (PDF/DOC/DOCX only), size limit (10MB)
+- Parse multipart body with `python-multipart` library
+- Upload resume to SharePoint/OneDrive via Graph API (`Files.ReadWrite.All`)
+- Send notification email to hiring manager via Graph API
+- Response: `{ "success": true, "message": "Application received" }` (201)
+- Later: create Jira issue in hiring project with resume attachment
+
+`POST /api/subscribe`
+- Input: email, source, resource (optional for gated downloads)
+- Add to Mailchimp audience via `mailchimp-marketing` SDK
+- Set `status: "pending"` for double opt-in
+- Apply tags: "website-newsletter" or "pdf-download" based on source
+- Set merge fields: RESOURCE, SIGNUP_SOURCE
+- Response: `{ "success": true, "message": "Subscribed" }` (201)
+- Replaces current client-side Mailchimp hidden iframe approach
+
+**Azure setup required:**
+1. Azure AD / Entra ID app registration: `Mail.Send` + `Sites.ReadWrite.All` (application permissions, admin consent)
+2. Secrets in Key Vault (referenced in App Settings): `GRAPH_TENANT_ID`, `GRAPH_CLIENT_ID`, `GRAPH_CLIENT_SECRET`, `MAILCHIMP_API_KEY`, `JIRA_API_TOKEN`, `RECAPTCHA_SECRET`
+3. CORS in `host.json`: locked to production domain only
+4. Application Insights enabled for monitoring/logging
+5. Function-level API keys for basic endpoint protection
+
+**Deployment:** GitHub Actions with `Azure/functions-action@v1` using publish profile secret
+
+**Response format (all endpoints):**
+```json
+{ "success": true|false, "message": "Human-readable message" }
+```
+Status codes: 201 (created), 400 (validation error), 413 (file too large), 429 (rate limited), 500 (server error)
+
+**Spam protection:**
+- Honeypot hidden field (reject if filled)
+- reCAPTCHA v3 server-side verification (POST to Google `siteverify` endpoint)
+- Basic rate counter per IP (in-memory, resets on cold start — acceptable for low traffic)
+
+**Website changes when Azure Functions is ready:**
+- Contact form: POST JSON to `/api/contact` instead of Formspree
+- Careers form: POST multipart to `/api/careers` instead of Formspree
+- Subscribe form: POST to `/api/subscribe` instead of Mailchimp hidden iframe (optional — current approach works)
+- Add reCAPTCHA v3 script to pages with forms
+- Update CSP to allow Azure Functions domain + Google reCAPTCHA
+- Remove Formspree dependency entirely
 
 ### Moe & Jack Team Bios
 Add compact bio cards (no headshots) below Ali and Joe on Leadership tab:
