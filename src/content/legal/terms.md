@@ -42,6 +42,14 @@ Monachil disclaims liability for direct, indirect, or consequential damages, eve
 
 Connecticut law governs these terms. All legal actions must be filed in the U.S. District Court for Connecticut.
 
+## Forward-Looking Statements
+
+Certain statements on this website, including in research publications and media commentary, may constitute forward-looking statements. These statements involve known and unknown risks, uncertainties, and other factors that may cause actual results to differ materially from those expressed or implied. Such factors include changes in interest rates, credit markets, economic conditions, and regulatory environment. Forward-looking statements speak only as of the date they are made. Monachil Capital Partners LP undertakes no obligation to update any forward-looking statement.
+
+## Jurisdictional Notice
+
+Nothing on this website constitutes an offer or solicitation to any person in any jurisdiction where such offer or solicitation would be unlawful. Visitors are responsible for compliance with applicable local laws and regulations.
+
 ## Securities Warning
 
 Investments are not FDIC-insured and carry risk of total loss.

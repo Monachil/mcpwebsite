@@ -2300,6 +2300,24 @@ h4 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; font
   text-align: center;
 }
 
+.footer-registration {
+  font-size: 0.68rem;
+  font-weight: 400;
+  color: rgba(255,255,255,0.4);
+  line-height: 1.7;
+  max-width: 700px;
+  margin: 0 auto 14px;
+  text-align: center;
+}
+
+.footer-registration a {
+  color: rgba(255,255,255,0.55);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.footer-registration a:hover { color: rgba(255,255,255,0.8); }
+
 .footer-disclaimer {
   font-size: 0.68rem;
   font-weight: 300;
