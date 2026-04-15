@@ -21,7 +21,7 @@ Replace "Differentiated Alpha through Disciplined Investing" with something that
 Pair aspiration with evidence: "backed by [zero realized losses / X% loss rate / X% recovery rate] since inception." Or add structural evidence: "self-amortizing collateral, first-lien seniority, material borrower first-loss, and daily surveillance."
 
 ### Add Originator-Facing Language
-Add callout section: "For Originators: flexible senior-secured warehouse facilities, certainty of execution, competitive terms, partnership approach." Add "Originator Inquiry" to contact form subject dropdown.
+Add callout section on homepage or approach page: "For Originators: flexible senior-secured warehouse facilities, certainty of execution, competitive terms, partnership approach." Contact form dropdown already updated with "Originator / Capital Solutions Inquiry" option.
 
 ### Investor Portal / Login
 Add "Investor Login" link in nav. Could be password-protected document library (quarterly letters, fund docs) or link to third-party portal. Even a "Request Access" page with contact form.
