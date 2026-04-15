@@ -125,23 +125,23 @@
 
 /* Light mode: hero logo mark — actual brand colors, no container opacity */
 [data-theme="light"] .hero-logo-mark {
-  opacity: 1;
+  opacity: 0.65;
 }
 
 [data-theme="light"] .hero-logo-icon path:nth-child(odd) {
-  fill: rgba(1,114,190,0.6);
+  fill: #0172BE;
 }
 
 [data-theme="light"] .hero-logo-icon path:nth-child(even) {
-  fill: rgba(11,22,86,0.25);
+  fill: #515151;
 }
 
 [data-theme="light"] .hero-logo-text path {
-  fill: rgba(11,22,86,0.4);
+  fill: #0B1656;
 }
 
 [data-theme="light"] .hero-logo-sub path {
-  fill: rgba(11,22,86,0.3);
+  fill: #515151;
 }
 
 /* Light mode: hero-bg gradient */
