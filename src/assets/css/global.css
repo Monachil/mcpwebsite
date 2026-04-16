@@ -1749,98 +1749,121 @@ h4 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; font
   line-height: 1.7;
 }
 
-.careers-layout {
+/* ── Careers split layout ── */
+.careers-split {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(260px, 320px) 1fr;
   gap: 32px;
   align-items: start;
 }
 
-.careers-section-title {
-  font-size: 0.7rem;
+.careers-split-list {
+  position: sticky;
+  top: calc(var(--nav-height) + 24px);
+}
+
+.careers-split-list-title {
+  font-size: 0.68rem;
   font-weight: 600;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--gray-500);
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
-.careers-positions {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 12px;
+.careers-split-list-count {
+  color: var(--gray-400, var(--gray-500));
+  font-weight: 400;
+  margin-left: 2px;
 }
 
-.careers-positions .careers-section-title {
-  grid-column: 1 / -1;
-  margin-bottom: 4px;
+.position-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
-.position-card {
-  display: block;
+.position-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   width: 100%;
   text-align: left;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 20px 24px;
-  background: var(--surface, transparent);
+  background: transparent;
   color: inherit;
   font: inherit;
+  border: 1px solid var(--border);
+  border-left: 3px solid transparent;
+  border-radius: var(--radius);
+  padding: 14px 16px;
   cursor: pointer;
-  transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+  transition: border-color var(--transition), background var(--transition), box-shadow var(--transition);
 }
 
-.position-card:hover {
+.position-item:hover {
   border-color: var(--blue-light);
+  background: var(--sky);
 }
 
-.position-card:focus-visible {
+.position-item:focus-visible {
   outline: 2px solid var(--blue);
   outline-offset: 2px;
 }
 
-.position-card--active {
+.position-item--active {
   border-color: var(--blue);
-  box-shadow: 0 0 0 1px var(--blue);
+  border-left-color: var(--blue);
+  background: var(--sky);
+  box-shadow: 0 1px 2px rgba(15, 43, 82, 0.06);
 }
 
-.position-tag {
+.position-item-tag {
   display: inline-block;
-  font-size: 0.65rem;
+  font-size: 0.62rem;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--blue);
   background: var(--sky);
-  padding: 3px 10px;
+  padding: 2px 8px;
   border-radius: 3px;
-  margin-bottom: 8px;
-}
-
-.position-title {
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--navy);
   margin-bottom: 6px;
 }
 
-.position-desc {
-  font-size: 0.82rem;
-  color: var(--text-muted);
-  line-height: 1.6;
-  margin-bottom: 10px;
+.position-item--active .position-item-tag {
+  background: rgba(255, 255, 255, 0.8);
 }
 
-.position-meta {
+.position-item-title {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--navy);
+  line-height: 1.3;
+  margin-bottom: 4px;
+}
+
+.position-item-meta {
   font-size: 0.72rem;
   color: var(--gray-500);
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
 }
 
-.careers-detail {
+/* Right-side main: description panel + form stacked */
+.careers-split-main {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-width: 0;
+}
+
+.position-panel {
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 32px 36px;
+  padding: 36px 40px;
   background: var(--off-white);
 }
 
@@ -1856,34 +1879,48 @@ h4 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; font
   display: inline-block;
   font-size: 0.65rem;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--blue);
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
 .position-panel-title {
-  font-size: 1.4rem;
+  font-size: 1.55rem;
   font-weight: 600;
   color: var(--navy);
-  margin-bottom: 6px;
+  margin-bottom: 10px;
   letter-spacing: -0.01em;
+  line-height: 1.25;
 }
 
 .position-panel-meta {
-  font-size: 0.8rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
   color: var(--gray-500);
 }
 
+.position-panel-meta svg {
+  flex-shrink: 0;
+  color: var(--gray-400, var(--gray-500));
+}
+
+.position-panel-meta-sep {
+  opacity: 0.5;
+  margin: 0 2px;
+}
+
 .position-panel-body {
-  font-size: 0.92rem;
-  line-height: 1.65;
+  font-size: 0.94rem;
+  line-height: 1.7;
   color: var(--text);
 }
 
 .position-panel-body h2 {
   font-family: var(--font-serif);
-  font-size: 1.05rem;
+  font-size: 1.08rem;
   font-weight: 600;
   color: var(--navy);
   margin: 28px 0 10px;
@@ -1892,33 +1929,114 @@ h4 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; font
 
 .position-panel-body h2:first-child { margin-top: 0; }
 
-.position-panel-body p { margin-bottom: 12px; }
+.position-panel-body p { margin-bottom: 14px; }
 
 .position-panel-body ul {
-  list-style: disc;
-  padding-left: 20px;
-  margin-bottom: 16px;
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 18px;
 }
 
 .position-panel-body li {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 8px;
+}
+
+.position-panel-body li::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 0.65em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--blue);
+}
+
+/* Form */
+.careers-form-wrapper {
+  background: var(--navy);
+  border-radius: var(--radius);
+  padding: 36px 40px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.careers-form-header {
+  padding-bottom: 20px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.careers-form-eyebrow {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
   margin-bottom: 6px;
 }
 
-.position-panel-body li::marker {
-  color: var(--blue);
+.careers-form-applying {
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.7);
 }
 
-.careers-form-wrapper {
-  background: var(--off-white);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 36px 32px;
-}
-
-.careers-form-title {
+.careers-form-applying strong {
+  display: block;
+  margin-top: 4px;
+  font-size: 1.25rem;
   font-weight: 600;
-  color: var(--navy);
-  margin-bottom: 24px;
+  color: #fff;
+  letter-spacing: -0.01em;
+}
+
+.careers-form-wrapper .form-group label,
+.careers-form-wrapper .form-fieldset legend {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.careers-form-wrapper .form-group input,
+.careers-form-wrapper .form-group textarea,
+.careers-form-wrapper .form-group select {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.16);
+  color: #fff;
+}
+
+.careers-form-wrapper .form-group input::placeholder,
+.careers-form-wrapper .form-group textarea::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.careers-form-wrapper .form-group input:focus,
+.careers-form-wrapper .form-group textarea:focus,
+.careers-form-wrapper .form-group select:focus {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--gold);
+}
+
+.careers-form-wrapper .form-file-input {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.careers-form-wrapper .form-help-text {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.form-optional {
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--gray-500);
+  font-size: 0.72rem;
+}
+
+.careers-form-wrapper .form-optional {
+  color: rgba(255, 255, 255, 0.45);
 }
 
 .careers-empty {
@@ -1931,11 +2049,16 @@ h4 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; font
   line-height: 1.6;
 }
 
-[readonly]#app-selected-position {
-  background: var(--sky);
-  color: var(--navy);
-  font-weight: 500;
-  cursor: default;
+@media (max-width: 900px) {
+  .careers-split {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .careers-split-list {
+    position: static;
+  }
+  .position-panel { padding: 28px 24px; }
+  .careers-form-wrapper { padding: 28px 24px; }
 }
 
 /* Page Hero (Interior) */
@@ -2561,7 +2684,6 @@ h4 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; font
   .cards-grid { grid-template-columns: 1fr; }
   .media-grid { grid-template-columns: 1fr; }
   .contact-grid { grid-template-columns: 1fr; gap: 40px; }
-  .careers-layout { grid-template-columns: 1fr; gap: 32px; }
   .team-member { grid-template-columns: 1fr; gap: 24px; }
   .team-photo { max-width: 280px; }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }

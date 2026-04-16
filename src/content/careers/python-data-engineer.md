@@ -2,7 +2,7 @@
 title: "Python Data Engineer"
 tag: "Engineering"
 summary: "Design and build the Python data pipelines, validation systems, and FastAPI services that underpin Monachil's investment platform."
-location: "Greenwich, CT"
+location: "Montreal, QC"
 employmentType: "Full-time"
 postedDate: 2026-04-01
 order: 1

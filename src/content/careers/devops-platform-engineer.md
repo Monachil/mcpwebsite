@@ -2,7 +2,7 @@
 title: "DevOps Platform Engineer"
 tag: "Engineering"
 summary: "Own the infrastructure, CI/CD, and observability that let a small Monachil engineering team ship safely to a regulated production environment."
-location: "Greenwich, CT"
+location: "Montreal, QC"
 employmentType: "Full-time"
 postedDate: 2026-04-01
 order: 2

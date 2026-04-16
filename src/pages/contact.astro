@@ -133,82 +133,103 @@ const firstCareerTitle = careerListings[0]?.data.title ?? '';
           <p>We don't have any open positions at the moment, but we welcome speculative introductions. Please reach out via the Contact tab with a note on how you could contribute.</p>
         </div>
       ) : (
-        <div class="careers-layout">
-          <div class="careers-positions">
-            <h3 class="careers-section-title">Open Positions</h3>
-            {careerListings.map((job, i) => (
-              <button
-                type="button"
-                class={`position-card${i === 0 ? ' position-card--active' : ''}`}
-                data-position={job.data.title}
-                data-panel={`position-panel-${job.id}`}
-                aria-expanded={i === 0 ? 'true' : 'false'}
-              >
-                <span class="position-tag">{job.data.tag}</span>
-                <h4 class="position-title">{job.data.title}</h4>
-                <p class="position-desc">{job.data.summary}</p>
-                <p class="position-meta">{job.data.location} &middot; {job.data.employmentType}</p>
-              </button>
-            ))}
-          </div>
+        <div class="careers-split">
+          <aside class="careers-split-list" aria-label="Open positions">
+            <p class="careers-split-list-title">Open Positions <span class="careers-split-list-count">({careerListings.length})</span></p>
+            <ul class="position-list" role="tablist" aria-orientation="vertical">
+              {careerListings.map((job, i) => (
+                <li role="none">
+                  <button
+                    type="button"
+                    role="tab"
+                    class={`position-item${i === 0 ? ' position-item--active' : ''}`}
+                    data-position={job.data.title}
+                    data-panel={`position-panel-${job.id}`}
+                    aria-selected={i === 0 ? 'true' : 'false'}
+                    aria-controls={`position-panel-${job.id}`}
+                    id={`position-tab-${job.id}`}
+                    tabindex={i === 0 ? 0 : -1}
+                  >
+                    <span class="position-item-tag">{job.data.tag}</span>
+                    <span class="position-item-title">{job.data.title}</span>
+                    <span class="position-item-meta">{job.data.location} &middot; {job.data.employmentType}</span>
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </aside>
 
-          <div class="careers-detail">
+          <div class="careers-split-main">
             {careerListings.map((job, i) => (
               <article
                 class={`position-panel${i === 0 ? ' position-panel--active' : ''}`}
                 id={`position-panel-${job.id}`}
+                role="tabpanel"
+                aria-labelledby={`position-tab-${job.id}`}
                 hidden={i !== 0}
+                tabindex="0"
               >
                 <header class="position-panel-header">
-                  <p class="position-panel-tag">{job.data.tag}</p>
+                  <span class="position-panel-tag">{job.data.tag}</span>
                   <h3 class="position-panel-title">{job.data.title}</h3>
-                  <p class="position-panel-meta">{job.data.location} &middot; {job.data.employmentType}</p>
+                  <p class="position-panel-meta">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    <span>{job.data.location}</span>
+                    <span class="position-panel-meta-sep" aria-hidden="true">&middot;</span>
+                    <span>{job.data.employmentType}</span>
+                  </p>
                 </header>
                 <div class="position-panel-body">
                   <job.Content />
                 </div>
               </article>
             ))}
-          </div>
 
-          <div class="careers-form-wrapper">
-            <h3 class="careers-form-title">Apply Now</h3>
-            <form action={`https://formsubmit.co/${site.formHrEmail}`} method="POST" enctype="multipart/form-data" data-careers novalidate>
-              <input type="hidden" name="_subject" value="Career Application — Monachil Capital Partners">
-              <input type="hidden" name="_template" value="table">
-              <input type="hidden" name="_captcha" value="false">
-              <input type="hidden" name="_next" value="https://monachill.com/contact/?submitted=careers">
-              <input type="text" name="_honey" tabindex="-1" autocomplete="off" hidden aria-hidden="true">
-              <input type="hidden" name="position" id="app-position" value={firstCareerTitle}>
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="app-name">Full Name <span class="form-required">*</span></label>
-                  <input type="text" id="app-name" name="name" required aria-required="true" autocomplete="name">
+            <div class="careers-form-wrapper" id="careers-apply">
+              <div class="careers-form-header">
+                <p class="careers-form-eyebrow">Apply now</p>
+                <p class="careers-form-applying">
+                  Applying for
+                  <strong id="app-applying-for-display">{firstCareerTitle}</strong>
+                </p>
+              </div>
+              <form action={`https://formsubmit.co/${site.formHrEmail}`} method="POST" enctype="multipart/form-data" data-careers novalidate>
+                <input type="hidden" name="_subject" value="Career Application — Monachil Capital Partners">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_next" value="https://monachill.com/contact/?submitted=careers">
+                <input type="text" name="_honey" tabindex="-1" autocomplete="off" hidden aria-hidden="true">
+                <input type="hidden" name="position" id="app-position" value={firstCareerTitle}>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="app-name">Full Name <span class="form-required">*</span></label>
+                    <input type="text" id="app-name" name="name" required aria-required="true" autocomplete="name">
+                  </div>
+                  <div class="form-group">
+                    <label for="app-email">Email Address <span class="form-required">*</span></label>
+                    <input type="email" id="app-email" name="email" required aria-required="true" autocomplete="email">
+                  </div>
                 </div>
                 <div class="form-group">
-                  <label for="app-email">Email Address <span class="form-required">*</span></label>
-                  <input type="email" id="app-email" name="email" required aria-required="true" autocomplete="email">
+                  <label for="app-linkedin">LinkedIn Profile URL</label>
+                  <input type="url" id="app-linkedin" name="linkedin" placeholder="https://linkedin.com/in/yourprofile" autocomplete="url">
                 </div>
-              </div>
-              <div class="form-group">
-                <label for="app-linkedin">LinkedIn Profile URL</label>
-                <input type="url" id="app-linkedin" name="linkedin" placeholder="https://linkedin.com/in/yourprofile" autocomplete="url">
-              </div>
-              <div class="form-group">
-                <label for="app-selected-position">Applying for</label>
-                <input type="text" id="app-selected-position" value={firstCareerTitle} readonly aria-live="polite">
-              </div>
-              <div class="form-group">
-                <label for="app-resume">Resume <span class="form-required">*</span></label>
-                <input type="file" id="app-resume" name="resume" accept=".pdf,.doc,.docx" required aria-required="true" aria-describedby="app-resume-help" class="form-file-input" data-max-size="10485760">
-                <p id="app-resume-help" class="form-help-text">PDF, DOC, or DOCX. Maximum 10MB.</p>
-              </div>
-              <div class="form-group">
-                <label for="app-message">Cover Letter / Message</label>
-                <textarea id="app-message" name="message" rows="4" placeholder="Tell us about yourself and why you're interested in this role..."></textarea>
-              </div>
-              <button type="submit" class="btn btn--primary btn-full">Submit Application</button>
-            </form>
+                <div class="form-group">
+                  <label for="app-resume">Resume <span class="form-required">*</span></label>
+                  <input type="file" id="app-resume" name="resume" accept=".pdf,.doc,.docx" required aria-required="true" aria-describedby="app-resume-help" class="form-file-input" data-max-size="10485760">
+                  <p id="app-resume-help" class="form-help-text">PDF, DOC, or DOCX. Maximum 10MB.</p>
+                </div>
+                <div class="form-group">
+                  <label for="app-message">Cover Letter / Message</label>
+                  <textarea id="app-message" name="message" rows="4" placeholder="Tell us about yourself and why you're interested in this role..."></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="app-referral">Referral Code <span class="form-optional">(optional)</span></label>
+                  <input type="text" id="app-referral" name="referral_code" autocomplete="off" placeholder="If someone referred you, enter their code here">
+                </div>
+                <button type="submit" class="btn btn--primary btn-full">Submit Application</button>
+              </form>
+            </div>
           </div>
         </div>
       )}

@@ -72,6 +72,39 @@ function closeMenu() {
   }
 }
 
+function selectPosition(item: HTMLElement) {
+  const siblings = Array.from(
+    document.querySelectorAll<HTMLElement>('.position-item')
+  );
+  siblings.forEach((el) => {
+    el.classList.remove('position-item--active');
+    el.setAttribute('aria-selected', 'false');
+    el.tabIndex = -1;
+  });
+  item.classList.add('position-item--active');
+  item.setAttribute('aria-selected', 'true');
+  item.tabIndex = 0;
+
+  const panelId = item.dataset.panel;
+  document.querySelectorAll<HTMLElement>('.position-panel').forEach((p) => {
+    p.classList.remove('position-panel--active');
+    p.hidden = true;
+  });
+  if (panelId) {
+    const panel = document.getElementById(panelId);
+    if (panel) {
+      panel.hidden = false;
+      panel.classList.add('position-panel--active');
+    }
+  }
+
+  const title = item.dataset.position || '';
+  const hiddenPosition = document.getElementById('app-position') as HTMLInputElement | null;
+  if (hiddenPosition) hiddenPosition.value = title;
+  const displayPosition = document.getElementById('app-applying-for-display');
+  if (displayPosition) displayPosition.textContent = title;
+}
+
 function toggleTheme() {
   const current = document.documentElement.dataset.theme;
   const next = current === 'dark' ? 'light' : 'dark';
@@ -123,6 +156,26 @@ function bindGlobalListeners() {
       closeMenu();
       closeVideo();
       closeGate();
+      return;
+    }
+
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === 'Home' || e.key === 'End') {
+      const active = document.activeElement as HTMLElement | null;
+      if (active && active.classList.contains('position-item')) {
+        const items = Array.from(document.querySelectorAll<HTMLElement>('.position-item'));
+        if (items.length === 0) return;
+        const idx = items.indexOf(active);
+        let next = idx;
+        if (e.key === 'ArrowDown') next = (idx + 1) % items.length;
+        else if (e.key === 'ArrowUp') next = (idx - 1 + items.length) % items.length;
+        else if (e.key === 'Home') next = 0;
+        else if (e.key === 'End') next = items.length - 1;
+        if (next !== idx) {
+          e.preventDefault();
+          selectPosition(items[next]);
+          items[next].focus();
+        }
+      }
     }
   });
 
@@ -198,33 +251,9 @@ function bindGlobalListeners() {
       return;
     }
 
-    const posCard = target.closest<HTMLElement>('.position-card[data-position]');
-    if (posCard) {
-      document.querySelectorAll<HTMLElement>('.position-card').forEach(c => {
-        c.classList.remove('position-card--active');
-        c.setAttribute('aria-expanded', 'false');
-      });
-      posCard.classList.add('position-card--active');
-      posCard.setAttribute('aria-expanded', 'true');
-
-      const panelId = posCard.dataset.panel;
-      document.querySelectorAll<HTMLElement>('.position-panel').forEach(p => {
-        p.classList.remove('position-panel--active');
-        p.hidden = true;
-      });
-      if (panelId) {
-        const panel = document.getElementById(panelId);
-        if (panel) {
-          panel.hidden = false;
-          panel.classList.add('position-panel--active');
-        }
-      }
-
-      const title = posCard.dataset.position || '';
-      const hiddenPosition = document.getElementById('app-position') as HTMLInputElement | null;
-      if (hiddenPosition) hiddenPosition.value = title;
-      const displayPosition = document.getElementById('app-selected-position') as HTMLInputElement | null;
-      if (displayPosition) displayPosition.value = title;
+    const posItem = target.closest<HTMLElement>('.position-item[data-position]');
+    if (posItem) {
+      selectPosition(posItem);
       return;
     }
 
