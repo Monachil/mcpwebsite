@@ -41,7 +41,7 @@ const dateFormatted = article.data.date.toLocaleDateString('en-US', { month: 'lo
       {article.data.pdf && (
         <div class="pdf-download-bar">
           <button class="btn btn--primary btn-gated" data-gate-pdf={article.data.pdf} data-gate-resource={article.data.title}>Download PDF &darr;</button>
-          <a href={article.data.pdf} target="_blank" rel="noopener" class="btn btn--primary btn-gated-direct" style="display:none;">Download PDF &darr;</a>
+          <a href={article.data.pdf} target="_blank" rel="noopener" class="btn btn--primary btn-gated-direct" hidden>Download PDF &darr;</a>
         </div>
       )}
       <Content />

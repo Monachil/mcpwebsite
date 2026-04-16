@@ -3,7 +3,7 @@ title: "Monachil Credit Income Fund Commentary — April 30, 2024"
 date: 2024-04-30
 category: "Market Commentary"
 description: "End-of-month analysis covering inflation persistence, rate expectations, and credit market dynamics."
-thumbnail: "/images/charts/2024-04-30-fig1.png"
+thumbnail: "/images/charts/2024-04-30-fig1.webp"
 pdf: "/pdfs/Commentary-20240430.pdf"
 ---
 ## MARKET AND ECONOMIC INSIGHTS
@@ -16,15 +16,15 @@ Welcome to our April 2024 monthly report. As is our practice in these commentari
 
 ## Net Interest Income Growth at Large Banks Disappoints, but This Was Inevitable
 
-![Figure 1: JPM Net Interest Income](/images/charts/2024-04-30-fig1.png)
+![Figure 1: JPM Net Interest Income](/images/charts/2024-04-30-fig1.webp)
 
 We typically refrain from commenting on bank earnings, but we believe that this quarter's market reaction to JPM's earnings can provide valuable insight. JPM's net interest income was $23.20 billion, falling short of the estimated $23.22 billion. The net yield on interest-earning assets came in at 2.71%, also missing the estimated 2.75%. This was followed by a 6% decline in share price (although it should be noted that JPM's earnings release coincided with a down market day). Many commentators attribute the stock price weakness to the "NIM miss." We believe that the markets reacting so severely to a relatively small deviation in earnings is indicative of irrational expectations. Let's face it, a 0.04% difference in NIM is not statistically significant. We wonder if the market reaction had less to do with a near miss than the cold shower effect of realizing the party may be over. After all, the absolute amount of net interest income has ballooned over the past few years. In 2020, the NIM was $61.53 billion, which grew It is not rational for the markets to expect such growth in NIM over a long period. To achieve this, JPM would need either to continue to expand its balance sheet at such a high rate or to earn a much higher net yield on its interest-earning assets. The following chart is what our search of online CD rates at JP Morgan has produced.
 
-![Figure 2: JP Morgan CD Rates](/images/charts/2024-04-30-fig2.png)
+![Figure 2: JP Morgan CD Rates](/images/charts/2024-04-30-fig2.webp)
 
 Navigating this challenge is proving to be daunting for JPM, as it would for any other bank. Presently, JPM offers close to 0% on its standard Chase Savings account and 3% on its Chase Standard CD. However, as T-Bills persist above 5% for longer durations, convincing customers to retain their cash in products with significantly lower yields becomes increasingly challenging. Even within the same depository, the composition of deposits is shifting as customers begin to transfer their balances from non-interest-bearing options (such as regular deposit accounts) to CDs that offer higher rates. In their most recent quarterly earnings, both Wells Fargo and JP Morgan cited increased pressure to allocate more funds for deposits as one of the drivers for weaker Net Interest Incomes (NIIs).
 
-![Figure 3: Large Deposit Balances Growth](/images/charts/2024-04-30-fig3.png)
+![Figure 3: Large Deposit Balances Growth](/images/charts/2024-04-30-fig3.webp)
 
 The chart above illustrates the significant increase in large deposit balances over the past years. Compared to the levels seen in 2021-2022 at the height of zero interest rates, high-interest-paying balances have nearly doubled. Among other factors, the interest that high-interest deposits can earn has increased dramatically. In our view, this has the potential to create some downside risk for banks in general and to make credit extension by the banks a less lucrative business. On one hand, the large volume issuance of T-Bills by the US Department of Treasury is creating competition for bank deposits. At the same time, the higher rates on T-Bills will gradually force the banks to pay more and more on the deposits to attract savers. Therefore, the dynamics for bank earnings during this hiking cycle could end up being very different.
 
@@ -56,6 +56,6 @@ While it's true that money market assets have reached an all -time high of $6.4 
 
 dry powder, represented by funds parked at the Federal Reserve under Overnight Reverse Repurchase Agreements, has reached its lowest level in three years.
 
-![Figure 4: Overnight Reverse Repurchase Agreements Balance](/images/charts/2024-04-30-fig4.png)
+![Figure 4: Overnight Reverse Repurchase Agreements Balance](/images/charts/2024-04-30-fig4.webp)
 
 This amount, standing at $371 billion as of April 16, 2024, has plummeted from over $2 trillion less than 12 months ago, marking an 80% decline over the past year. In our view, this qualifies as a structural shift and warrants careful consideration.

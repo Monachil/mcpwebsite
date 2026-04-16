@@ -3,7 +3,7 @@ title: "Monachil Credit Income Fund Commentary — January 2024"
 date: 2024-01-23
 category: "Market Commentary"
 description: "New year outlook covering rate cut expectations, credit fundamentals, and the case for asset-backed private credit."
-thumbnail: "/images/charts/2024-01-fig1.png"
+thumbnail: "/images/charts/2024-01-fig1.webp"
 pdf: "/pdfs/Commentary-20240123.pdf"
 ---
 ## Introduction and Overview
@@ -12,7 +12,7 @@ Welcome to our first 2024 monthly report. As is our practice in these commentari
 
 We are observing three trends:
 
-![Figure 1: Treasury Market and Fed Programs Overview](/images/charts/2024-01-fig1.png)
+![Figure 1: Treasury Market and Fed Programs Overview](/images/charts/2024-01-fig1.webp)
 
 First, as highlighted in previous publications, the Federal Reserve is continuing to provide indirect financing to the Federal Government through a variety of programs including, but not limited to, the Bank Term Funding Program (BTFP). These programs are structured as implicit provisions for financing holders of government securities rather than requiring that they become direct purchasers. Despite this trend, the spread between yields on government securities and the cost to finance government securities continues to expand, thus demonstrating the scarcity of the Federal Reserve's balance sheet.
 
@@ -40,7 +40,7 @@ During recent months, however, particularly following the extension of the debt 
 
 illustrated in Figure 2 (below). It is specifically notable that, since the resolution of the debt ceiling in June 2023, the size of the ON RRP facility has declined from ~$2.2 trillion to ~$590 billion as of January 17, 2024.
 
-![Figure 2: ON RRP Facility Decline](/images/charts/2024-01-fig2.png)
+![Figure 2: ON RRP Facility Decline](/images/charts/2024-01-fig2.webp)
 
 It could appear as if MMF took the money placed with the Fed to absorb the wave of the treasury issuance after June 2023.
 
@@ -72,7 +72,7 @@ In our view, part of the issue with all of this is that rather than serving as a
 
 While the Federal Reserve's balance sheet continues to expand and funding continues to be made available to banks at very attractive levels, signs of stress are appearing in the Treasury Market. The spread between treasury yields and the SOFR swap rate (e.g. 10-year treasury yields over 10-year SOFR swaps) continues to grow. This spread, or basis, has widened from 15 bps in February 2021 to a current level of 38 bps, one of the widest on record.
 
-![Figure 3: Treasury Yields vs SOFR Swap Rate Spread](/images/charts/2024-01-fig3.png)
+![Figure 3: Treasury Yields vs SOFR Swap Rate Spread](/images/charts/2024-01-fig3.webp)
 
 We expect this basis to continue to widen as the supply of treasuries continues to increase while balance sheet capacity to hold them remains constrained.
 

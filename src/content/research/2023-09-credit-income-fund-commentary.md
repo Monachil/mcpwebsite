@@ -3,7 +3,7 @@ title: "Monachil Credit Income Fund Commentary — September 2023"
 date: 2023-09-28
 category: "Market Commentary"
 description: "End-of-quarter review covering rate policy, employment data, and private credit market conditions."
-thumbnail: "/images/charts/2023-09-fig1.png"
+thumbnail: "/images/charts/2023-09-fig1.webp"
 pdf: "/pdfs/Commentary-20230928.pdf"
 ---
 ## AUGUST MARKET AND ECONOMIC INSIGHTS
@@ -54,9 +54,9 @@ We remain highly suspicious of the recent rally in the financial markets, which 
 
 Combining this observation with the fact that Fed still holds $7.5 trillion of Treasury assets (see Figure 1), we believe it is certainly arguable that Fed is continuing to provide significant support to financial markets.
 
-![Figure 1: Federal Reserve Treasury Holdings](/images/charts/2023-09-fig1.png)
+![Figure 1: Federal Reserve Treasury Holdings](/images/charts/2023-09-fig1.webp)
 
-![Figure 2: Federal Reserve Balance Sheet Losses](/images/charts/2023-09-fig2.png)
+![Figure 2: Federal Reserve Balance Sheet Losses](/images/charts/2023-09-fig2.webp)
 
 ## The Fed itself has suffered significant losses in its treasury holdings and is employing questionable accounting practices
 

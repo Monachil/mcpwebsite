@@ -3,7 +3,7 @@ title: "Monachil Credit Income Fund Commentary — December 5, 2023"
 date: 2023-12-05
 category: "Market Commentary"
 description: "Early December commentary on economic data, inflation trends, and credit market opportunities."
-thumbnail: "/images/charts/2023-12-05-fig1.png"
+thumbnail: "/images/charts/2023-12-05-fig1.webp"
 pdf: "/pdfs/Commentary-20231205.pdf"
 ---
 ## Introduction and Overview
@@ -36,7 +36,7 @@ Furthermore, over the longer term, government deficit spending will need to be b
 
 On November 1, 2023, the Treasury Department announced its financing schedule for Q4 2023. The Treasury financing schedule becoming a market-moving event is both noteworthy and a sign of things to come. A significant decline in 10-year and other long-term yields was driven by the Treasury 's decision to unexpectedly decrease the growth of its longer-term debt auctions in favor of issuing more short-term debt.
 
-![Figure 1: Treasury Financing Schedule](/images/charts/2023-12-05-fig1.png)
+![Figure 1: Treasury Financing Schedule](/images/charts/2023-12-05-fig1.webp)
 
 We will admit to being surprised by the ensuing market reaction, especially given that the overall size of the reduction was not material when compared to the size of the treasury market. Indeed, 10-year and 30-year issuances were reduced by only $1bn as compared to August. The fact that such small shifts in the issuance schedule could trigger significant moves in yields — with crosscurrents in equity and credit markets — is an intriguing phenomenon.
 
@@ -68,7 +68,7 @@ Additional signs of stress are starting to emerge in the short-term liquidity an
 
 In this market, funds (such as money market funds) and financial institutions with surplus cash can invest their excess liquidity with the Fed (receiving treasuries as collateral). The utilization of the ON RRP facility, however, has declined precipitously over the past year (see Figure 2). At its peak, utilization exceeded $2.4tn.
 
-![Figure 2: Federal Reserve ON RRP Facility Utilization](/images/charts/2023-12-05-fig2.png)
+![Figure 2: Federal Reserve ON RRP Facility Utilization](/images/charts/2023-12-05-fig2.webp)
 
 During the period of May 2022 to May 2023, for example, that amount remained above $2tn. It has now sharply decreased and, as of November 15, stands at approximately $944bn.
 

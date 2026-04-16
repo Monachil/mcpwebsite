@@ -3,7 +3,7 @@ title: "Monachil Credit Income Fund Commentary — April 2025"
 date: 2025-04-15
 category: "Market Commentary"
 description: "Market commentary covering tariff policy impacts, credit market conditions, and economic outlook for Spring 2025."
-thumbnail: "/images/charts/2025-04-fig1.png"
+thumbnail: "/images/charts/2025-04-fig1.webp"
 pdf: "/pdfs/Commentary-20250415.pdf"
 ---
 ## Introduction and Overview
@@ -48,7 +48,7 @@ We will continue to discuss the administration's policies and their effects in f
 
 Our overview of real-time CPI data from Truflation (Figure 1) shows that inflation has shifted lower in March and remains low (below 2%). We will be keenly watching this indicator over the next few weeks to see how the impacts of tariffs are filtering through:
 
-![Figure 1: Truflation Real-Time CPI Data](/images/charts/2025-04-fig1.png)
+![Figure 1: Truflation Real-Time CPI Data](/images/charts/2025-04-fig1.webp)
 
 ## Opportunity Set
 

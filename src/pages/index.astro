@@ -247,7 +247,7 @@ const latestMedia = mediaVideos.slice(0, 3);
       <input type="hidden" name="SIGNUP_SOURCE" value="website-newsletter">
       <label for="subscribe-email" class="visually-hidden">Email Address</label>
       <input type="email" id="subscribe-email" name="EMAIL" placeholder="Your email address" required>
-      <div style="position:absolute;left:-5000px;" aria-hidden="true"><input type="text" name={`b_${site.mailchimpU}_${site.mailchimpId}`} tabindex="-1" value=""></div>
+      <input type="text" name={`b_${site.mailchimpU}_${site.mailchimpId}`} tabindex="-1" autocomplete="off" hidden aria-hidden="true">
       <button type="submit">Subscribe</button>
     </form>
     <p class="subscribe-note">No spam. Unsubscribe anytime.</p>

@@ -3,7 +3,7 @@ title: "Monachil Credit Income Fund Commentary — August 2024"
 date: 2024-08-05
 category: "Market Commentary"
 description: "Analysis of credit spread rally, housing market imbalances, and the case against cutting interest rates to address housing costs."
-thumbnail: "/images/charts/2024-08-fig1.png"
+thumbnail: "/images/charts/2024-08-fig1.webp"
 pdf: "/pdfs/Commentary-20240805.pdf"
 ---
 ## Introduction and Overview
@@ -20,9 +20,9 @@ While both Shelter Inflation and Home Price Growth have shown signs of moderatio
 
 All else being equal, this divergence between prices and rents is unsustainable and needs to be resolved. Additionally, with interest rates sitting higher than they were 5 years ago, equilibrium home prices should, in theory, be lower. This imbalance in the housing market is worth monitoring as it raises questions about whether rents will need to increase or home prices will need to decrease to restore equilibrium. Furthermore, there are other idiosyncratic factors driving home demand, including certain tax advantages that have made owning rental property more attractive following the Tax Cuts and Jobs Act of 2017. Notably, some of these tax advantages include bonus depreciation, qualified business income, and expanded Section 179 expensing.
 
-![Figure 1: Consumer Price Index for All Urban Consumers: Shelter in U.S. City Average](/images/charts/2024-08-fig1.png)
+![Figure 1: Consumer Price Index for All Urban Consumers: Shelter in U.S. City Average](/images/charts/2024-08-fig1.webp)
 
-![Figure 2: S&P CoreLogic Case-Shiller U.S. National Home Price Index](/images/charts/2024-08-fig2.png)
+![Figure 2: S&P CoreLogic Case-Shiller U.S. National Home Price Index](/images/charts/2024-08-fig2.webp)
 
 ## Marginal Buyers and Sellers of Housing
 
@@ -36,7 +36,7 @@ Rents are a reliable metric for measuring the utility value of shelter and homeo
 
 That said, we continue to maintain our view that public credit markets do not currently offer compelling values and instead are more focused on private and bilateral transactions.
 
-![Figure 3: US NAR Total Existing Homes Sales SAAR](/images/charts/2024-08-fig3.png)
+![Figure 3: US NAR Total Existing Homes Sales SAAR](/images/charts/2024-08-fig3.webp)
 
 This does not imply that there is no housing shortage or that the housing market is on the brink of collapse. Rather, it indicates that the dynamics that were driving up home prices during the Covid era are no longer as influential. However, if rental demand remains strong, we expect housing inflation, as reflected in rental prices, to persist.
 

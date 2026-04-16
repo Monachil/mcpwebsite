@@ -3,7 +3,7 @@ title: "Monachil Credit Income Fund Commentary — September 2024"
 date: 2024-09-30
 category: "Market Commentary"
 description: "Assessment of credit spreads, Federal Reserve policy trajectory, and economic conditions heading into Q4."
-thumbnail: "/images/charts/2024-09-fig1.png"
+thumbnail: "/images/charts/2024-09-fig1.webp"
 pdf: "/pdfs/Commentary-20240930.pdf"
 ---
 ## Introduction and Overview
@@ -20,7 +20,7 @@ As mentioned earlier, one area where we are observing increased market pressure 
 
 the spread between repo rates and treasury yields over the past five years reveal underlying issues. Essentially, spreads have widened from around 20 basis points to 45 basis points, with roughly 10 basis points of that increase occurring in the last four months (see Figure 1).
 
-![Figure 1: SOFR Swaps vs Treasury Yields Spread](/images/charts/2024-09-fig1.png)
+![Figure 1: SOFR Swaps vs Treasury Yields Spread](/images/charts/2024-09-fig1.webp)
 
 The chart above illustrates the difference between SOFR swaps and treasury yields, where a positive value indicates treasury yields are exceeding repo rates. This shift suggests that investors are demanding higher yields relative to the cost of treasury repo, signaling a change in the behavior of treasury investors. The marginal buyers of treasuries are increasingly relying on the repo market to finance their treasury holdings. As the supply of treasuries grows, these investors require a larger spread to continue purchasing more treasuries. This dynamic contrasts sharply with the situation a decade ago, when the buyers of treasuries were primarily outright purchasers, and yields traded more tightly relative to long-term swaps.
 

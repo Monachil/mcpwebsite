@@ -3,7 +3,7 @@ title: "Monachil Credit Income Fund Commentary — December 2024"
 date: 2024-12-17
 category: "Market Commentary"
 description: "Year-end market review and outlook for 2025, covering credit spreads, interest rates, and portfolio positioning."
-thumbnail: "/images/charts/2024-12-fig1.png"
+thumbnail: "/images/charts/2024-12-fig1.webp"
 pdf: "/pdfs/Commentary-20241217.pdf"
 ---
 ## Introduction and Overview
@@ -14,15 +14,15 @@ Welcome to our November monthly report. As is our practice in these commentaries
 
 In analyzing US equity markets, we want to highlight the S&P's rally which has been driven by two key factors: earnings growth and multiple expansion. The former reflects healthy expectations for nominal GDP, while the latter is fueled by sentiment and optimism about future earnings. There are several ways to assess how expensive the S&P has become, including reported P/E ratios, forward (projected) P/E ratios, and cyclically adjusted earning measures like the Shiller P/E ratio. Approaches to averaging also vary—you can calculate P/E ratio for each component and then average them, or divide the total price by the total earnings of the S&P (a harmonic mean for the math enthusiasts). The limitation of focusing solely on P/E metrics is that they don't account for earnings growth, which is a more objective measure. Let's dive into the data and charts, starting with the Shiller P/E ratio (Figure 1).
 
-![Figure 1: Shiller P/E Ratio](/images/charts/2024-12-fig1.png)
+![Figure 1: Shiller P/E Ratio](/images/charts/2024-12-fig1.webp)
 
 Shiller P/E Ratio The Shiller P/E ratio of 38.55, as of December 10 , is near historical highs, surpassed only during the dot-com mania of the late 1990s. This doesn't, however, definitively prove that equities are overpriced or that the market has rallied excessively; in fact, the high mark can be partly attributed to rapid earnings growth in recent years. Given that this metric is cyclically adjusted, it incorporates inflation-adjusted earnings over the past 10 years, smoothing out the effects of business cycles as intended. Another measure to review is the non-cyclically adjusted P/E ratio (Figure 2), based on the most recent earnings data.
 
-![Figure 2: S&P 500 P/E Ratio](/images/charts/2024-12-fig2.png)
+![Figure 2: S&P 500 P/E Ratio](/images/charts/2024-12-fig2.webp)
 
 Historically, periods with high P/E multiples have often coincided with sharp declines in earnings ("E") due to economic recessions. For example, during the financial crisis, the S&P P/E ratio spiked to 123.7, not because equities were expensive but because financial firms were reporting negative earnings. The CAPE ratio attempts to address such distortions but introduced its own drawbacks, such as a "memory bias." Importantly, current P/E ratios do not account for analyst estimates or projected earnings growth. The forward P/E ratio, as shown in Figure 3, addresses this limitation by incorporating forward earnings estimates and currently appears closer to historical averages. However, its mean and variance are skewed by periods of elevated P/E multiples during earnings recessions. Additionally, forward estimates are inherently subjective and can be distorted for reflecting market sentiment, for example. Analysts are currently projecting significant earnings growth for the S&P 500, with per cent increases in the low to mid-teens, particularly among large-cap companies. This may well prove to be wishful thinking.
 
-![Figure 3: S&P 500 P/E Ratio with Forward Estimate](/images/charts/2024-12-fig3.png)
+![Figure 3: S&P 500 P/E Ratio with Forward Estimate](/images/charts/2024-12-fig3.webp)
 
 ## Factors That May Be Cited for Justifying the High P/E Ratio
 
@@ -38,7 +38,7 @@ When evaluating today's higher rates compared to the 2010s and early 2020s, one 
 
 Market optimism isn't confined to public equities; similar dynamics are evident in the credit markets. High-yield and investment grade credit spreads are at historical tights even as signs of credit quality erosion emerge.
 
-![Figure 4: ICE BofA US High Yield Index Option-Adjusted Spread](/images/charts/2024-12-fig4.png)
+![Figure 4: ICE BofA US High Yield Index Option-Adjusted Spread](/images/charts/2024-12-fig4.webp)
 
 Although from a different market, the Bank of America US High Yield Index OptionAdjusted Spread shown in Figure 4 still tells the same story—credit spreads are as tight as they have been in over 15 years. Only briefly during 2007 and 1997 were credit spreads marginally tighter, and the difference was minimal. We do not expect spreads to tighten further from these levels.
 

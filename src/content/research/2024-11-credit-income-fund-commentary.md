@@ -3,7 +3,7 @@ title: "Monachil Credit Income Fund Commentary — November 2024"
 date: 2024-11-04
 category: "Market Commentary"
 description: "Analysis of post-election market dynamics, fiscal policy implications, and credit market positioning."
-thumbnail: "/images/charts/2024-11-fig1.png"
+thumbnail: "/images/charts/2024-11-fig1.webp"
 pdf: "/pdfs/Commentary-20241104.pdf"
 ---
 ## Introduction and Overview
@@ -26,15 +26,15 @@ Readers familiar with our analysis will recognize our focus on the persistent in
 
 ## Demand for Treasuries: Foreign Holdings, US Households, Money Markets, and Repo Market
 
-![Figure 1: Foreign Holdings of US Treasuries](/images/charts/2024-11-fig1.png)
+![Figure 1: Foreign Holdings of US Treasuries](/images/charts/2024-11-fig1.webp)
 
 We now turn our attention to the sources of demand for US Treasuries since the beginning of 2022. Foreign Holdings of Treasuries: Since early 2022, foreign holdings of US Treasuries have increased from $7.74 trillion to $8.5 trillion. The modest increase indicates a reduced appetite among foreign investors for acquiring US Treasuries.
 
 US Households: According to Federal Reserve data, household holdings of Treasury securities have risen significantly from $498 billion at the end of 2021 to $2.75 trillion in Q2 2024. This growth has absorbed a substantial portion of the increase in Treasury supply.
 
-![Figure 2: US Household Holdings of Treasury Securities](/images/charts/2024-11-fig2.png)
+![Figure 2: US Household Holdings of Treasury Securities](/images/charts/2024-11-fig2.webp)
 
-![Figure 3: Money Market Fund Holdings of Treasuries](/images/charts/2024-11-fig3.png)
+![Figure 3: Money Market Fund Holdings of Treasuries](/images/charts/2024-11-fig3.webp)
 
 Money Market Funds: In contrast, money market funds have seen a modest increase in Treasury holdings, rising from $1.8 trillion at the end of 2021 to $2.45 trillion in Q2 2024, which is modest increase.
 
@@ -42,7 +42,7 @@ Repo Market: Technically, the repo market does not function as an "investor" or 
 
 The Office of Financial Research (part of the US Treasury Department) has published . data on repo transactions According to their data, repo volumes have increased from $3.88 trillion at the end of 2021 to $4.88 trillion at the end of Q3 2024, reflecting a growth of $1 trillion, or over 25%, in the past 30 months. However, this is not the complete picture. Another important data point is the Federal Reserve's influence on repo market volumes. The Fed has been an active participant in the repo market over the past three years. The accompanying chart illustrates the volume of the reverse repo market since March 2021, showing the volume of reverse repos executed by the Fed. In these operations, investors provide repo financing to the Fed, which in turn conducts reverse repos on Treasuries, offering a return to investors. During periods of quantitative easing, when market liquidity was abundant, money market funds and other players utilized excess liquidity to provide funding to the Fed, which the Fed used to finance its Treasury and other securities holdings.
 
-![Figure 4: Federal Reserve Reverse Repo Facility](/images/charts/2024-11-fig4.png)
+![Figure 4: Federal Reserve Reverse Repo Facility](/images/charts/2024-11-fig4.webp)
 
 At its peak in 2022, the size of the Fed's r everse repo program reached $2.4 trillion, but it has since declined significantly to $202 billion as of October 24 th . Essentially, the reduction in the Fed 's reverse repo facility, which diverts repo financing from other uses, effectively provides additional liquidity in the repo market. If we define " true open market repo " as the difference between total repo volumes and the repo utilization by the Fed, this figure has increased from $2.18 trillion at the beginning of 2022 ($3.88 trillion total repo volume minus $1.7 trillion Fed reverse repo volume) to $4.68 trillion in October 2024. This indicates that a substantial amount of Treasuries – likely more than $2.5 trillion – has been absorbed by market participants utilizing the repo market.
 

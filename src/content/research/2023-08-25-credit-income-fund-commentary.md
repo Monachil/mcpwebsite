@@ -3,7 +3,7 @@ title: "Monachil Credit Income Fund Commentary — August 25, 2023"
 date: 2023-08-25
 category: "Market Commentary"
 description: "Late August market assessment covering Fed Jackson Hole commentary, credit conditions, and portfolio updates."
-thumbnail: "/images/charts/2023-08-fig1.png"
+thumbnail: "/images/charts/2023-08-fig1.webp"
 pdf: "/pdfs/Commentary-20230825.pdf"
 ---
 ## Introduction and Overview
@@ -24,7 +24,7 @@ The CPI reading for June 2023 released on July 12 showed a YoY increase of 3%, o
 
 Energy prices, for example, initially spiked following the onset of the war in Ukraine, causing CPI to quickly move higher, eventually peaking at a 9.1% YoY growth in June 2022. Subsequently, following a period which included ineffective Western sanctions on Russia and the draining of the SPR, energy prices collapsed with oil prices bottoming out at ~$67 in June 2023. It is worth noting that oil prices rebounded in July to above $81 and have generally stayed above the $80 mark since then. Figure 1 details this price movement and its impact on inflation by illustrating how price increases in early 2022 were followed by a sell-off in late 2022 and early 2023. This has resulted in a lower reading for inflation than had been recorded in some time.
 
-![Figure 1: Oil Price Movement and Impact on Inflation](/images/charts/2023-08-fig1.png)
+![Figure 1: Oil Price Movement and Impact on Inflation](/images/charts/2023-08-fig1.webp)
 
 These significant moves in both directions occurring within a 16-month cycle are a direct impact of the war in Ukraine. It would be extremely premature, however, to interpret the war's impact on energy prices as a sign of victory in the Fed's fight against inflation.
 
@@ -60,7 +60,7 @@ We do, however, agree with Fitch's view that confidence in Congress's fiscal man
 
 To illustrate this, please take note of Figure 2, which shows revenues that are worse than last year and are accompanied by growing outlays.
 
-![Figure 2: Federal Revenue and Outlays](/images/charts/2023-08-fig2.png)
+![Figure 2: Federal Revenue and Outlays](/images/charts/2023-08-fig2.webp)
 
 At its current pace, the deficit will quite easily surpass the $2 trillion mark before fiscal year end. As a case in point, July's deficit number includes $69 billion outlay related to implementing income-driven student loan repayment plans. These new "modifications" are separate and distinct from the debt cancellation plan previously prohibited by the Supreme Court. We anticipate several additional expense and spending "surprises" to surface in the current fiscal year, especially as figures in Washington generally find spending money guided by election polling to be more straightforward than managing budgets based on rigorous analysis of economic data. Apparently, there is always a crisis or catastrophe out there that would require expeditious government spending.
 
@@ -78,9 +78,9 @@ The recently published GDI supports our view by demonstrating a recent contracti
 
 Figure 3 illustrates the historical relationship between GDP and GDI since January 2006. As evidenced, GDI and GDP follow the same trends, with GDI positioned slightly above GDP for most of the observed period. The only exception to this relationship was leading up to and during the Great Recession of 2008.
 
-![Figure 3: Historical Relationship Between GDP and GDI](/images/charts/2023-08-fig3.png)
+![Figure 3: Historical Relationship Between GDP and GDI](/images/charts/2023-08-fig3.webp)
 
-![Figure 4: GDP and GDI Leading Up to the Great Recession](/images/charts/2023-08-fig4.png)
+![Figure 4: GDP and GDI Leading Up to the Great Recession](/images/charts/2023-08-fig4.webp)
 
 Figure 4 focuses specifically on the relationship between GDI and GDP leading up to and during the Great Recession of 2008. We call your attention to the reversal of positioning in GDI and GDP in 2007 and the maintenance of this positioning until late 2010 (see Figure 3). It is notable that the only time in the observed period GDI was less than GDP was during the Great Recession.
 
@@ -88,7 +88,7 @@ With that said, we now want to highlight the relationship between the two since 
 
 According to the Bureau of Economic Analysis, real GDI experienced negative growth BEA shows that real GDP increasing at an annual rate of 2.6% in the fourth quarter of 2022, with a further gain of 2% in Q1 2023 (all numbers seasonally adjusted annual rates).
 
-![Figure 5: Widening Gap Between GDP and GDI](/images/charts/2023-08-fig5.png)
+![Figure 5: Widening Gap Between GDP and GDI](/images/charts/2023-08-fig5.webp)
 
 The ongoing widening of the gap between these two measurements (Figure 5) paints a picture similar to what was observed in the second half of 2007, the period leading up to the Great Recession of 2008 (see Figure 4). We will continue to report on this relationship as new data becomes available.
 

@@ -3,7 +3,7 @@ title: "Monachil Credit Income Fund Commentary — March 2024"
 date: 2024-03-08
 category: "Market Commentary"
 description: "Analysis of housing market dynamics, shelter inflation disconnect, and implications for Fed policy and credit markets."
-thumbnail: "/images/charts/2024-03-fig1.png"
+thumbnail: "/images/charts/2024-03-fig1.webp"
 pdf: "/pdfs/Commentary-20240308.pdf"
 ---
 ## Introduction and Overview
@@ -46,11 +46,11 @@ Third, if one were to look at the current read of Shelter CPI, it seems that it 
 
 around 324 in the April 2020 Shelter CPI, and its read in the January 2024 Shelter CPI is 392 (see Figure 1). This implies a 21% increase since the onset of the Pandemic.
 
-![Figure 1: Shelter CPI Index](/images/charts/2024-03-fig1.png)
+![Figure 1: Shelter CPI Index](/images/charts/2024-03-fig1.webp)
 
 During a similar period (January 2020 to November 2023), the S&P CoreLogic CaseShiller Home Price Index grew from 212 to 312, a 46% increase, with most of the increase occurring in the first two and a half years of that period (see Figure 2).
 
-![Figure 2: S&P CoreLogic Case-Shiller Home Price Index](/images/charts/2024-03-fig2.png)
+![Figure 2: S&P CoreLogic Case-Shiller Home Price Index](/images/charts/2024-03-fig2.webp)
 
 The fact that home prices have increased 46% while the metrics that measure Shelter inflation have only gone up 21% means that there is much more catching up that needs to take place in Shelter inflation, which will invariably keep the CPI running hot for the foreseeable future.
 
@@ -72,7 +72,7 @@ Essentially, the Federal Reserve is paying more on the liability side of its bal
 
 The realized losses associated with the QE policies of the past are approximately $150bn as of February 14, 2024 (see Figure 3) and currently sit on the Federal Reserve's balance sheet
 
-![Figure 3: Federal Reserve Cumulative Remittances](/images/charts/2024-03-fig3.png)
+![Figure 3: Federal Reserve Cumulative Remittances](/images/charts/2024-03-fig3.webp)
 
 causing it to have a capital balance of ~-$100 billion.
 
