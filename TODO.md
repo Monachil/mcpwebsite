@@ -126,6 +126,59 @@ Status codes: 201 (created), 400 (validation error), 413 (file too large), 429 (
 - Update CSP to allow Azure Functions domain + Google reCAPTCHA
 - Remove Formspree dependency entirely
 
+### Move to Azure Static Web Apps + Keystatic + Entra Easy Auth
+
+**Why:** Non-technical editors (investment team for research, ops/marketing for media, HR for careers) currently depend on an engineer committing through GitHub. That does not scale. Adding a Git-based CMS is the right move. The key constraint is **identity**: the firm is already standardized on Microsoft Entra ID (formerly Azure AD) via M365, and fragmenting CMS identity into a separate GitHub OAuth app creates an SEC 206(4)-7 supervision gap — offboarding from Entra would not automatically revoke CMS access. Keeping everything on Entra solves this cleanly.
+
+**Decision:** host the site on Azure Static Web Apps, not GitHub Pages. SWA gives us Entra Easy Auth built-in via `staticwebapp.config.json`, managed Functions (which subsumes the separate `monachil-forms` repo plan above), and PR-per-staging environments. Use **Keystatic** (Thinkmill) as the CMS because its admin UI needs a server runtime anyway — so Entra-in-front is a supported deployment pattern rather than a wedge, and Keystatic's TypeScript schema lives next to the existing Astro Zod schema (less duplication than Sveltia's parallel YAML).
+
+**Alternatives considered and rejected:**
+- **Sveltia CMS on GitHub Pages** — cleanest static-site CMS, but authenticates against GitHub OAuth directly. No way to put Entra in front without either (a) paying ~$5k/year for GitHub Enterprise Cloud + Entra SAML SSO or (b) layering Cloudflare Access, which only gates the admin HTML without unifying identity. Fragments identity from Entra.
+- **Decap CMS** — under-maintained since Netlify handed it off. Not the right base to build on in 2026.
+- **Pages CMS** — clean but small, and its hosted OAuth service (app.pagescms.org) is outside our tenancy.
+- **Stay on GitHub Pages with per-editor GitHub accounts + 2FA** — works for the compliance audit trail (Git commit authors are records-of-record under Rule 204-2), but fails the lifecycle-control argument that matters most.
+
+**Stack after migration:**
+- Astro site deployed to Azure Static Web Apps (free tier — SWA Standard only if we need custom auth providers beyond Entra)
+- Keystatic admin at `/admin/` on the same SWA, protected by Entra Easy Auth (only users in a designated Entra group can load `/admin`)
+- Keystatic commits content to the site repo using a GitHub App installed on the repo (server-side credential, not per-user OAuth)
+- Azure Functions (managed by SWA) replace the current FormSubmit forms + implement the `monachil-forms` endpoints directly
+- DNS for `monachill.com` cuts from GitHub Pages → SWA
+
+**Migration phases (staged, not one-shot):**
+
+Phase 1 — prove it on staging (no user-visible change):
+- Create Azure Static Web Apps resource in the existing Azure subscription
+- Configure SWA to build from the current repo on push to `main` (replaces `.github/workflows/deploy.yml`)
+- Deploy to a staging hostname (e.g. `monachil-site-staging.azurestaticapps.net`) to confirm the Astro build works unchanged
+- Document any edge differences (404 handling, trailing-slash behavior, asset caching headers) relative to GitHub Pages
+
+Phase 2 — install Keystatic, wire to Entra:
+- Add `@keystatic/core` + `@keystatic/astro` to the project
+- Author `keystatic.config.ts` with collections that mirror the existing Zod schemas in `src/content.config.ts` (research, legal, careers) plus the `media-videos.json` / `media-press.json` singletons
+- Register a GitHub App on the Monachil org scoped to the site repo's content paths only; store the app credential in SWA application settings
+- Configure `staticwebapp.config.json` to require Entra authentication for routes under `/keystatic/*` (or `/admin/*`)
+- Create a dedicated Entra group `MCP-Website-Editors`; only members of that group can access the CMS
+- Validate the editor flow end-to-end: Ali posts a test research article, Moe posts a media item, HR edits a career role
+
+Phase 3 — DNS cutover:
+- Point `monachill.com` at the SWA
+- Confirm HTTPS cert, redirects, OG tags, sitemap, robots.txt all still correct
+- Turn off the GitHub Pages deployment
+
+Phase 4 — consolidate forms:
+- Port the contact / careers / subscribe forms from FormSubmit to managed Azure Functions under the same SWA (this closes the outstanding "Azure Functions Form Backend" item above; the plan from that section still applies, it just lives inside SWA rather than a separate `monachil-forms` repo)
+- Swap CSP and form actions; remove FormSubmit allowlist
+- Switch Mailchimp subscribe flow to a Function endpoint (optional)
+
+**Open questions to resolve before starting:**
+- Which Azure subscription / resource group owns this? (production vs. shared)
+- Who creates the Entra group and manages membership? (IT lead, not engineering)
+- Does Keystatic's editor UX meet the investment team's bar for posting research? — review together before committing to it
+- Whether to also migrate the Monachil Tech division pages / Funds site for consistency later
+
+**Effort estimate:** ~2-3 focused days of engineering work spread across phases. Not blocking — the current GitHub Pages setup works fine. Revisit when the pain of engineer-mediated content edits is high enough, or when the Azure Functions form backend is about to be built (so both happen on SWA, not two separate migrations).
+
 ### Moe & Jack Team Bios
 Add compact bio cards (no headshots) below Ali and Joe on Leadership tab:
 - Mohsen Ramezani — CTO: technology strategy, scalable platforms, 20+ years engineering
