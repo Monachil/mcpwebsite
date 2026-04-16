@@ -20,4 +20,18 @@ const legal = defineCollection({
   }),
 });
 
-export const collections = { research, legal };
+const careers = defineCollection({
+  loader: glob({ pattern: ['**/*.md', '!README.md', '!**/_*.md'], base: './src/content/careers' }),
+  schema: z.object({
+    title: z.string(),
+    tag: z.string(),
+    summary: z.string(),
+    location: z.string().default('Greenwich, CT'),
+    employmentType: z.string().default('Full-time'),
+    postedDate: z.coerce.date(),
+    draft: z.boolean().default(false),
+    order: z.number().optional(),
+  }),
+});
+
+export const collections = { research, legal, careers };

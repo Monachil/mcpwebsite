@@ -1,6 +1,24 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection, render } from 'astro:content';
 import { site } from '../data/site';
+
+const allCareers = await getCollection('careers', ({ data }) => !data.draft);
+allCareers.sort((a, b) => {
+  const orderA = a.data.order ?? Number.MAX_SAFE_INTEGER;
+  const orderB = b.data.order ?? Number.MAX_SAFE_INTEGER;
+  if (orderA !== orderB) return orderA - orderB;
+  return b.data.postedDate.getTime() - a.data.postedDate.getTime();
+});
+
+const careerListings = await Promise.all(
+  allCareers.map(async (entry) => ({
+    id: entry.id,
+    data: entry.data,
+    Content: (await render(entry)).Content,
+  }))
+);
+const firstCareerTitle = careerListings[0]?.data.title ?? '';
 ---
 
 <BaseLayout title="Contact" description="Reach out to learn more about Monachil Capital Partners or explore career opportunities.">
@@ -107,72 +125,93 @@ import { site } from '../data/site';
     <div class="contact-pane" id="pane-careers">
       <div class="careers-intro">
         <h2>Join the <strong>Team</strong></h2>
-        <p>We are always seeking top talent to join our team of industry professionals. Browse our open positions and apply below.</p>
+        <p>We are always seeking top talent to join our team of industry professionals. Select an open role to view details, then apply below.</p>
       </div>
 
-      <div class="careers-layout">
-        <div class="careers-positions">
-          <h3 class="careers-section-title">Open Positions</h3>
-          <div class="position-card position-card--active" data-position="Python Software Engineer">
-            <span class="position-tag">Engineering</span>
-            <h4 class="position-title">Python Software Engineer</h4>
-            <p class="position-desc">Join our technology team building proprietary data analytics and risk management platforms for our investment process.</p>
-          </div>
-          <div class="position-card" data-position="DevOps Platform Engineer">
-            <span class="position-tag">Engineering</span>
-            <h4 class="position-title">DevOps Platform Engineer</h4>
-            <p class="position-desc">Help design and maintain the infrastructure powering Monachil's real-time portfolio surveillance and data analytics capabilities.</p>
-          </div>
+      {careerListings.length === 0 ? (
+        <div class="careers-empty">
+          <p>We don't have any open positions at the moment, but we welcome speculative introductions. Please reach out via the Contact tab with a note on how you could contribute.</p>
         </div>
+      ) : (
+        <div class="careers-layout">
+          <div class="careers-positions">
+            <h3 class="careers-section-title">Open Positions</h3>
+            {careerListings.map((job, i) => (
+              <button
+                type="button"
+                class={`position-card${i === 0 ? ' position-card--active' : ''}`}
+                data-position={job.data.title}
+                data-panel={`position-panel-${job.id}`}
+                aria-expanded={i === 0 ? 'true' : 'false'}
+              >
+                <span class="position-tag">{job.data.tag}</span>
+                <h4 class="position-title">{job.data.title}</h4>
+                <p class="position-desc">{job.data.summary}</p>
+                <p class="position-meta">{job.data.location} &middot; {job.data.employmentType}</p>
+              </button>
+            ))}
+          </div>
 
-        <div class="careers-form-wrapper">
-          <h3 class="careers-form-title">Apply Now</h3>
-          <form action={`https://formsubmit.co/${site.formHrEmail}`} method="POST" enctype="multipart/form-data" data-careers novalidate>
-            <input type="hidden" name="_subject" value="Career Application — Monachil Capital Partners">
-            <input type="hidden" name="_template" value="table">
-            <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_next" value="https://monachill.com/contact/?submitted=careers">
-            <input type="text" name="_honey" tabindex="-1" autocomplete="off" hidden aria-hidden="true">
-            <div class="form-row">
-              <div class="form-group">
-                <label for="app-name">Full Name <span class="form-required">*</span></label>
-                <input type="text" id="app-name" name="name" required aria-required="true" autocomplete="name">
+          <div class="careers-detail">
+            {careerListings.map((job, i) => (
+              <article
+                class={`position-panel${i === 0 ? ' position-panel--active' : ''}`}
+                id={`position-panel-${job.id}`}
+                hidden={i !== 0}
+              >
+                <header class="position-panel-header">
+                  <p class="position-panel-tag">{job.data.tag}</p>
+                  <h3 class="position-panel-title">{job.data.title}</h3>
+                  <p class="position-panel-meta">{job.data.location} &middot; {job.data.employmentType}</p>
+                </header>
+                <div class="position-panel-body">
+                  <job.Content />
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <div class="careers-form-wrapper">
+            <h3 class="careers-form-title">Apply Now</h3>
+            <form action={`https://formsubmit.co/${site.formHrEmail}`} method="POST" enctype="multipart/form-data" data-careers novalidate>
+              <input type="hidden" name="_subject" value="Career Application — Monachil Capital Partners">
+              <input type="hidden" name="_template" value="table">
+              <input type="hidden" name="_captcha" value="false">
+              <input type="hidden" name="_next" value="https://monachill.com/contact/?submitted=careers">
+              <input type="text" name="_honey" tabindex="-1" autocomplete="off" hidden aria-hidden="true">
+              <input type="hidden" name="position" id="app-position" value={firstCareerTitle}>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="app-name">Full Name <span class="form-required">*</span></label>
+                  <input type="text" id="app-name" name="name" required aria-required="true" autocomplete="name">
+                </div>
+                <div class="form-group">
+                  <label for="app-email">Email Address <span class="form-required">*</span></label>
+                  <input type="email" id="app-email" name="email" required aria-required="true" autocomplete="email">
+                </div>
               </div>
               <div class="form-group">
-                <label for="app-email">Email Address <span class="form-required">*</span></label>
-                <input type="email" id="app-email" name="email" required aria-required="true" autocomplete="email">
+                <label for="app-linkedin">LinkedIn Profile URL</label>
+                <input type="url" id="app-linkedin" name="linkedin" placeholder="https://linkedin.com/in/yourprofile" autocomplete="url">
               </div>
-            </div>
-            <div class="form-group">
-              <label for="app-linkedin">LinkedIn Profile URL</label>
-              <input type="url" id="app-linkedin" name="linkedin" placeholder="https://linkedin.com/in/yourprofile" autocomplete="url">
-            </div>
-            <fieldset class="form-group form-fieldset">
-              <legend>Position <span class="form-required">*</span></legend>
-              <div class="form-radio-group">
-                <label class="form-radio-label">
-                  <input type="radio" name="position" value="Python Software Engineer" required aria-required="true" checked>
-                  <span>Python Software Engineer</span>
-                </label>
-                <label class="form-radio-label">
-                  <input type="radio" name="position" value="DevOps Platform Engineer">
-                  <span>DevOps Platform Engineer</span>
-                </label>
+              <div class="form-group">
+                <label for="app-selected-position">Applying for</label>
+                <input type="text" id="app-selected-position" value={firstCareerTitle} readonly aria-live="polite">
               </div>
-            </fieldset>
-            <div class="form-group">
-              <label for="app-resume">Resume <span class="form-required">*</span></label>
-              <input type="file" id="app-resume" name="resume" accept=".pdf,.doc,.docx" required aria-required="true" aria-describedby="app-resume-help" class="form-file-input" data-max-size="10485760">
-              <p id="app-resume-help" class="form-help-text">PDF, DOC, or DOCX. Maximum 10MB.</p>
-            </div>
-            <div class="form-group">
-              <label for="app-message">Cover Letter / Message</label>
-              <textarea id="app-message" name="message" rows="4" placeholder="Tell us about yourself and why you're interested in this role..."></textarea>
-            </div>
-            <button type="submit" class="btn btn--primary btn-full">Submit Application</button>
-          </form>
+              <div class="form-group">
+                <label for="app-resume">Resume <span class="form-required">*</span></label>
+                <input type="file" id="app-resume" name="resume" accept=".pdf,.doc,.docx" required aria-required="true" aria-describedby="app-resume-help" class="form-file-input" data-max-size="10485760">
+                <p id="app-resume-help" class="form-help-text">PDF, DOC, or DOCX. Maximum 10MB.</p>
+              </div>
+              <div class="form-group">
+                <label for="app-message">Cover Letter / Message</label>
+                <textarea id="app-message" name="message" rows="4" placeholder="Tell us about yourself and why you're interested in this role..."></textarea>
+              </div>
+              <button type="submit" class="btn btn--primary btn-full">Submit Application</button>
+            </form>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   </div>
 </section>

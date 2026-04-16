@@ -1751,8 +1751,8 @@ h4 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; font
 
 .careers-layout {
   display: grid;
-  grid-template-columns: 1fr 1.3fr;
-  gap: 48px;
+  grid-template-columns: 1fr;
+  gap: 32px;
   align-items: start;
 }
 
@@ -1765,17 +1765,38 @@ h4 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; font
   margin-bottom: 16px;
 }
 
+.careers-positions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 12px;
+}
+
+.careers-positions .careers-section-title {
+  grid-column: 1 / -1;
+  margin-bottom: 4px;
+}
+
 .position-card {
+  display: block;
+  width: 100%;
+  text-align: left;
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 20px 24px;
-  margin-bottom: 12px;
+  background: var(--surface, transparent);
+  color: inherit;
+  font: inherit;
   cursor: pointer;
-  transition: border-color var(--transition), box-shadow var(--transition);
+  transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
 }
 
 .position-card:hover {
   border-color: var(--blue-light);
+}
+
+.position-card:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
 }
 
 .position-card--active {
@@ -1807,6 +1828,84 @@ h4 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; font
   font-size: 0.82rem;
   color: var(--text-muted);
   line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+.position-meta {
+  font-size: 0.72rem;
+  color: var(--gray-500);
+  letter-spacing: 0.02em;
+}
+
+.careers-detail {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 32px 36px;
+  background: var(--off-white);
+}
+
+.position-panel[hidden] { display: none; }
+
+.position-panel-header {
+  padding-bottom: 20px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.position-panel-tag {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 8px;
+}
+
+.position-panel-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+}
+
+.position-panel-meta {
+  font-size: 0.8rem;
+  color: var(--gray-500);
+}
+
+.position-panel-body {
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: var(--text);
+}
+
+.position-panel-body h2 {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--navy);
+  margin: 28px 0 10px;
+  letter-spacing: -0.01em;
+}
+
+.position-panel-body h2:first-child { margin-top: 0; }
+
+.position-panel-body p { margin-bottom: 12px; }
+
+.position-panel-body ul {
+  list-style: disc;
+  padding-left: 20px;
+  margin-bottom: 16px;
+}
+
+.position-panel-body li {
+  margin-bottom: 6px;
+}
+
+.position-panel-body li::marker {
+  color: var(--blue);
 }
 
 .careers-form-wrapper {
@@ -1820,6 +1919,23 @@ h4 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; font
   font-weight: 600;
   color: var(--navy);
   margin-bottom: 24px;
+}
+
+.careers-empty {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 32px 36px;
+  background: var(--off-white);
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+[readonly]#app-selected-position {
+  background: var(--sky);
+  color: var(--navy);
+  font-weight: 500;
+  cursor: default;
 }
 
 /* Page Hero (Interior) */

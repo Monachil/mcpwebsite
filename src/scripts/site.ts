@@ -200,11 +200,31 @@ function bindGlobalListeners() {
 
     const posCard = target.closest<HTMLElement>('.position-card[data-position]');
     if (posCard) {
-      document.querySelectorAll('.position-card').forEach(c => c.classList.remove('position-card--active'));
-      posCard.classList.add('position-card--active');
-      document.querySelectorAll<HTMLInputElement>('input[name="position"]').forEach(r => {
-        if (r.value === posCard.dataset.position) r.checked = true;
+      document.querySelectorAll<HTMLElement>('.position-card').forEach(c => {
+        c.classList.remove('position-card--active');
+        c.setAttribute('aria-expanded', 'false');
       });
+      posCard.classList.add('position-card--active');
+      posCard.setAttribute('aria-expanded', 'true');
+
+      const panelId = posCard.dataset.panel;
+      document.querySelectorAll<HTMLElement>('.position-panel').forEach(p => {
+        p.classList.remove('position-panel--active');
+        p.hidden = true;
+      });
+      if (panelId) {
+        const panel = document.getElementById(panelId);
+        if (panel) {
+          panel.hidden = false;
+          panel.classList.add('position-panel--active');
+        }
+      }
+
+      const title = posCard.dataset.position || '';
+      const hiddenPosition = document.getElementById('app-position') as HTMLInputElement | null;
+      if (hiddenPosition) hiddenPosition.value = title;
+      const displayPosition = document.getElementById('app-selected-position') as HTMLInputElement | null;
+      if (displayPosition) displayPosition.value = title;
       return;
     }
 
